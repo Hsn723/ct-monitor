@@ -6,6 +6,7 @@ import (
 	"log"
 )
 
+// SendgridMailer represents a mail sender for sendgrid
 type SendgridMailer struct {
 	From   string
 	To     string
@@ -13,6 +14,7 @@ type SendgridMailer struct {
 	Client *sendgrid.Client
 }
 
+// Init implements the Mailer's Init interface
 func (s *SendgridMailer) Init(from, to string) error {
 	s.From = from
 	s.To = to
@@ -23,6 +25,7 @@ func (s *SendgridMailer) Init(from, to string) error {
 	return nil
 }
 
+// Send implements the Mailer's Send interface
 func (s *SendgridMailer) Send(subject, body string) error {
 	fromEmail := mail.NewEmail(s.From, s.From)
 	toEmail := mail.NewEmail(s.To, s.To)

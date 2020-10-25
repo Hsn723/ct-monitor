@@ -5,6 +5,7 @@ import (
 	"net/smtp"
 )
 
+// SMTPMailer represents a mail sender for plain SMTP
 type SMTPMailer struct {
 	From     string
 	To       string
@@ -15,6 +16,7 @@ type SMTPMailer struct {
 	Auth     *smtp.Auth
 }
 
+// Init implements the Mailer's Init interface
 func (s *SMTPMailer) Init(from, to string) error {
 	s.From = from
 	s.To = to
@@ -26,6 +28,7 @@ func (s *SMTPMailer) Init(from, to string) error {
 	return nil
 }
 
+// Send implements the Mailer's Send interface
 func (s *SMTPMailer) Send(subject, body string) error {
 	addr := fmt.Sprintf("%s:%d", s.Server, s.Port)
 	msg := []byte(fmt.Sprintf("To: %s\r\nSubject: %s\r\n\r\n%s\r\n", s.To, subject, body))

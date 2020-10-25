@@ -8,6 +8,7 @@ import (
 	"log"
 )
 
+// AmazonSESMailer represents a mail sender for Amazon SES
 type AmazonSESMailer struct {
 	From    string
 	To      string
@@ -15,6 +16,7 @@ type AmazonSESMailer struct {
 	Session *sesv2.SESV2
 }
 
+// Init implements the Mailer's Init interface
 func (s *AmazonSESMailer) Init(from, to string) error {
 	s.From = from
 	s.To = to
@@ -34,6 +36,7 @@ func (s *AmazonSESMailer) Init(from, to string) error {
 	return nil
 }
 
+// Send implements the Mailer's Send interface
 func (s *AmazonSESMailer) Send(subject, body string) error {
 	charset := "UTF-8"
 	email := &sesv2.SendEmailInput{

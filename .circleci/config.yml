@@ -30,7 +30,7 @@ jobs:
       - checkout
       - run: make OS=<< parameters.os >> ARCH=<< parameters.arch >> build
       - persist_to_workspace:
-          root: /work
+          root: /tmp/ct-monitor
           paths:
             - artifacts/*
   create-tag:
@@ -38,7 +38,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - ""
+            - "ff:ca:da:a2:6d:ac:60:f3:0c:ec:59:fa:9c:1c:e6:9d"
       - checkout
       - run:
           command: |
@@ -56,22 +56,26 @@ jobs:
     working_directory: /work
     steps:
       - attach_workspace:
-          at: /work
+          at: /tmp/ct-monitor
       - run: go get github.com/tcnksm/ghr
-      - run: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ./artifacts
+      - run: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} /tmp/ct-monitor/artifacts
   publish-docker:
-    executor: ubuntu
+    docker:
+      - image: docker:stable
     working_directory: /work
     steps:
       - attach_workspace:
-            at: /work
+            at: /tmp/ct-monitor
       - setup_remote_docker:
             docker_layer_caching: false
+      - checkout
       - run: |
+          mkdir artifacts
+          cp /tmp/ct-monitor/artifacts/ct-monitor-linux-amd64 artifacts/
           BASENAME="quay.io/hsn723/ct-monitor"
           TAG=$(cat VERSION)
           BRANCH=$(echo $TAG | cut -d '.' -f 1,2)
-          docker build -t ${BASENAME}:latest ${BASENAME}:${BRANCH} ${BASENAME}:${TAG} .
+          docker build -t ${BASENAME}:latest -t ${BASENAME}:${BRANCH} -t ${BASENAME}:${TAG} .
           docker login -u ${QUAY_USER} -p ${QUAY_TOKEN} quay.io
           docker push ${BASENAME}:${TAG}
           docker push ${BASENAME}:${BRANCH}
@@ -115,6 +119,16 @@ workflows:
       - release:
           requires:
             - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v\d+\.\d+\.\d+$/
       - publish-docker:
           requires:
               - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v\d+\.\d+\.\d+$/

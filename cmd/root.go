@@ -46,6 +46,7 @@ var (
 	includeSubdomains bool
 	mailSender        mailer.Mailer
 
+	// CurrentVersion stores the current version number
 	CurrentVersion string
 )
 
@@ -207,6 +208,7 @@ func runRoot(cmd *cobra.Command, args []string) error {
 	return position.WriteConfig()
 }
 
+// Execute runs the root command
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatal(err)

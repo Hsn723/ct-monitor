@@ -1,4 +1,4 @@
-BUILD_DIR=./artifacts
+BUILD_DIR=/tmp/ct-monitor/artifacts
 WORK_DIR=./bin
 VERSION := $(shell cat VERSION)
 LDFLAGS=-ldflags "-X github.com/Hsn723/ct-monitor/cmd.CurrentVersion=${VERSION}"
