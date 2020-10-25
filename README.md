@@ -23,13 +23,13 @@ Flags:
 ## Example config
 ```toml
 [alert_config]
-    from = me@example.com
-    recipient = me@example.com
-    mailer_config = sendgrid
+    from = "me@example.com"
+    recipient = "me@example.com"
+    mailer_config = "sendgrid"
 
 [sendgrid]
     apiKey = "your-api-key"
 
 [position_config]
-    filename = /var/log/ct-monitor/positions.toml
+    filename = "/var/log/ct-monitor/positions.toml"
 ```
