@@ -1,9 +1,9 @@
 domains = ["example.com"]
 
 [alert_config]
-    from = me@example.com
-    recipient = me@example.com
-    mailer_config = sendgrid
+    from = "me@example.com"
+    recipient = "me@example.com"
+    mailer_config = "sendgrid"
 
 [position_config]
-    filename = /var/log/ct-monitor/positions.toml
+    filename = "/var/log/ct-monitor/positions.toml"
