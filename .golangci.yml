@@ -1,0 +1,9 @@
+linters:
+  enable:
+      - dupl
+      - goconst
+      - gocyclo
+      - gofmt
+      - golint
+      - typecheck
+      - unparam

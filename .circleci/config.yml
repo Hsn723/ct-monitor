@@ -1,0 +1,120 @@
+version: 2.1
+executors:
+  golang:
+    docker:
+      - image: quay.io/cybozu/golang:1.15-focal
+  ubuntu:
+    docker:
+      - image: quay.io/cybozu/ubuntu:20.04
+
+jobs:
+  lint:
+    executor: golang
+    steps:
+      - checkout
+      - run: make lint
+  test:
+    executor: golang
+    steps:
+      - checkout
+      - run: make test
+  build:
+    executor: golang
+    working_directory: /work
+    parameters:
+      os:
+        type: string
+      arch:
+        type: string
+    steps:
+      - checkout
+      - run: make OS=<< parameters.os >> ARCH=<< parameters.arch >> build
+      - persist_to_workspace:
+          root: /work
+          paths:
+            - artifacts/*
+  create-tag:
+    executor: golang
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - ""
+      - checkout
+      - run:
+          command: |
+            TAG=v$(cat VERSION)
+            if git show-ref --tags | grep -q "refs/tags/${TAG}$"
+            then
+              echo "Already released version, skip"
+              exit
+            else
+              git tag ${TAG}
+              git push git@github.com:${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git ${TAG}
+            fi
+  release:
+    executor: golang
+    working_directory: /work
+    steps:
+      - attach_workspace:
+          at: /work
+      - run: go get github.com/tcnksm/ghr
+      - run: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ./artifacts
+  publish-docker:
+    executor: ubuntu
+    working_directory: /work
+    steps:
+      - attach_workspace:
+            at: /work
+      - setup_remote_docker:
+            docker_layer_caching: false
+      - run: |
+          BASENAME="quay.io/hsn723/ct-monitor"
+          TAG=$(cat VERSION)
+          BRANCH=$(echo $TAG | cut -d '.' -f 1,2)
+          docker build -t ${BASENAME}:latest ${BASENAME}:${BRANCH} ${BASENAME}:${TAG} .
+          docker login -u ${QUAY_USER} -p ${QUAY_TOKEN} quay.io
+          docker push ${BASENAME}:${TAG}
+          docker push ${BASENAME}:${BRANCH}
+          docker push ${BASENAME}:latest
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - lint
+      - test
+      - build:
+          requires:
+            - lint
+            - test
+          matrix:
+            parameters:
+              os: [linux]
+              arch: [amd64]
+          filters:
+            tags:
+              only: /.*/
+      - create-tag:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+  create-release:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              os: [linux, darwin, windows]
+              arch: [amd64]
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v\d+\.\d+\.\d+$/
+      - release:
+          requires:
+            - build
+      - publish-docker:
+          requires:
+              - build

@@ -1,0 +1,35 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ct-monitor
+  labels:
+    app.kubernetes.io/name: ct-monitor
+spec:
+  schedule: "0 * * * *"
+  concurrentPolicy: Forbid
+  startingDeadlineSeconds: 60
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: ct-monitor
+              image: quay.io/hsn723/ct-monitor:0.1
+              volumeMounts:
+                - name: config-volume
+                  mountPath: /etc/ct-monitor/config.toml
+                  subPath: config.toml
+                - name: positions-volume
+                  mountPath: /var/log/ct-monitor/positions.toml
+                  subPath: positions.toml
+              envFrom:
+                - secretRef:
+                    name: ct-monitor-secrets
+          volumes:
+            - name: positions-volume
+              persistentVolumeClaim:
+                claimName: ct-monitor-position
+            - name: config-volume
+              configMap:
+                name: ct-monitor-config
+          restartPolicy: OnFailure
