@@ -122,7 +122,7 @@ func initMailer() {
 	case "amazonses":
 		mailSender = &mailer.AmazonSESMailer{}
 	default:
-		log.Println("no mailer configured")
+		log.Println("no mailer configured, email report will not be sent")
 		return
 	}
 
@@ -162,6 +162,9 @@ func getDomainConfigName(domain string) string {
 }
 
 func sendMail(domain string, issuances []api.Issuance) error {
+	if mailSender == nil {
+		return nil
+	}
 	subject := fmt.Sprintf("Certificate Transparency Notification for %s", domain)
 	body := fmt.Sprintf("ct-monitor has observed the issuance of the following certificate(s) for the %s domain:\n", domain)
 	for _, i := range issuances {
