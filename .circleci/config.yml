@@ -18,6 +18,11 @@ jobs:
     steps:
       - checkout
       - run: make test
+  verify:
+    executor: golang
+    steps:
+      - checkout
+      - run: make verify
   build:
     executor: golang
     working_directory: /work
@@ -64,14 +69,10 @@ jobs:
       - image: docker:stable
     working_directory: /work
     steps:
-      - attach_workspace:
-            at: /tmp/ct-monitor
       - setup_remote_docker:
             docker_layer_caching: false
       - checkout
       - run: |
-          mkdir artifacts
-          cp /tmp/ct-monitor/artifacts/ct-monitor-linux-amd64 artifacts/
           BASENAME="quay.io/hsn723/ct-monitor"
           TAG=$(cat VERSION)
           BRANCH=$(echo $TAG | cut -d '.' -f 1,2)
@@ -87,10 +88,12 @@ workflows:
     jobs:
       - lint
       - test
+      - verify
       - build:
           requires:
             - lint
             - test
+            - verify
           matrix:
             parameters:
               os: [linux]
@@ -106,7 +109,15 @@ workflows:
               only: master
   create-release:
     jobs:
+      - verify:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v\d+\.\d+\.\d+$/
       - build:
+          requires:
+            - verify
           matrix:
             parameters:
               os: [linux, darwin, windows]
@@ -126,7 +137,7 @@ workflows:
               only: /^v\d+\.\d+\.\d+$/
       - publish-docker:
           requires:
-              - build
+            - verify
           filters:
             branches:
               ignore: /.*/

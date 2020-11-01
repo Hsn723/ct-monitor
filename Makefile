@@ -1,7 +1,7 @@
 BUILD_DIR=/tmp/ct-monitor/artifacts
 WORK_DIR=./bin
 VERSION := $(shell cat VERSION)
-LDFLAGS=-ldflags "-X github.com/Hsn723/ct-monitor/cmd.CurrentVersion=${VERSION}"
+LDFLAGS=-ldflags "-w -s -X github.com/Hsn723/ct-monitor/cmd.CurrentVersion=${VERSION}"
 OS ?= linux
 ARCH ?= amd64
 ifeq ($(OS), windows)
@@ -26,6 +26,11 @@ lint: clean setup
 .PHONY: test
 test: clean
 	go test -race -v ./...
+
+.PHONY: verify
+verify:
+	go mod download
+	go mod verify
 
 .PHONY: build
 build: clean setup
