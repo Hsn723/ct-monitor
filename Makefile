@@ -8,6 +8,9 @@ ifeq ($(OS), windows)
 EXT = .exe
 endif
 
+KIND_VERSION = 0.9.0
+KUBERNETES_VERSION = 1.18.2
+
 all: build
 
 .PHONY: clean
@@ -25,7 +28,25 @@ lint: clean setup
 
 .PHONY: test
 test: clean
-	go test -race -v ./...
+	go test -race -v $$(go list ./... | grep -v test)
+
+.PHONY: setup-kind
+setup-kind:
+	curl -sSLf -O https://storage.googleapis.com/kubernetes-release/release/v$(KUBERNETES_VERSION)/bin/linux/amd64/kubectl
+	sudo install kubectl /usr/local/bin/kubectl
+	cd /tmp; env GOFLAGS= GO111MODULE=on go get sigs.k8s.io/kind@v$(KIND_VERSION)
+
+.PHONY: start-kind
+start-kind:
+	kind create cluster --name=ct-monitor-kindtest
+
+.PHONY: stop-kind
+stop-kind:
+	kind delete cluster --name=ct-monitor-kindtest
+
+.PHONY: kindtest
+kindtest: clean stop-kind start-kind
+	go test -race -v ./test
 
 .PHONY: verify
 verify:
