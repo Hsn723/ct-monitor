@@ -18,6 +18,13 @@ jobs:
     steps:
       - checkout
       - run: make test
+  kindtest:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run: make setup-kind
+      - run: make kindtest
   verify:
     executor: golang
     steps:
@@ -89,11 +96,14 @@ workflows:
       - lint
       - test
       - verify
-      - build:
+      - kindtest:
           requires:
             - lint
             - test
             - verify
+      - build:
+          requires:
+            - kindtest
           matrix:
             parameters:
               os: [linux]

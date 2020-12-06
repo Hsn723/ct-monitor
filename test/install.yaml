@@ -1,0 +1,67 @@
+apiVersion: v1
+data:
+  config.toml: |
+    domains = ["example.com"]
+
+    [position_config]
+        filename = "/var/log/ct-monitor/positions.toml"
+kind: ConfigMap
+metadata:
+  name: ct-monitor-config-7k495894mg
+---
+apiVersion: v1
+data:
+  AWS_ACCESS_KEY_ID: hoge
+  AWS_SECRET_ACCESS_KEY: hoge
+  CERTSPOTTER_TOKEN: hoge
+  SENDGRID_TOKEN: hoge
+kind: Secret
+metadata:
+  name: ct-monitor-secrets
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app.kubernetes.io/name: ct-monitor
+  name: ct-monitor
+spec:
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - envFrom:
+            - secretRef:
+                name: ct-monitor-secrets
+            image: quay.io/hsn723/ct-monitor:latest
+            imagePullPolicy: Never
+            name: ct-monitor
+            volumeMounts:
+            - mountPath: /etc/ct-monitor/config.toml
+              name: config-volume
+              subPath: config.toml
+            - mountPath: /var/log/ct-monitor
+              name: positions-volume
+          restartPolicy: OnFailure
+          volumes:
+          - name: positions-volume
+            persistentVolumeClaim:
+              claimName: ct-monitor-position
+          - configMap:
+              name: ct-monitor-config-7k495894mg
+            name: config-volume
+  schedule: '*/1 * * * *'
+  startingDeadlineSeconds: 60
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ct-monitor-position
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Mi
