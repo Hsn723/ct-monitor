@@ -1,0 +1,16 @@
+default_stages: [commit]
+repos:
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v1.33.0
+    hooks:
+      - id: golangci-lint
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.3.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-yaml
+        args: ["--allow-multiple-documents"]
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
