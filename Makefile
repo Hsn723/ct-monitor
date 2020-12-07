@@ -1,5 +1,4 @@
 BUILD_DIR=/tmp/ct-monitor/artifacts
-WORK_DIR=./bin
 VERSION := $(shell cat VERSION)
 LDFLAGS=-ldflags "-w -s -X github.com/Hsn723/ct-monitor/cmd.CurrentVersion=${VERSION}"
 OS ?= linux
@@ -15,16 +14,17 @@ all: build
 
 .PHONY: clean
 clean:
-	rm -rf ${BUILD_DIR} ${WORK_DIR}
+	rm -rf ${BUILD_DIR}
 
 .PHONY: setup
 setup:
-	mkdir -p ${BUILD_DIR} ${WORK_DIR}
+	mkdir -p ${BUILD_DIR}
+	pip3 install pre-commit
+	pre-commit install
 
 .PHONY: lint
 lint: clean setup
-	curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s -- -b ${WORK_DIR} v1.31.0
-	${WORK_DIR}/golangci-lint run
+	pre-commit run --all-files
 
 .PHONY: test
 test: clean
