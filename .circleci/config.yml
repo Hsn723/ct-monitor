@@ -6,16 +6,16 @@ executors:
   ubuntu:
     docker:
       - image: quay.io/cybozu/ubuntu:20.04
-  python:
-    docker:
-      - image: cimg/python:3.9.0
-      - image: quay.io/cybozu/golang:1.15-focal
 
 jobs:
   lint:
-    executor: python
+    executor: golang
     steps:
       - checkout
+      - run:
+          name: "Install python3"
+          command: |
+            apt-get update && apt-get install -y --no-install-recommends python3-pip
       - run: make lint
   test:
     executor: golang
