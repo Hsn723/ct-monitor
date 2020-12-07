@@ -5,5 +5,9 @@ domains = ["example.com"]
     recipient = "me@example.com"
     mailer_config = "sendgrid"
 
+[push_config]
+    endpoint = "pushgateway.monitoring"
+    port = 9091
+
 [position_config]
     filename = "/var/log/ct-monitor/positions.toml"

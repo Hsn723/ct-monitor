@@ -5,11 +5,15 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/Hsn723/ct-monitor/api"
 	"github.com/Hsn723/ct-monitor/mailer"
+	"github.com/Hsn723/ct-monitor/pusher"
 	"github.com/mitchellh/mapstructure"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/push"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -23,6 +27,8 @@ const (
 	endpointConfigKey         = "endpoint"
 	certspotterTokenConfigKey = "certspotter_token"
 	sendgridTokenConfigKey    = "sendgrid.apiKey"
+	pushgatewayEndpointKey    = "push_config.endpoint"
+	pushgatewayPortKey        = "push_config.port"
 
 	defaultEndpoint     = "https://api.certspotter.com/v1/issuances"
 	defaultConfigFile   = "/etc/ct-monitor/config.toml"
@@ -45,6 +51,7 @@ var (
 	matchWildcards    bool
 	includeSubdomains bool
 	mailSender        mailer.Mailer
+	metricPusher      *push.Pusher
 
 	// CurrentVersion stores the current version number
 	CurrentVersion string
@@ -80,6 +87,7 @@ func initConfig() {
 
 	initPosition()
 	initMailer()
+	initPusher()
 }
 
 func initPosition() {
@@ -136,6 +144,16 @@ func initMailer() {
 	}
 }
 
+func initPusher() {
+	pgEndpoint := config.GetString(pushgatewayEndpointKey)
+	pgPort := config.GetInt(pushgatewayPortKey)
+	if pgEndpoint == "" || pgPort <= 0 {
+		log.Println("no configuration for pushgateway")
+		return
+	}
+	metricPusher = pusher.GetPusher(fmt.Sprintf("%s:%d", pgEndpoint, pgPort))
+}
+
 func init() {
 	cobra.OnInitialize(initConfig)
 	rootCmd.Flags().StringVarP(&configFile, "config", "c", defaultConfigFile, "path to configuration file")
@@ -174,6 +192,23 @@ func sendMail(domain string, issuances []api.Issuance) error {
 	return mailSender.Send(subject, body)
 }
 
+func pushMetrics(domain string, issuances []api.Issuance) error {
+	if metricPusher == nil {
+		return nil
+	}
+	for _, i := range issuances {
+		pusher.IssuancesObserved.With(prometheus.Labels{
+			"id":         strconv.FormatUint(i.ID, 10),
+			"domain":     domain,
+			"dns_names":  strings.Join(i.Domains, ","),
+			"issuer":     i.Issuer.Name,
+			"not_before": i.NotBefore,
+		}).Set(1)
+	}
+
+	return metricPusher.Add()
+}
+
 func checkIssuances(domain string, wildcards, subdomains bool, c api.CertspotterClient) error {
 	key := getDomainConfigName(domain)
 	lastIssuance := position.GetUint64(key)
@@ -190,6 +225,9 @@ func checkIssuances(domain string, wildcards, subdomains bool, c api.Certspotter
 		log.Printf("observed issuance %d for %v with SHA256: %s", issuance.ID, issuance.Domains, issuance.Cert.SHA256)
 	}
 	if err := sendMail(domain, issuances); err != nil {
+		return err
+	}
+	if err := pushMetrics(domain, issuances); err != nil {
 		return err
 	}
 	position.Set(key, lastIssuance)
