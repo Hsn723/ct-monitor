@@ -9,6 +9,7 @@ executors:
   python:
     docker:
       - image: cimg/python:3.9.0
+      - image: quay.io/cybozu/golang:1.15-focal
 
 jobs:
   lint:
