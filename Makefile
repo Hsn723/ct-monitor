@@ -19,11 +19,11 @@ clean:
 .PHONY: setup
 setup:
 	mkdir -p ${BUILD_DIR}
-	pip3 install pre-commit
-	pre-commit install
 
 .PHONY: lint
 lint: clean setup
+	if [ -z "$(shell which pre-commit)" ]; then pip3 install pre-commit; fi
+	pre-commit install
 	pre-commit run --all-files
 
 .PHONY: test
