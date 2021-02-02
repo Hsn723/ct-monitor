@@ -1,0 +1,105 @@
+kind: pipeline
+type: docker
+name: amd64
+
+platform:
+  arch: amd64
+  os: linux
+
+steps:
+  - name: publish
+    image: plugins/docker
+    settings:
+      repo: hsn723/ct-monitor
+      auto_tag: true
+      auto_tag_suffix: ${DRONE_STAGE_ARCH}
+      build_args:
+        ARCH: ${DRONE_STAGE_ARCH}
+      username:
+        from_secret: DOCKER_USER
+      password:
+        from_secret: DOCKER_TOKEN
+
+trigger:
+  event:
+    - tag
+---
+kind: pipeline
+type: docker
+name: arm64
+
+platform:
+  arch: arm64
+  os: linux
+
+steps:
+  - name: publish
+    image: plugins/docker
+    settings:
+      repo: hsn723/ct-monitor
+      auto_tag: true
+      auto_tag_suffix: ${DRONE_STAGE_ARCH}
+      build_args:
+        ARCH: ${DRONE_STAGE_ARCH}
+      username:
+        from_secret: DOCKER_USER
+      password:
+        from_secret: DOCKER_TOKEN
+
+trigger:
+  event:
+    - tag
+---
+kind: pipeline
+type: docker
+name: arm
+
+platform:
+  arch: arm
+  os: linux
+
+steps:
+  - name: publish
+    image: plugins/docker
+    settings:
+      repo: hsn723/ct-monitor
+      auto_tag: true
+      auto_tag_suffix: ${DRONE_STAGE_ARCH}
+      build_args:
+        ARCH: ${DRONE_STAGE_ARCH}
+      username:
+        from_secret: DOCKER_USER
+      password:
+        from_secret: DOCKER_TOKEN
+
+trigger:
+  event:
+    - tag
+---
+kind: pipeline
+type: docker
+name: manifest
+
+steps:
+  - name: manifest
+    image: plugins/manifest
+    settings:
+      username:
+        from_secret: DOCKER_USER
+      password:
+        from_secret: DOCKER_TOKEN
+      target: hsn723/ct-monitor:${DRONE_TAG}
+      template: hsn723/ct-monitor:${DRONE_TAG}-ARCH
+      platforms:
+        - linux/amd64
+        - linux/arm64
+        - linux/arm
+
+depends_on:
+  - amd64
+  - arm64
+  - arm
+
+trigger:
+  event:
+    - tag
