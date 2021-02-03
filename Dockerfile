@@ -1,4 +1,4 @@
-FROM quay.io/cybozu/golang:1.15-focal as build
+FROM golang:1.15-buster as build
 ARG ARCH=amd64
 ENV CGO_ENABLED=0
 RUN mkdir -p /etc/ct-monitor /var/log/ct-monitor \
