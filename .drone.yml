@@ -88,8 +88,8 @@ steps:
         from_secret: DOCKER_USER
       password:
         from_secret: DOCKER_TOKEN
-      target: hsn723/ct-monitor:${DRONE_TAG}
-      template: hsn723/ct-monitor:${DRONE_TAG}-ARCH
+      target: hsn723/ct-monitor:${DRONE_TAG:1}
+      template: hsn723/ct-monitor:${DRONE_TAG:1}-ARCH
       platforms:
         - linux/amd64
         - linux/arm64

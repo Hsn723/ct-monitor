@@ -78,6 +78,13 @@ func (c *CertspotterClient) get(queryParams string) ([]byte, error) {
 		return nil, err
 	}
 	defer res.Body.Close()
+	if res.StatusCode == http.StatusTooManyRequests {
+		retryAfter := res.Header.Get("Retry-After")
+		return nil, fmt.Errorf("hit Cert Spotter's API limit. Retry-After: %v", retryAfter)
+	}
+	if res.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("undocumented status code returned by the Cert Spotter API: %d", res.StatusCode)
+	}
 	return ioutil.ReadAll(res.Body)
 }
 
