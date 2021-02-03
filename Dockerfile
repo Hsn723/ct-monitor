@@ -1,6 +1,7 @@
 FROM golang:1.15-buster as build
 ARG ARCH=amd64
 ENV CGO_ENABLED=0
+WORKDIR /work
 RUN mkdir -p /etc/ct-monitor /var/log/ct-monitor \
     && chown nobody:nogroup /etc/ct-monitor /var/log/ct-monitor
 COPY . .
