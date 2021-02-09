@@ -11,19 +11,19 @@ const (
 	defaultParams = "?expand=dns_names&expand=issuer&expand=cert"
 )
 
-// HTTPClient is an interface implementing for the http.Client Do function
+// HTTPClient is an interface implementing for the http.Client Do function.
 type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
-// CertspotterClient is a client for interacting with the certspotter API
+// CertspotterClient is a client for interacting with the certspotter API.
 type CertspotterClient struct {
 	Endpoint string
 	Token    string
 	Client   HTTPClient
 }
 
-// Issuance represents an issuance object for the certspotter API
+// Issuance represents an issuance object for the certspotter API.
 type Issuance struct {
 	ID           uint64      `json:"id,string"`
 	TBSSHA256    string      `json:"tbs_sha256"`
@@ -35,13 +35,13 @@ type Issuance struct {
 	Cert         Certificate `json:"cert"`
 }
 
-// Issuer represents an issuer object for the certspotter API
+// Issuer represents an issuer object for the certspotter API.
 type Issuer struct {
 	Name         string `json:"name"`
 	PubKeySHA256 string `json:"pubkey_sha256"`
 }
 
-// Certificate represents a certificate object for the certspotter API
+// Certificate represents a certificate object for the certspotter API.
 type Certificate struct {
 	Type   string `json:"type"`
 	SHA256 string `json:"sha256"`
@@ -88,7 +88,7 @@ func (c *CertspotterClient) get(queryParams string) ([]byte, error) {
 	return ioutil.ReadAll(res.Body)
 }
 
-// GetIssuances queries the certspotter API for new issuances
+// GetIssuances queries the certspotter API for new issuances.
 func (c *CertspotterClient) GetIssuances(domain string, matchWildcards, includeSubdomains bool, position uint64) ([]Issuance, error) {
 	queryParams := c.getQueryParams(domain, matchWildcards, includeSubdomains, position)
 

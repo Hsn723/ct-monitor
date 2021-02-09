@@ -2,13 +2,13 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/Hsn723/ct-monitor/api"
 	"github.com/Hsn723/ct-monitor/mailer"
+	"github.com/cybozu-go/log"
 	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -46,7 +46,7 @@ var (
 	includeSubdomains bool
 	mailSender        mailer.Mailer
 
-	// CurrentVersion stores the current version number
+	// CurrentVersion stores the current version number.
 	CurrentVersion string
 )
 
@@ -65,17 +65,19 @@ func createFile(path string) error {
 }
 
 func initConfig() {
-	log.Printf("ct-monitor version %s", CurrentVersion)
+	_ = log.Info(fmt.Sprintf("ct-monitor version %s", CurrentVersion), nil)
 	config.SetConfigFile(configFile)
 	if err := createFile(configFile); err != nil {
-		log.Fatal(err)
+		_ = log.Critical(err.Error(), nil)
 	}
 	if err := config.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			log.Fatal(err)
+			_ = log.Critical(err.Error(), nil)
 		}
 	}
-	log.Print("using config file:", config.ConfigFileUsed())
+	_ = log.Info("using config file", map[string]interface{}{
+		"path": config.ConfigFileUsed(),
+	})
 	config.WatchConfig()
 
 	initPosition()
@@ -89,14 +91,16 @@ func initPosition() {
 	}
 	position.SetConfigFile(positionFile)
 	if err := createFile(positionFile); err != nil {
-		log.Fatal(err)
+		_ = log.Critical(err.Error(), nil)
 	}
 	if err := position.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			log.Fatal(err)
+			_ = log.Critical(err.Error(), nil)
 		}
 	}
-	log.Print("using position file:", position.ConfigFileUsed())
+	_ = log.Info("using position file", map[string]interface{}{
+		"path": position.ConfigFileUsed(),
+	})
 	position.WatchConfig()
 }
 
@@ -104,11 +108,11 @@ func initMailer() {
 	from := config.GetString(mailFromConfigKey)
 	to := config.GetString(mailToConfigKey)
 	if to == "" {
-		log.Print("alert mail recipient missing")
+		_ = log.Warn("alert mail recipient missing", nil)
 		return
 	}
 	if from == "" {
-		log.Println("alert mail from address missing")
+		_ = log.Warn("alert mail from address missing", nil)
 		return
 	}
 	mailerName := config.GetString(mailerConfigKey)
@@ -117,22 +121,25 @@ func initMailer() {
 		mailSender = &mailer.SMTPMailer{}
 	case "sendgrid":
 		mailSender = &mailer.SendgridMailer{
-			APIKey: viper.GetString(sendgridTokenConfigKey),
+			APIKey: config.GetString(sendgridTokenConfigKey),
+			Logger: log.DefaultLogger(),
 		}
 	case "amazonses":
-		mailSender = &mailer.AmazonSESMailer{}
+		mailSender = &mailer.AmazonSESMailer{
+			Logger: log.DefaultLogger(),
+		}
 	default:
-		log.Println("no mailer configured, email report will not be sent")
+		_ = log.Warn("no mailer configured, email report will not be sent", nil)
 		return
 	}
 
 	senderConf := config.GetStringMap(mailerName)
 	if err := mapstructure.Decode(senderConf, &mailSender); err != nil {
-		log.Fatal(err)
+		_ = log.Critical(err.Error(), nil)
 	}
 
 	if err := mailSender.Init(from, to); err != nil {
-		log.Fatal(err)
+		_ = log.Critical(err.Error(), nil)
 	}
 }
 
@@ -170,7 +177,9 @@ func sendMail(domain string, issuances []api.Issuance) error {
 	for _, i := range issuances {
 		body += fmt.Sprintf("\nIssuer: %s\nDNS Names: %v\nValidity: %s - %s\nSHA256: %s\nIssuance type: %s\n", i.Issuer.Name, i.Domains, i.NotBefore, i.NotAfter, i.Cert.SHA256, i.Cert.Type)
 	}
-	log.Printf("sending report for %s", domain)
+	_ = log.Info("sending report", map[string]interface{}{
+		"domain": domain,
+	})
 	return mailSender.Send(subject, body)
 }
 
@@ -182,38 +191,48 @@ func checkIssuances(domain string, wildcards, subdomains bool, c api.Certspotter
 		return err
 	}
 	if len(issuances) == 0 {
-		log.Printf("no new issuances observed for %s", domain)
+		_ = log.Info("no new issuances observed", map[string]interface{}{
+			"domain": domain,
+		})
 		return nil
 	}
 	lastIssuance = issuances[len(issuances)-1].ID
 	for _, issuance := range issuances {
-		log.Printf("observed issuance %d for %v with SHA256: %s", issuance.ID, issuance.Domains, issuance.Cert.SHA256)
+		_ = log.Info("observed issuance", map[string]interface{}{
+			"id":     issuance.ID,
+			"names":  issuance.Domains,
+			"sha256": issuance.Cert.SHA256,
+		})
 	}
 	if err := sendMail(domain, issuances); err != nil {
 		return err
 	}
 	position.Set(key, lastIssuance)
-	log.Printf("done checking %s", domain)
+	_ = log.Info("done checking", map[string]interface{}{
+		"domain": domain,
+	})
 	return nil
 }
 
 func runRoot(cmd *cobra.Command, args []string) error {
 	csp := api.CertspotterClient{
 		Endpoint: endpoint,
-		Token:    viper.GetString(certspotterTokenConfigKey),
+		Token:    config.GetString(certspotterTokenConfigKey),
 	}
 	for _, domain := range config.GetStringSlice(domainsConfigKey) {
 		if err := checkIssuances(domain, matchWildcards, includeSubdomains, csp); err != nil {
-			log.Print(err)
+			_ = log.Error(err.Error(), map[string]interface{}{
+				"domain": domain,
+			})
 		}
 	}
 
 	return position.WriteConfig()
 }
 
-// Execute runs the root command
+// Execute runs the root command.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		log.Fatal(err)
+		_ = log.Critical(err.Error(), nil)
 	}
 }

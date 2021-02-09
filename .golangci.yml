@@ -1,8 +1,10 @@
 linters:
   enable:
       - dupl
+      - gocognit
       - goconst
       - gocyclo
+      - godot
       - gofmt
       - golint
       - typecheck

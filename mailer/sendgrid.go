@@ -1,20 +1,21 @@
 package mailer
 
 import (
+	"github.com/cybozu-go/log"
 	"github.com/sendgrid/sendgrid-go"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
-	"log"
 )
 
-// SendgridMailer represents a mail sender for sendgrid
+// SendgridMailer represents a mail sender for sendgrid.
 type SendgridMailer struct {
 	From   string
 	To     string
 	APIKey string
 	Client *sendgrid.Client
+	Logger *log.Logger
 }
 
-// Init implements the Mailer's Init interface
+// Init implements the Mailer's Init interface.
 func (s *SendgridMailer) Init(from, to string) error {
 	s.From = from
 	s.To = to
@@ -25,12 +26,16 @@ func (s *SendgridMailer) Init(from, to string) error {
 	return nil
 }
 
-// Send implements the Mailer's Send interface
+// Send implements the Mailer's Send interface.
 func (s *SendgridMailer) Send(subject, body string) error {
 	fromEmail := mail.NewEmail(s.From, s.From)
 	toEmail := mail.NewEmail(s.To, s.To)
 	message := mail.NewSingleEmail(fromEmail, subject, toEmail, body, "")
 	res, err := s.Client.Send(message)
-	log.Print(res)
+	_ = log.Info("sendgrid response", map[string]interface{}{
+		"status_code": res.StatusCode,
+		"body":        res.Body,
+		"headers":     res.Headers,
+	})
 	return err
 }

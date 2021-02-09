@@ -5,18 +5,19 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sesv2"
-	"log"
+	"github.com/cybozu-go/log"
 )
 
-// AmazonSESMailer represents a mail sender for Amazon SES
+// AmazonSESMailer represents a mail sender for Amazon SES.
 type AmazonSESMailer struct {
 	From    string
 	To      string
 	Region  string
 	Session *sesv2.SESV2
+	Logger  *log.Logger
 }
 
-// Init implements the Mailer's Init interface
+// Init implements the Mailer's Init interface.
 func (s *AmazonSESMailer) Init(from, to string) error {
 	s.From = from
 	s.To = to
@@ -36,7 +37,7 @@ func (s *AmazonSESMailer) Init(from, to string) error {
 	return nil
 }
 
-// Send implements the Mailer's Send interface
+// Send implements the Mailer's Send interface.
 func (s *AmazonSESMailer) Send(subject, body string) error {
 	charset := "UTF-8"
 	email := &sesv2.SendEmailInput{
@@ -62,6 +63,8 @@ func (s *AmazonSESMailer) Send(subject, body string) error {
 		FromEmailAddress: aws.String(s.From),
 	}
 	res, err := s.Session.SendEmail(email)
-	log.Printf("SES message ID: %s", *res.MessageId)
+	_ = log.Info("SES email sent", map[string]interface{}{
+		"message_id": *res.MessageId,
+	})
 	return err
 }
