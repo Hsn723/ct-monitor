@@ -14,7 +14,7 @@ steps:
       auto_tag: true
       auto_tag_suffix: ${DRONE_STAGE_ARCH}
       build_args:
-        ARCH: ${DRONE_STAGE_ARCH}
+        - ARCH=${DRONE_STAGE_ARCH}
       username:
         from_secret: DOCKER_USER
       password:
@@ -40,7 +40,7 @@ steps:
       auto_tag: true
       auto_tag_suffix: ${DRONE_STAGE_ARCH}
       build_args:
-        ARCH: ${DRONE_STAGE_ARCH}
+        - ARCH=${DRONE_STAGE_ARCH}
       username:
         from_secret: DOCKER_USER
       password:
@@ -66,7 +66,7 @@ steps:
       auto_tag: true
       auto_tag_suffix: ${DRONE_STAGE_ARCH}
       build_args:
-        ARCH: ${DRONE_STAGE_ARCH}
+        - ARCH=${DRONE_STAGE_ARCH}
       username:
         from_secret: DOCKER_USER
       password:
