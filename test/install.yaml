@@ -9,16 +9,6 @@ kind: ConfigMap
 metadata:
   name: ct-monitor-config-7k495894mg
 ---
-apiVersion: v1
-data:
-  AWS_ACCESS_KEY_ID: hoge
-  AWS_SECRET_ACCESS_KEY: hoge
-  CERTSPOTTER_TOKEN: hoge
-  SENDGRID_TOKEN: hoge
-kind: Secret
-metadata:
-  name: ct-monitor-secrets
----
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
@@ -32,10 +22,7 @@ spec:
       template:
         spec:
           containers:
-          - envFrom:
-            - secretRef:
-                name: ct-monitor-secrets
-            image: quay.io/hsn723/ct-monitor:latest
+          - image: quay.io/hsn723/ct-monitor:latest
             imagePullPolicy: Never
             name: ct-monitor
             volumeMounts:

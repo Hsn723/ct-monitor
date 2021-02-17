@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -50,6 +51,14 @@ var (
 	CurrentVersion string
 )
 
+func getPositionFilePath() string {
+	positionFile := config.GetString(positionFileConfigKey)
+	if positionFile == "" {
+		return defaultPositionFile
+	}
+	return positionFile
+}
+
 func createFile(path string) error {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
@@ -85,10 +94,7 @@ func initConfig() {
 }
 
 func initPosition() {
-	positionFile := config.GetString(positionFileConfigKey)
-	if positionFile == "" {
-		positionFile = defaultPositionFile
-	}
+	positionFile := getPositionFilePath()
 	position.SetConfigFile(positionFile)
 	if err := createFile(positionFile); err != nil {
 		_ = log.Critical(err.Error(), nil)
@@ -214,6 +220,25 @@ func checkIssuances(domain string, wildcards, subdomains bool, c api.Certspotter
 	return nil
 }
 
+func atomicWritePosition() error {
+	positionFile := getPositionFilePath()
+	tmpFile, err := ioutil.TempFile(filepath.Dir(positionFile), "position.*.toml")
+	if err != nil {
+		return err
+	}
+	if err := position.WriteConfigAs(tmpFile.Name()); err != nil {
+		return err
+	}
+	fi, err := tmpFile.Stat()
+	if err != nil {
+		return err
+	}
+	if fi.Size() == 0 {
+		return nil
+	}
+	return os.Rename(tmpFile.Name(), positionFile)
+}
+
 func runRoot(cmd *cobra.Command, args []string) error {
 	csp := api.CertspotterClient{
 		Endpoint: endpoint,
@@ -227,7 +252,7 @@ func runRoot(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	return position.WriteConfig()
+	return atomicWritePosition()
 }
 
 // Execute runs the root command.

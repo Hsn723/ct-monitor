@@ -46,9 +46,9 @@ func TestKubernetes(t *testing.T) {
 
 	kubeResourcePath := "./install.yaml"
 	options := k8s.NewKubectlOptions("kind-ct-monitor-kindtest", getConfigPath(t), "default")
-	defer k8s.KubectlDelete(t, options, kubeResourcePath)
-
 	k8s.KubectlApply(t, options, kubeResourcePath)
+
+	defer k8s.KubectlDelete(t, options, kubeResourcePath)
 	listOptions := metav1.ListOptions{
 		FieldSelector: "status.phase==Succeeded",
 	}
