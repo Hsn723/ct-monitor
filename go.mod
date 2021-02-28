@@ -3,6 +3,7 @@ module github.com/Hsn723/ct-monitor
 go 1.13
 
 require (
+	github.com/Hsn723/certspotter-client v1.0.0
 	github.com/aws/aws-sdk-go v1.35.14
 	github.com/cybozu-go/log v1.6.0
 	github.com/gruntwork-io/terratest v0.30.23

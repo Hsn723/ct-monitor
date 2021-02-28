@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Hsn723/ct-monitor/api"
+	"github.com/Hsn723/certspotter-client/api"
 	"github.com/Hsn723/ct-monitor/mailer"
 	"github.com/cybozu-go/log"
 	"github.com/mitchellh/mapstructure"
