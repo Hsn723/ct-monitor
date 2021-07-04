@@ -28,6 +28,7 @@ dockers:
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source=https://github.com/hsn723/{{.ProjectName}}"
   - image_templates:
     - "hsn723/{{.ProjectName}}:{{ .Version }}-arm64"
     - "ghcr.io/hsn723/{{.ProjectName}}:{{ .Version }}-arm64"
@@ -40,6 +41,7 @@ dockers:
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source=https://github.com/hsn723/{{.ProjectName}}"
   - image_templates:
     - "hsn723/{{.ProjectName}}:{{ .Version }}-arm"
     - "ghcr.io/hsn723/{{.ProjectName}}:{{ .Version }}-arm"
@@ -53,6 +55,7 @@ dockers:
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source=https://github.com/hsn723/{{.ProjectName}}"
 docker_manifests:
   - name_template: "hsn723/{{.ProjectName}}:latest"
     image_templates:
