@@ -6,6 +6,8 @@ linters:
       - gocyclo
       - godot
       - gofmt
-      - golint
+      - revive
       - typecheck
       - unparam
+run:
+  timeout: 5m

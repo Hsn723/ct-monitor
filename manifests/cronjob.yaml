@@ -14,7 +14,8 @@ spec:
         spec:
           containers:
             - name: ct-monitor
-              image: quay.io/hsn723/ct-monitor:0.1
+              image: quay.io/hsn723/ct-monitor:latest
+              imagePullPolicy: Never
               volumeMounts:
                 - name: config-volume
                   mountPath: /etc/ct-monitor/config.toml

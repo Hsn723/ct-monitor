@@ -47,8 +47,10 @@ var (
 	includeSubdomains bool
 	mailSender        mailer.Mailer
 
-	// CurrentVersion stores the current version number.
-	CurrentVersion string
+	version string
+	commit  string
+	date    string
+	builtBy string
 )
 
 func getPositionFilePath() string {
@@ -74,7 +76,12 @@ func createFile(path string) error {
 }
 
 func initConfig() {
-	_ = log.Info(fmt.Sprintf("ct-monitor version %s", CurrentVersion), nil)
+	_ = log.Info("ct-monitor", map[string]interface{}{
+		"version":  version,
+		"commit":   commit,
+		"date":     date,
+		"built_by": builtBy,
+	})
 	config.SetConfigFile(configFile)
 	if err := createFile(configFile); err != nil {
 		_ = log.Critical(err.Error(), nil)
