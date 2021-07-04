@@ -40,7 +40,7 @@ func getConfigPath(t *testing.T) string {
 }
 
 func TestKubernetes(t *testing.T) {
-	tag := "quay.io/hsn723/ct-monitor"
+	tag := "quay.io/hsn723/ct-monitor:latest"
 	buildAndTestDockerImage(tag, t)
 	loadDockerImage(tag, t)
 
