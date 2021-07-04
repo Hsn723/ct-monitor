@@ -35,7 +35,7 @@ stop-kind:
 	kind delete cluster --name=ct-monitor-kindtest
 
 .PHONY: kindtest
-kindtest: clean stop-kind start-kind
+kindtest: clean stop-kind start-kind build
 	go test -race -v ./test
 
 .PHONY: verify
