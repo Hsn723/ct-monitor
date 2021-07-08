@@ -6,7 +6,7 @@ require (
 	github.com/Hsn723/certspotter-client v1.0.1
 	github.com/aws/aws-sdk-go v1.38.28
 	github.com/cybozu-go/log v1.6.0
-	github.com/gruntwork-io/terratest v0.36.3
+	github.com/gruntwork-io/terratest v0.36.4
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/sendgrid/rest v2.6.2+incompatible // indirect
 	github.com/sendgrid/sendgrid-go v3.7.0+incompatible
