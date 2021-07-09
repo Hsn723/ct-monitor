@@ -9,7 +9,7 @@ require (
 	github.com/gruntwork-io/terratest v0.36.4
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/sendgrid/rest v2.6.2+incompatible // indirect
-	github.com/sendgrid/sendgrid-go v3.7.0+incompatible
+	github.com/sendgrid/sendgrid-go v3.10.0+incompatible
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/viper v1.8.1
 	github.com/stretchr/testify v1.7.0
