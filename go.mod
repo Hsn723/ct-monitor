@@ -8,7 +8,7 @@ require (
 	github.com/cybozu-go/log v1.6.0
 	github.com/gruntwork-io/terratest v0.36.4
 	github.com/mitchellh/mapstructure v1.4.1
-	github.com/sendgrid/rest v2.6.2+incompatible // indirect
+	github.com/sendgrid/rest v2.6.4+incompatible // indirect
 	github.com/sendgrid/sendgrid-go v3.10.0+incompatible
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/viper v1.8.1
