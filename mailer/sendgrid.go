@@ -2,7 +2,7 @@ package mailer
 
 import (
 	"github.com/cybozu-go/log"
-	"github.com/sendgrid/sendgrid-go"
+	sendgrid "github.com/sendgrid/sendgrid-go"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
 
