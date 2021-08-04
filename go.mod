@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/Hsn723/certspotter-client v1.0.1
-	github.com/aws/aws-sdk-go v1.40.13
+	github.com/aws/aws-sdk-go v1.40.14
 	github.com/cybozu-go/log v1.6.0
 	github.com/gruntwork-io/terratest v0.37.2
 	github.com/mitchellh/mapstructure v1.4.1
