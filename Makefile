@@ -2,7 +2,7 @@ VERSION := $(shell cat VERSION)
 LDFLAGS=-ldflags "-w -s -X main.version=${VERSION}"
 
 KIND_VERSION = 0.11.1
-KUBERNETES_VERSION = 1.21.2
+KUBERNETES_VERSION = 1.22.1
 
 all: build
 
