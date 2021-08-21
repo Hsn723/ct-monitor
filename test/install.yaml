@@ -9,7 +9,7 @@ kind: ConfigMap
 metadata:
   name: ct-monitor-config-7k495894mg
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   labels:
