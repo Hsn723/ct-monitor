@@ -3,6 +3,7 @@ LDFLAGS=-ldflags "-w -s -X main.version=${VERSION}"
 
 KIND_VERSION = 0.11.1
 KUBERNETES_VERSION = 1.22.1
+CST_VERSION = 1.10.0
 
 all: build
 
@@ -19,6 +20,16 @@ lint:
 .PHONY: test
 test:
 	go test -race -v $$(go list ./... | grep -v test)
+
+.PHONY: setup-container-structure-test
+setup-container-structure-test:
+	if [ -z "$(shell which container-structure-test)" ]; then \
+		curl -LO https://storage.googleapis.com/container-structure-test/v$(CST_VERSION)/container-structure-test-linux-amd64 && mv container-structure-test-linux-amd64 container-structure-test && chmod +x container-structure-test && sudo mv container-structure-test /usr/local/bin/; \
+	fi
+
+.PHONY: container-structure-test
+container-structure-test: setup-container-structure-test
+	printf "amd64\narm64\narm" | xargs -n1 -I {} container-structure-test test --image ghcr.io/hsn723/ct-monitor:$(shell git describe --tags --abbrev=0)-next-{} --config cst.yaml
 
 .PHONY: setup-kind
 setup-kind:
