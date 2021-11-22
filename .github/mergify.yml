@@ -4,13 +4,6 @@ pull_request_rules:
       - "#approved-reviews-by>=1"
       - "#review-requested=0"
       - "#changes-requested-reviews-by=0"
-      - check-success=Lint
-      - check-success=Check goreleaser.yml
-      - check-success=Verify
-      - check-success=Test (1.16)
-      - check-success=Test (1.17)
-      - check-success=Kind test
-      - check-success=Dry-run release
     actions:
         merge:
           method: merge
