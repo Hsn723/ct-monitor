@@ -29,7 +29,7 @@ setup-container-structure-test:
 
 .PHONY: container-structure-test
 container-structure-test: setup-container-structure-test
-	printf "amd64\narm64\narm" | xargs -n1 -I {} container-structure-test test --image ghcr.io/hsn723/ct-monitor:$(shell git describe --tags --abbrev=0)-next-{} --config cst.yaml
+	printf "amd64\narm64" | xargs -n1 -I {} container-structure-test test --image ghcr.io/hsn723/ct-monitor:$(shell git describe --tags --abbrev=0)-next-{} --config cst.yaml
 
 .PHONY: setup-kind
 setup-kind:
