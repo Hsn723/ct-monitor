@@ -19,7 +19,7 @@ lint:
 
 .PHONY: test
 test:
-	go test -race -v $$(go list ./... | grep -v test)
+	go test -coverprofile cover.out -count=1 -race -p 4 -v ./...
 
 .PHONY: setup-container-structure-test
 setup-container-structure-test:
@@ -33,8 +33,8 @@ container-structure-test: setup-container-structure-test
 
 .PHONY: setup-kind
 setup-kind:
-	curl -sSLf -O https://storage.googleapis.com/kubernetes-release/release/v$(KUBERNETES_VERSION)/bin/linux/amd64/kubectl
-	sudo install kubectl /usr/local/bin/kubectl
+	curl -sSLf -o /tmp/kubectl -O https://storage.googleapis.com/kubernetes-release/release/v$(KUBERNETES_VERSION)/bin/linux/amd64/kubectl
+	sudo install /tmp/kubectl /usr/local/bin/kubectl
 	go install sigs.k8s.io/kind@v$(KIND_VERSION)
 
 .PHONY: start-kind
@@ -47,7 +47,7 @@ stop-kind:
 
 .PHONY: kindtest
 kindtest: clean stop-kind start-kind build
-	go test -race -v ./test
+	go test --tags=e2e -count=1 -coverprofile e2e.out -race -p 4 -v ./...
 
 .PHONY: verify
 verify:
