@@ -10,20 +10,14 @@ import (
 
 // AmazonSESMailer represents a mail sender for Amazon SES.
 type AmazonSESMailer struct {
-	From    string
-	To      string
-	Region  string
+	From    string `mapstructure:"from"`
+	To      string `mapstructure:"to"`
+	Region  string `mapstructure:"region"`
 	Session *sesv2.SESV2
 	Logger  *log.Logger
 }
 
-// Init implements the Mailer's Init interface.
-func (s *AmazonSESMailer) Init(from, to string) error {
-	s.From = from
-	s.To = to
-	if s.Session != nil {
-		return nil
-	}
+func (s *AmazonSESMailer) init() error {
 	creds := credentials.NewEnvCredentials()
 
 	sess, err := session.NewSession(&aws.Config{
@@ -37,8 +31,22 @@ func (s *AmazonSESMailer) Init(from, to string) error {
 	return nil
 }
 
+// Init implements the Mailer's Init interface.
+func (s AmazonSESMailer) Init() error {
+	if s.From == "" {
+		return ErrMissingSender
+	}
+	if s.To == "" {
+		return ErrMissingRecipient
+	}
+	if s.Session != nil {
+		return nil
+	}
+	return s.init()
+}
+
 // Send implements the Mailer's Send interface.
-func (s *AmazonSESMailer) Send(subject, body string) error {
+func (s AmazonSESMailer) Send(subject, body string) error {
 	charset := "UTF-8"
 	email := &sesv2.SendEmailInput{
 		Destination: &sesv2.Destination{

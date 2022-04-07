@@ -1,3 +1,5 @@
+// +build e2e
+
 package test
 
 import (
@@ -22,7 +24,7 @@ func buildAndTestDockerImage(tag string, t *testing.T) {
 		Remove: true,
 	}
 	out := docker.Run(t, tag, opts)
-	assert.Contains(t, out, "alert mail recipient missing")
+	assert.Contains(t, out, "no such file or directory")
 }
 
 func loadDockerImage(tag string, t *testing.T) {

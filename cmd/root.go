@@ -8,28 +8,11 @@ import (
 	"strings"
 
 	"github.com/Hsn723/certspotter-client/api"
+	"github.com/Hsn723/ct-monitor/config"
 	"github.com/Hsn723/ct-monitor/mailer"
 	"github.com/cybozu-go/log"
-	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-)
-
-const (
-	positionFileConfigKey     = "position_config.filename"
-	mailFromConfigKey         = "alert_config.from"
-	mailToConfigKey           = "alert_config.recipient"
-	mailerConfigKey           = "alert_config.mailer_config"
-	domainsConfigKey          = "domains"
-	endpointConfigKey         = "endpoint"
-	certspotterTokenConfigKey = "certspotter_token"
-	sendgridTokenConfigKey    = "sendgrid.apiKey"
-
-	defaultEndpoint     = "https://api.certspotter.com/v1/issuances"
-	defaultConfigFile   = "/etc/ct-monitor/config.toml"
-	defaultPositionFile = "/var/log/ct-monitor/positions.toml"
-	tokenEnv            = "CERTSPOTTER_TOKEN"
-	sendgridTokenEnv    = "SENDGRID_TOKEN"
 )
 
 var (
@@ -39,27 +22,14 @@ var (
 		RunE:  runRoot,
 	}
 	position = viper.New()
-	config   = viper.New()
 
-	configFile        string
-	endpoint          string
-	matchWildcards    bool
-	includeSubdomains bool
-	mailSender        mailer.Mailer
+	configFile string
 
 	version string
 	commit  string
 	date    string
 	builtBy string
 )
-
-func getPositionFilePath() string {
-	positionFile := config.GetString(positionFileConfigKey)
-	if positionFile == "" {
-		return defaultPositionFile
-	}
-	return positionFile
-}
 
 func createFile(path string) error {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
@@ -75,35 +45,9 @@ func createFile(path string) error {
 	return nil
 }
 
-func initConfig() {
-	_ = log.Info("ct-monitor", map[string]interface{}{
-		"version":  version,
-		"commit":   commit,
-		"date":     date,
-		"built_by": builtBy,
-	})
-	config.SetConfigFile(configFile)
-	if err := createFile(configFile); err != nil {
-		_ = log.Critical(err.Error(), nil)
-	}
-	if err := config.ReadInConfig(); err != nil {
-		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			_ = log.Critical(err.Error(), nil)
-		}
-	}
-	_ = log.Info("using config file", map[string]interface{}{
-		"path": config.ConfigFileUsed(),
-	})
-	config.WatchConfig()
-
-	initPosition()
-	initMailer()
-}
-
-func initPosition() {
-	positionFile := getPositionFilePath()
-	position.SetConfigFile(positionFile)
-	if err := createFile(positionFile); err != nil {
+func initPosition(pc config.PositionConfig) {
+	position.SetConfigFile(pc.Filename)
+	if err := createFile(pc.Filename); err != nil {
 		_ = log.Critical(err.Error(), nil)
 	}
 	if err := position.ReadInConfig(); err != nil {
@@ -117,74 +61,15 @@ func initPosition() {
 	position.WatchConfig()
 }
 
-func initMailer() {
-	from := config.GetString(mailFromConfigKey)
-	to := config.GetString(mailToConfigKey)
-	if to == "" {
-		_ = log.Warn("alert mail recipient missing", nil)
-		return
-	}
-	if from == "" {
-		_ = log.Warn("alert mail from address missing", nil)
-		return
-	}
-	mailerName := config.GetString(mailerConfigKey)
-	switch mailerName {
-	case "smtp":
-		mailSender = &mailer.SMTPMailer{}
-	case "sendgrid":
-		mailSender = &mailer.SendgridMailer{
-			APIKey: config.GetString(sendgridTokenConfigKey),
-			Logger: log.DefaultLogger(),
-		}
-	case "amazonses":
-		mailSender = &mailer.AmazonSESMailer{
-			Logger: log.DefaultLogger(),
-		}
-	default:
-		_ = log.Warn("no mailer configured, email report will not be sent", nil)
-		return
-	}
-
-	senderConf := config.GetStringMap(mailerName)
-	if err := mapstructure.Decode(senderConf, &mailSender); err != nil {
-		_ = log.Critical(err.Error(), nil)
-	}
-
-	if err := mailSender.Init(from, to); err != nil {
-		_ = log.Critical(err.Error(), nil)
-	}
-}
-
 func init() {
-	cobra.OnInitialize(initConfig)
-	rootCmd.Flags().StringVarP(&configFile, "config", "c", defaultConfigFile, "path to configuration file")
-	rootCmd.Flags().StringVarP(&endpoint, "endpoint", "e", defaultEndpoint, "API endpoint")
-
-	rootCmd.Flags().StringP("position", "p", defaultPositionFile, "path to position file")
-	rootCmd.Flags().StringP("token", "t", "", "API token")
-	rootCmd.Flags().StringSliceP("domains", "d", []string{}, "domains to query certspotter for issuances")
-
-	rootCmd.Flags().BoolVarP(&matchWildcards, "wildcard", "w", true, "match wildcards")
-	rootCmd.Flags().BoolVarP(&includeSubdomains, "subdomains", "s", true, "include subdomains")
-
-	_ = config.BindEnv(certspotterTokenConfigKey, tokenEnv)
-	_ = config.BindEnv(sendgridTokenConfigKey, sendgridTokenEnv)
-
-	_ = config.BindPFlag(certspotterTokenConfigKey, rootCmd.Flags().Lookup("token"))
-	_ = config.BindPFlag(domainsConfigKey, rootCmd.Flags().Lookup(domainsConfigKey))
-	_ = config.BindPFlag(positionFileConfigKey, rootCmd.Flags().Lookup("position"))
-	_ = config.BindPFlag(endpointConfigKey, rootCmd.Flags().Lookup("endpoint"))
+	rootCmd.Flags().StringVarP(&configFile, "config", "c", config.DefaultConfigFile, "path to configuration file")
 }
 
 func getDomainConfigName(domain string) string {
 	return strings.ReplaceAll(domain, ".", "-")
 }
 
-func sendMail(domain string, issuances []api.Issuance) error {
-	if mailSender == nil {
-		return nil
-	}
+func sendMail(mailSender mailer.Mailer, domain string, issuances []api.Issuance) error {
 	subject := fmt.Sprintf("Certificate Transparency Notification for %s", domain)
 	body := fmt.Sprintf("ct-monitor has observed the issuance of the following certificate(s) for the %s domain:\n", domain)
 	for _, i := range issuances {
@@ -196,7 +81,7 @@ func sendMail(domain string, issuances []api.Issuance) error {
 	return mailSender.Send(subject, body)
 }
 
-func checkIssuances(domain string, wildcards, subdomains bool, c api.CertspotterClient) error {
+func checkIssuances(domain string, wildcards, subdomains bool, c api.CertspotterClient, mailSender mailer.Mailer) error {
 	key := getDomainConfigName(domain)
 	lastIssuance := position.GetUint64(key)
 	issuances, err := c.GetIssuances(domain, wildcards, subdomains, lastIssuance)
@@ -217,7 +102,7 @@ func checkIssuances(domain string, wildcards, subdomains bool, c api.Certspotter
 			"sha256": issuance.Cert.SHA256,
 		})
 	}
-	if err := sendMail(domain, issuances); err != nil {
+	if err := sendMail(mailSender, domain, issuances); err != nil {
 		return err
 	}
 	position.Set(key, lastIssuance)
@@ -227,9 +112,8 @@ func checkIssuances(domain string, wildcards, subdomains bool, c api.Certspotter
 	return nil
 }
 
-func atomicWritePosition() error {
-	positionFile := getPositionFilePath()
-	tmpFile, err := ioutil.TempFile(filepath.Dir(positionFile), "position.*.toml")
+func atomicWritePosition(pc config.PositionConfig) error {
+	tmpFile, err := ioutil.TempFile(filepath.Dir(pc.Filename), "position.*.toml")
 	if err != nil {
 		return err
 	}
@@ -243,23 +127,41 @@ func atomicWritePosition() error {
 	if fi.Size() == 0 {
 		return nil
 	}
-	return os.Rename(tmpFile.Name(), positionFile)
+	return os.Rename(tmpFile.Name(), pc.Filename)
 }
 
 func runRoot(cmd *cobra.Command, args []string) error {
-	csp := api.CertspotterClient{
-		Endpoint: endpoint,
-		Token:    config.GetString(certspotterTokenConfigKey),
+	_ = log.Info("ct-monitor", map[string]interface{}{
+		"version":  version,
+		"commit":   commit,
+		"date":     date,
+		"built_by": builtBy,
+	})
+	conf, err := config.Load(configFile)
+	if err != nil {
+		return err
 	}
-	for _, domain := range config.GetStringSlice(domainsConfigKey) {
-		if err := checkIssuances(domain, matchWildcards, includeSubdomains, csp); err != nil {
+	_ = log.Info("loaded configuration", map[string]interface{}{
+		"config": configFile,
+	})
+	initPosition(conf.PositionConfig)
+	mailSender := conf.GetMailer()
+	if err := mailSender.Init(); err != nil {
+		return err
+	}
+	csp := api.CertspotterClient{
+		Endpoint: conf.Endpoint,
+		Token:    conf.Token,
+	}
+	for _, domain := range conf.Domains {
+		if err := checkIssuances(domain.Name, domain.MatchWildcards, domain.IncludeSubdomains, csp, mailSender); err != nil {
 			_ = log.Error(err.Error(), map[string]interface{}{
-				"domain": domain,
+				"domain": domain.Name,
 			})
 		}
 	}
 
-	return atomicWritePosition()
+	return atomicWritePosition(conf.PositionConfig)
 }
 
 // Execute runs the root command.

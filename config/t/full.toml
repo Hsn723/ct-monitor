@@ -1,0 +1,28 @@
+certspotter_endpoint = "dummy.endpoint"
+certspotter_token = "dummy"
+[[domain]]
+    name = "example.com"
+    match_wildcards = true
+    include_subdomains = false
+
+[[domain]]
+    name = "example.jp"
+    match_wildcards = false
+    include_subdomains = true
+
+[alert_config]
+    mailer_config = "sendgrid"
+
+[position_config]
+    filename = "positions.toml"
+
+[smtp]
+    from = "from@example.com"
+    to = "to@example.com"
+    server = "localhost"
+    port = 25
+
+[sendgrid]
+    from = "from@example.com"
+    to = "to@example.com"
+    token = "hoge"

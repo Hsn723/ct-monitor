@@ -2,35 +2,46 @@ package mailer
 
 import (
 	"fmt"
-	"net/smtp"
+	"strings"
+
+	"github.com/emersion/go-sasl"
+	"github.com/emersion/go-smtp"
 )
 
 // SMTPMailer represents a mail sender for plain SMTP.
 type SMTPMailer struct {
-	From     string
-	To       string
-	Server   string
-	Port     int
-	Username string
-	Password string
-	Auth     *smtp.Auth
+	From     string `mapstructure:"from"`
+	To       string `mapstructure:"to"`
+	Server   string `mapstructure:"server"`
+	Port     int    `mapstructure:"port"`
+	Username string `mapstructure:"username"`
+	Password string `mapstructure:"password"`
 }
 
 // Init implements the Mailer's Init interface.
-func (s *SMTPMailer) Init(from, to string) error {
-	s.From = from
-	s.To = to
-	if s.Auth != nil {
-		return nil
+func (s SMTPMailer) Init() error {
+	if s.From == "" {
+		return ErrMissingSender
 	}
-	auth := smtp.PlainAuth("", s.Username, s.Password, s.Server)
-	s.Auth = &auth
+	if s.To == "" {
+		return ErrMissingRecipient
+	}
 	return nil
 }
 
 // Send implements the Mailer's Send interface.
-func (s *SMTPMailer) Send(subject, body string) error {
+func (s SMTPMailer) Send(subject, body string) error {
 	addr := fmt.Sprintf("%s:%d", s.Server, s.Port)
-	msg := []byte(fmt.Sprintf("To: %s\r\nSubject: %s\r\n\r\n%s\r\n", s.To, subject, body))
-	return smtp.SendMail(addr, *s.Auth, s.From, []string{s.To}, msg)
+	msg := strings.NewReader(fmt.Sprintf("To: %s\r\nSubject: %s\r\n\r\n%s\r\n", s.To, subject, body))
+	tos := []string{s.To}
+	if s.Username != "" && s.Password != "" {
+		auth := sasl.NewPlainClient("", s.Username, s.Password)
+		return smtp.SendMail(addr, auth, s.From, tos, msg)
+	}
+	c, err := smtp.Dial(addr)
+	if err != nil {
+		return err
+	}
+	defer c.Close()
+	return c.SendMail(s.From, tos, msg)
 }

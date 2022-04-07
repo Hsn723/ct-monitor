@@ -6,8 +6,9 @@ require (
 	github.com/Hsn723/certspotter-client v1.0.1
 	github.com/aws/aws-sdk-go v1.43.33
 	github.com/cybozu-go/log v1.6.1
+	github.com/emersion/go-sasl v0.0.0-20200509203442-7bfe0ed36a21
+	github.com/emersion/go-smtp v0.15.1-0.20220315104156-8c3df8a6b249
 	github.com/gruntwork-io/terratest v0.40.6
-	github.com/mitchellh/mapstructure v1.4.3
 	github.com/sendgrid/rest v2.6.4+incompatible // indirect
 	github.com/sendgrid/sendgrid-go v3.11.1+incompatible
 	github.com/spf13/cobra v1.4.0

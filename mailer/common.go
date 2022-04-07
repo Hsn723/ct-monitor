@@ -1,7 +1,14 @@
 package mailer
 
+import "fmt"
+
 // Mailer is a generic interface for mail senders.
 type Mailer interface {
-	Init(from, to string) error
+	Init() error
 	Send(subject, body string) error
 }
+
+var (
+	ErrMissingSender    = fmt.Errorf("sender address missing")
+	ErrMissingRecipient = fmt.Errorf("recipient address missing")
+)
