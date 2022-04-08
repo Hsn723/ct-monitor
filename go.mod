@@ -9,6 +9,8 @@ require (
 	github.com/emersion/go-sasl v0.0.0-20200509203442-7bfe0ed36a21
 	github.com/emersion/go-smtp v0.15.1-0.20220315104156-8c3df8a6b249
 	github.com/gruntwork-io/terratest v0.40.6
+	github.com/onsi/ginkgo/v2 v2.1.3
+	github.com/onsi/gomega v1.17.0
 	github.com/sendgrid/rest v2.6.4+incompatible // indirect
 	github.com/sendgrid/sendgrid-go v3.11.1+incompatible
 	github.com/spf13/cobra v1.4.0

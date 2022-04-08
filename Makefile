@@ -19,7 +19,7 @@ lint:
 
 .PHONY: test
 test:
-	go test -coverprofile cover.out -count=1 -race -p 4 -v ./...
+	go test --tags=test -coverprofile cover.out -count=1 -race -p 4 -v ./...
 
 .PHONY: setup-container-structure-test
 setup-container-structure-test:
@@ -45,9 +45,12 @@ start-kind:
 stop-kind:
 	kind delete cluster --name=ct-monitor-kindtest
 
-.PHONY: kindtest
-kindtest: clean stop-kind start-kind build
+.PHONY: run-kindtest
+run-kindtest:
 	go test --tags=e2e -count=1 -coverprofile e2e.out -race -p 4 -v ./...
+
+.PHONY: kindtest
+kindtest: clean stop-kind start-kind build run-kindtest
 
 .PHONY: verify
 verify:
