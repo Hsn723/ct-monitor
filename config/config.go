@@ -46,6 +46,9 @@ type DomainConfig struct {
 	MatchWildcards bool `mapstructure:"match_wildcards"`
 	// IncludeSubdomains should be set to true if subdomains should also be scanned.
 	IncludeSubdomains bool `mapstructure:"include_subdomains"`
+	// Mailer is the name of the mail provider to use for this domain.
+	// If not provided, the global configuration in alert_config is used.
+	Mailer Mailer `mapstructure:"mailer_config"`
 }
 
 // AlertConfig contains alert configuration.
@@ -97,7 +100,7 @@ func Load(confFile string) (conf *Config, err error) {
 }
 
 // GetMailer retrieves a Mailer instance from the configuration.
-func (c *Config) GetMailer() (m mailer.Mailer) {
+func (c *Config) GetMailer(name Mailer) (m mailer.Mailer) {
 	defer func() {
 		if err := recover(); err != nil {
 			m = mailer.NoOpMailer{}
@@ -106,7 +109,7 @@ func (c *Config) GetMailer() (m mailer.Mailer) {
 	}()
 	r := reflect.ValueOf(c)
 	f := reflect.Indirect(r).FieldByNameFunc(func(s string) bool {
-		return strings.ToLower(s) == string(c.AlertConfig.Mailer)
+		return strings.ToLower(s) == string(name)
 	})
 	m = f.Interface().(mailer.Mailer)
 	return m

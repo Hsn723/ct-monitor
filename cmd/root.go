@@ -145,8 +145,8 @@ func runRoot(cmd *cobra.Command, args []string) error {
 		"config": configFile,
 	})
 	initPosition(conf.PositionConfig)
-	mailSender := conf.GetMailer()
-	if err := mailSender.Init(); err != nil {
+	defaultMailSender := conf.GetMailer(conf.AlertConfig.Mailer)
+	if err := defaultMailSender.Init(); err != nil {
 		return err
 	}
 	csp := api.CertspotterClient{
@@ -154,7 +154,11 @@ func runRoot(cmd *cobra.Command, args []string) error {
 		Token:    conf.Token,
 	}
 	for _, domain := range conf.Domains {
-		if err := checkIssuances(domain.Name, domain.MatchWildcards, domain.IncludeSubdomains, csp, mailSender); err != nil {
+		domainMailer := defaultMailSender
+		if domain.Mailer != "" {
+			domainMailer = conf.GetMailer(domain.Mailer)
+		}
+		if err := checkIssuances(domain.Name, domain.MatchWildcards, domain.IncludeSubdomains, csp, domainMailer); err != nil {
 			_ = log.Error(err.Error(), map[string]interface{}{
 				"domain": domain.Name,
 			})

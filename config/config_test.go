@@ -140,7 +140,7 @@ func TestLoadEnv(t *testing.T) {
 
 func testGetMailer(t *testing.T, conf Config, expected mailer.Mailer) {
 	t.Helper()
-	actual := conf.GetMailer()
+	actual := conf.GetMailer(conf.AlertConfig.Mailer)
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("expected %v, got %v", expected, actual)
 	}
