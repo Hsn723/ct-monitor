@@ -46,11 +46,11 @@ stop-kind:
 	kind delete cluster --name=ct-monitor-kindtest
 
 .PHONY: run-kindtest
-run-kindtest:
+run-kindtest: build
 	go test --tags=e2e -count=1 -coverprofile e2e.out -race -p 4 -v ./...
 
 .PHONY: kindtest
-kindtest: clean stop-kind start-kind build run-kindtest
+kindtest: clean stop-kind start-kind run-kindtest
 
 .PHONY: verify
 verify:
