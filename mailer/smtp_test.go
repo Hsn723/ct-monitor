@@ -4,6 +4,7 @@
 package mailer
 
 import (
+	"crypto/tls"
 	"fmt"
 	"io"
 	"math/rand"
@@ -96,7 +97,7 @@ func TestSMTPInit(t *testing.T) {
 	}
 }
 
-func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDisabled, allowInsecureAuth, isErrorExpected bool) {
+func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDisabled, allowInsecureAuth, withServerTLS, withCAFile, isErrorExpected bool) {
 	t.Helper()
 	rand.Seed(time.Now().UnixNano())
 	port := rand.Intn(50000) + 10000
@@ -107,6 +108,25 @@ func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDis
 	s.Addr = addr
 	s.AuthDisabled = authDisabled
 	s.AllowInsecureAuth = allowInsecureAuth
+	caCert, key, err := createTestCA()
+	assert.NoError(t, err)
+	if withServerTLS {
+		serverCert, serverKey, err := createServerCert(caCert, key)
+		assert.NoError(t, err)
+		cert, err := tls.LoadX509KeyPair(serverCert.Name(), serverKey.Name())
+		assert.NoError(t, err)
+		pool, err := LoadCACert(caCert.Name())
+		assert.NoError(t, err)
+		tlsConfig := &tls.Config{
+			Certificates: []tls.Certificate{cert},
+			RootCAs:      pool,
+		}
+		s.TLSConfig = tlsConfig
+	}
+
+	if withCAFile {
+		mailer.CaCert = caCert.Name()
+	}
 
 	mailer.Server = "localhost"
 	mailer.Port = port
@@ -115,7 +135,7 @@ func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDis
 		assert.NoError(t, s.ListenAndServe())
 	}()
 
-	err := mailer.Send("hello", "world")
+	err = mailer.Send("hello", "world")
 	if isErrorExpected {
 		assert.Error(t, err)
 	} else {
@@ -131,6 +151,8 @@ func TestSMTPSend(t *testing.T) {
 		backend           *mockBackend
 		authDisabled      bool
 		allowInsecureAuth bool
+		withServerTLS     bool
+		withCAFile        bool
 		isErrorExpected   bool
 	}{
 		{
@@ -146,7 +168,7 @@ func TestSMTPSend(t *testing.T) {
 			},
 		},
 		{
-			title: "UnsupportedAUTH",
+			title: "UnsupportedAuth",
 			mailer: SMTPMailer{
 				From:     "from@localhost",
 				To:       "to@localhost",
@@ -190,12 +212,30 @@ func TestSMTPSend(t *testing.T) {
 			},
 			isErrorExpected: true,
 		},
+		{
+			title: "AuthWithRequiredTLS",
+			mailer: SMTPMailer{
+				From:     "from@localhost",
+				To:       "to@localhost",
+				Username: "hoge",
+				Password: "hige",
+			},
+			backend: &mockBackend{
+				t:        t,
+				from:     "from@localhost",
+				to:       "to@localhost",
+				username: "hoge",
+				password: "hige",
+			},
+			withServerTLS: true,
+			withCAFile:    true,
+		},
 	}
 	for _, tc := range cases {
 		tc := tc
 		t.Run(tc.title, func(t *testing.T) {
 			t.Parallel()
-			testSMTPSend(t, tc.mailer, tc.backend, tc.authDisabled, tc.allowInsecureAuth, tc.isErrorExpected)
+			testSMTPSend(t, tc.mailer, tc.backend, tc.authDisabled, tc.allowInsecureAuth, tc.withServerTLS, tc.withCAFile, tc.isErrorExpected)
 		})
 	}
 }
