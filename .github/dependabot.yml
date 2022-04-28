@@ -12,3 +12,9 @@ updates:
       interval: "daily"
     reviewers:
       - "Hsn723"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    reviewers:
+      - "Hsn723"

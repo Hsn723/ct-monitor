@@ -47,7 +47,7 @@ spec:
           - configMap:
               name: ct-monitor-config
             name: config-volume
-  schedule: '*/1 * * * *'
+  schedule: '*/60 * 29 2 *'
   startingDeadlineSeconds: 60
 ---
 apiVersion: v1
