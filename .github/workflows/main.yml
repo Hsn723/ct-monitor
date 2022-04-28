@@ -5,17 +5,19 @@ on:
       - '**'
     tags-ignore:
       - '*'
+env:
+  go-version: 1.18
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
       - name: Setup go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
-          go-version: 1.17
+          go-version: ${{ env.go-version }}
       - name: Lint
         uses: pre-commit/action@v2.0.0
         with:
@@ -24,11 +26,11 @@ jobs:
     name: Check goreleaser.yml
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
-          go-version: 1.17
+          go-version: ${{ env.go-version }}
       - uses: goreleaser/goreleaser-action@v2
         with:
           version: latest
@@ -37,36 +39,33 @@ jobs:
     name: Verify
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
-          go-version: 1.17
+          go-version: ${{ env.go-version }}
       - name: Verify
         run: make verify
   test:
     name: Test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go: [ '1.17' ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
-          go-version: ${{ matrix.go }}
+          go-version: ${{ env.go-version }}
       - name: Test
         run: make test
   kindtest:
     name: Kind test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
-          go-version: 1.17
+          go-version: ${{ env.go-version }}
       - name: Setup kind
         run: make setup-kind
       - name: Run kindtest
@@ -76,15 +75,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: docker/setup-qemu-action@v1
       - uses: docker/setup-buildx-action@v1
       - name: Setup go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
-          go-version: 1.17
+          go-version: ${{ env.go-version }}
       - name: GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
@@ -98,7 +97,7 @@ jobs:
     needs: [lint, verify, check-goreleaser-config, test, kindtest, dry-run]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.PAT }}
       - name: Tag release

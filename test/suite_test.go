@@ -37,7 +37,7 @@ func loadDockerImage(tag string) {
 func TestE2E(t *testing.T) {
 	RegisterFailHandler(Fail)
 	SetDefaultEventuallyTimeout(5 * time.Second)
-	SetDefaultEventuallyPollingInterval(100 * time.Millisecond)
+	SetDefaultEventuallyPollingInterval(1 * time.Second)
 	RunSpecs(t, "E2E Suite")
 }
 
