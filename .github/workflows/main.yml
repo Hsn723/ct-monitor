@@ -19,7 +19,7 @@ jobs:
         with:
           go-version: ${{ env.go-version }}
       - name: Lint
-        uses: pre-commit/action@v2.0.0
+        uses: pre-commit/action@v2.0.3
         with:
           extra_args: --all-files
   check-goreleaser-config:
