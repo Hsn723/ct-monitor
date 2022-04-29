@@ -8,7 +8,7 @@ require (
 	github.com/cybozu-go/log v1.6.1
 	github.com/emersion/go-sasl v0.0.0-20200509203442-7bfe0ed36a21
 	github.com/emersion/go-smtp v0.15.1-0.20220315104156-8c3df8a6b249
-	github.com/google/uuid v1.2.0
+	github.com/google/uuid v1.3.0
 	github.com/gruntwork-io/terratest v0.40.7
 	github.com/onsi/ginkgo/v2 v2.1.4
 	github.com/onsi/gomega v1.19.0
