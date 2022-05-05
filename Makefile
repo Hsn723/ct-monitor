@@ -1,7 +1,7 @@
 VERSION := $(shell cat VERSION)
 LDFLAGS=-ldflags "-w -s -X main.version=${VERSION}"
 
-KIND_VERSION = 0.11.1
+KIND_VERSION = 0.12.0
 KUBERNETES_VERSION = 1.22.1
 CST_VERSION = 1.10.0
 
