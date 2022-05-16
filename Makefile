@@ -18,8 +18,12 @@ lint:
 	pre-commit run --all-files
 
 .PHONY: test
-test:
+test: build-testfilter
 	go test --tags=test -coverprofile cover.out -count=1 -race -p 4 -v ./...
+
+.PHONY: build-testfilter
+build-testfilter:
+	env CGO_ENABLED=0 go build --tags=testfilter $(LDFLAGS) -o /tmp/ct-monitor/testfilter ./filter/t/main.go
 
 .PHONY: setup-container-structure-test
 setup-container-structure-test:
