@@ -10,6 +10,7 @@ require (
 	github.com/emersion/go-smtp v0.15.1-0.20220315104156-8c3df8a6b249
 	github.com/google/uuid v1.3.0
 	github.com/gruntwork-io/terratest v0.40.8
+	github.com/hashicorp/go-plugin v1.4.4
 	github.com/onsi/ginkgo/v2 v2.1.4
 	github.com/onsi/gomega v1.19.0
 	github.com/sendgrid/rest v2.6.4+incompatible // indirect

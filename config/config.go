@@ -36,6 +36,8 @@ type Config struct {
 	Sendgrid mailer.SendgridMailer `mapstructure:"sendgrid"`
 	// SMTP represents the mailer configuration for using plain SMTP.
 	SMTP mailer.SMTPMailer `mapstructure:"smtp"`
+	// FilterConfig represent filter plugin configuration.
+	FilterConfig FilterConfig `mapstructure:"filter_config"`
 }
 
 // DomainConfig contains domain configurations.
@@ -62,6 +64,10 @@ type AlertConfig struct {
 // PositionConfig represents a position file config.
 type PositionConfig struct {
 	Filename string `mapstructure:"filename"`
+}
+
+type FilterConfig struct {
+	Filters []string `mapstructure:"filters"`
 }
 
 // Mailer represents a mailer name.

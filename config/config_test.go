@@ -59,6 +59,7 @@ func TestLoad(t *testing.T) {
 					To:     "to@example.com",
 					APIKey: "hoge",
 				},
+				FilterConfig: FilterConfig{Filters: []string{}},
 			},
 		},
 		{

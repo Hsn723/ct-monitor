@@ -9,6 +9,7 @@ import (
 
 	"github.com/Hsn723/certspotter-client/api"
 	"github.com/Hsn723/ct-monitor/config"
+	"github.com/Hsn723/ct-monitor/filter"
 	"github.com/Hsn723/ct-monitor/mailer"
 	"github.com/cybozu-go/log"
 	"github.com/spf13/cobra"
@@ -81,16 +82,16 @@ func sendMail(mailSender mailer.Mailer, domain string, issuances []api.Issuance)
 	return mailSender.Send(subject, body)
 }
 
-func checkIssuances(domain string, wildcards, subdomains bool, c api.CertspotterClient, mailSender mailer.Mailer) error {
-	key := getDomainConfigName(domain)
+func checkIssuances(dc config.DomainConfig, c api.CertspotterClient, mailSender mailer.Mailer, fc config.FilterConfig) error {
+	key := getDomainConfigName(dc.Name)
 	lastIssuance := position.GetUint64(key)
-	issuances, err := c.GetIssuances(domain, wildcards, subdomains, lastIssuance)
+	issuances, err := c.GetIssuances(dc.Name, dc.MatchWildcards, dc.IncludeSubdomains, lastIssuance)
 	if err != nil {
 		return err
 	}
 	if len(issuances) == 0 {
 		_ = log.Info("no new issuances observed", map[string]interface{}{
-			"domain": domain,
+			"domain": dc.Name,
 		})
 		return nil
 	}
@@ -102,12 +103,23 @@ func checkIssuances(domain string, wildcards, subdomains bool, c api.Certspotter
 			"sha256": issuance.Cert.SHA256,
 		})
 	}
-	if err := sendMail(mailSender, domain, issuances); err != nil {
+	issuances, err = filter.ApplyFilters(fc.Filters, issuances)
+	if err != nil {
+		_ = log.Info("errors encountered running filters", map[string]interface{}{
+			"error":   err.Error(),
+			"domain":  dc.Name,
+			"filters": fc.Filters,
+		})
+	}
+	if len(issuances) == 0 {
+		return nil
+	}
+	if err := sendMail(mailSender, dc.Name, issuances); err != nil {
 		return err
 	}
 	position.Set(key, lastIssuance)
 	_ = log.Info("done checking", map[string]interface{}{
-		"domain": domain,
+		"domain": dc.Name,
 	})
 	return nil
 }
@@ -128,6 +140,21 @@ func atomicWritePosition(pc config.PositionConfig) error {
 		return nil
 	}
 	return os.Rename(tmpFile.Name(), pc.Filename)
+}
+
+func getMailSenderForDomain(conf *config.Config, dc config.DomainConfig, defaultMailSender mailer.Mailer) mailer.Mailer {
+	if dc.Mailer == "" {
+		return defaultMailSender
+	}
+	domainMailer := conf.GetMailer(dc.Mailer)
+	if err := domainMailer.Init(); err != nil {
+		_ = log.Error("could not initialize domain mailer, using default", map[string]interface{}{
+			"error":  err.Error(),
+			"domain": dc.Name,
+		})
+		return defaultMailSender
+	}
+	return domainMailer
 }
 
 func runRoot(cmd *cobra.Command, args []string) error {
@@ -154,11 +181,8 @@ func runRoot(cmd *cobra.Command, args []string) error {
 		Token:    conf.Token,
 	}
 	for _, domain := range conf.Domains {
-		domainMailer := defaultMailSender
-		if domain.Mailer != "" {
-			domainMailer = conf.GetMailer(domain.Mailer)
-		}
-		if err := checkIssuances(domain.Name, domain.MatchWildcards, domain.IncludeSubdomains, csp, domainMailer); err != nil {
+		domainMailer := getMailSenderForDomain(conf, domain, defaultMailSender)
+		if err := checkIssuances(domain, csp, domainMailer, conf.FilterConfig); err != nil {
 			_ = log.Error(err.Error(), map[string]interface{}{
 				"domain": domain.Name,
 			})

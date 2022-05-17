@@ -13,8 +13,11 @@ certspotter_token = "dummy"
 [alert_config]
     mailer_config = "sendgrid"
 
-[position_config]
-    filename = "positions.toml"
+    [position_config]
+        filename = "positions.toml"
+
+[filter_config]
+    filters = []
 
 [smtp]
     from = "from@example.com"
