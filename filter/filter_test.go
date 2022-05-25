@@ -10,6 +10,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const (
+	testFilterBin = "/tmp/ct-monitor/work/testfilter"
+)
+
 func TestApplyFilters(t *testing.T) {
 	t.Parallel()
 	cases := []struct {
@@ -21,13 +25,13 @@ func TestApplyFilters(t *testing.T) {
 	}{
 		{
 			title:     "Empty",
-			filter:    "/tmp/ct-monitor/testfilter",
+			filter:    testFilterBin,
 			issuances: []api.Issuance{},
 			expected:  []api.Issuance{},
 		},
 		{
 			title:  "Single",
-			filter: "/tmp/ct-monitor/testfilter",
+			filter: testFilterBin,
 			issuances: []api.Issuance{
 				{
 					ID:           1,
@@ -55,7 +59,7 @@ func TestApplyFilters(t *testing.T) {
 		},
 		{
 			title:  "Multi",
-			filter: "/tmp/ct-monitor/testfilter",
+			filter: testFilterBin,
 			issuances: []api.Issuance{
 				{
 					ID:           1,
