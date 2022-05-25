@@ -49,7 +49,7 @@ var _ = Describe("ct-monitor", func() {
 		for _, contain := range contains {
 			Expect(out).To(ContainSubstring(contain))
 		}
-		for _ , notContain := range notContains {
+		for _, notContain := range notContains {
 			Expect(out).NotTo(ContainSubstring(notContain))
 		}
 	}

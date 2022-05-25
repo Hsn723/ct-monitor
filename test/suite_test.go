@@ -1,3 +1,4 @@
+//go:build e2e
 // +build e2e
 
 package test
@@ -7,9 +8,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/gruntwork-io/terratest/modules/docker"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/gruntwork-io/terratest/modules/docker"
 )
 
 const (

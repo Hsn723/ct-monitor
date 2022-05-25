@@ -1,13 +1,16 @@
 linters:
   enable:
-      - dupl
-      - gocognit
-      - goconst
-      - gocyclo
-      - godot
-      - gofmt
-      - revive
-      - typecheck
-      - unparam
+  - dupl
+  - gocognit
+  - goconst
+  - gocyclo
+  - godot
+  - gofmt
+  - revive
+  - typecheck
+  - unparam
 run:
   timeout: 5m
+  build-tags:
+  - test
+  - e2e
