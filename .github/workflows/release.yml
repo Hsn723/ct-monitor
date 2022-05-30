@@ -6,6 +6,7 @@ on:
 permissions:
   contents: write
   id-token: write
+  package: write
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -25,7 +26,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup go
         uses: actions/setup-go@v3
         with:
