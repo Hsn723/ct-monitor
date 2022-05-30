@@ -14,7 +14,6 @@ builds:
       - arm64
 dockers:
   - image_templates:
-    - "hsn723/{{.ProjectName}}:{{ .Version }}-amd64"
     - "ghcr.io/hsn723/{{.ProjectName}}:{{ .Version }}-amd64"
     use: buildx
     dockerfile: Dockerfile
@@ -26,7 +25,6 @@ dockers:
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
   - image_templates:
-    - "hsn723/{{.ProjectName}}:{{ .Version }}-arm64"
     - "ghcr.io/hsn723/{{.ProjectName}}:{{ .Version }}-arm64"
     use: buildx
     goarch: arm64
@@ -39,18 +37,6 @@ dockers:
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
 docker_manifests:
-  - name_template: "hsn723/{{.ProjectName}}:latest"
-    image_templates:
-      - "hsn723/{{.ProjectName}}:{{ .Version }}-amd64"
-      - "hsn723/{{.ProjectName}}:{{ .Version }}-arm64"
-  - name_template: "hsn723/{{.ProjectName}}:{{ .Version }}"
-    image_templates:
-      - "hsn723/{{.ProjectName}}:{{ .Version }}-amd64"
-      - "hsn723/{{.ProjectName}}:{{ .Version }}-arm64"
-  - name_template: "hsn723/{{.ProjectName}}:{{ .Major }}.{{ .Minor }}"
-    image_templates:
-      - "hsn723/{{.ProjectName}}:{{ .Version }}-amd64"
-      - "hsn723/{{.ProjectName}}:{{ .Version }}-arm64"
   - name_template: "ghcr.io/hsn723/{{.ProjectName}}:latest"
     image_templates:
       - "ghcr.io/hsn723/{{.ProjectName}}:{{ .Version }}-amd64"
