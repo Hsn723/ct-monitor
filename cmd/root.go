@@ -112,6 +112,7 @@ func checkIssuances(dc config.DomainConfig, c api.CertspotterClient, mailSender 
 		})
 	}
 	if len(issuances) == 0 {
+		position.Set(key, lastIssuance)
 		return nil
 	}
 	if err := sendMail(mailSender, dc.Name, issuances); err != nil {
