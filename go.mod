@@ -17,6 +17,6 @@ require (
 	github.com/sendgrid/sendgrid-go v3.11.1+incompatible
 	github.com/spf13/cobra v1.5.0
 	github.com/spf13/viper v1.12.0
-	github.com/stretchr/testify v1.7.5
+	github.com/stretchr/testify v1.8.0
 	k8s.io/apimachinery v0.23.6
 )
