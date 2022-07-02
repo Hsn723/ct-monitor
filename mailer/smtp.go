@@ -3,6 +3,8 @@ package mailer
 import (
 	"crypto/tls"
 	"fmt"
+	"net"
+	"strconv"
 	"strings"
 
 	"github.com/emersion/go-sasl"
@@ -34,7 +36,7 @@ func (s SMTPMailer) Init() error {
 
 // Send implements the Mailer's Send interface.
 func (s SMTPMailer) Send(subject, body string) error {
-	addr := fmt.Sprintf("%s:%d", s.Server, s.Port)
+	addr := net.JoinHostPort(s.Server, strconv.Itoa(s.Port))
 	msg := strings.NewReader(fmt.Sprintf("To: %s\r\nSubject: %s\r\n\r\n%s\r\n", s.To, subject, body))
 	tos := []string{s.To}
 
