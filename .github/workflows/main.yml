@@ -7,13 +7,16 @@ on:
       - '*'
 env:
   go-version: 1.18
+  python-version: 3.x
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.python-version }}
       - name: Setup go
         uses: actions/setup-go@v3
         with:
