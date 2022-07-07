@@ -14,19 +14,28 @@ import (
 )
 
 const (
-	tag = "quay.io/hsn723/ct-monitor:latest"
+	tag             = "quay.io/hsn723/ct-monitor:latest"
+	mockUpstreamTag = "quay.io/hsn723/mock-upstream:latest"
 )
 
-func buildAndTestDockerImage(tag string) {
+func buildDockerImage(tag, path string) {
 	buildOptions := &docker.BuildOptions{
 		Tags: []string{tag},
 	}
-	docker.Build(GinkgoT(), "../", buildOptions)
+	docker.Build(GinkgoT(), path, buildOptions)
+}
+
+func testDockerImage(tag string) {
 	opts := &docker.RunOptions{
 		Remove: true,
 	}
 	out := docker.Run(GinkgoT(), tag, opts)
 	Expect(out).To(ContainSubstring("no such file or directory"))
+}
+
+func buildAndTestDockerImage(tag, path string) {
+	buildDockerImage(tag, path)
+	testDockerImage(tag)
 }
 
 func loadDockerImage(tag string) {
@@ -43,6 +52,8 @@ func TestE2E(t *testing.T) {
 }
 
 var _ = BeforeSuite(func() {
-	buildAndTestDockerImage(tag)
+	buildAndTestDockerImage(tag, "../")
 	loadDockerImage(tag)
+	buildDockerImage(mockUpstreamTag, "mockupstream/")
+	loadDockerImage(mockUpstreamTag)
 })
