@@ -1,4 +1,4 @@
-FROM golang:1.18.3-buster as build
+FROM golang:1.19rc2-buster as build
 ARG ARCH=amd64
 ENV CGO_ENABLED=0
 WORKDIR /work
