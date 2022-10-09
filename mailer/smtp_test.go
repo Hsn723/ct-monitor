@@ -104,6 +104,9 @@ func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDis
 	addr := fmt.Sprintf(":%d", port)
 
 	s := smtp.NewServer(backend)
+	defer func() {
+		_ = s.Close()
+	}()
 	s.Domain = "localhost"
 	s.Addr = addr
 	s.AuthDisabled = authDisabled
@@ -135,12 +138,15 @@ func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDis
 		assert.NoError(t, s.ListenAndServe())
 	}()
 
-	err = mailer.Send("hello", "world")
-	if isErrorExpected {
-		assert.Error(t, err)
-	} else {
-		assert.NoError(t, err)
+	isTestSendSuccess := func() bool {
+		err := mailer.Send("hello", "world")
+		if isErrorExpected {
+			return err != nil
+		}
+		return err == nil
 	}
+
+	assert.Eventually(t, isTestSendSuccess, 5*time.Second, time.Second)
 }
 
 func TestSMTPSend(t *testing.T) {
