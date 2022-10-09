@@ -2,8 +2,7 @@ PROJECT = ct-monitor
 VERSION = $(shell cat VERSION)
 LDFLAGS=-ldflags "-w -s -X main.version=${VERSION}"
 
-KIND_VERSION = 0.11.1
-KUBERNETES_VERSION = 1.22.1
+KIND_VERSION = 0.16.0
 CST_VERSION = 1.10.0
 
 WORKDIR = /tmp/$(PROJECT)/work
@@ -52,7 +51,10 @@ setup-kind: $(BINDIR) $(KUBECTL)
 
 .PHONY: $(KUBECTL)
 $(KUBECTL): $(BINDIR)
-	curl -sSLf -o $(KUBECTL) -O https://storage.googleapis.com/kubernetes-release/release/v$(KUBERNETES_VERSION)/bin/linux/amd64/kubectl
+	curl -sSLf -o $(KUBECTL) -O "https://dl.k8s.io/release/$(shell curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+	curl -sSLf -o $(BINDIR)/kubectl.sha256 "https://dl.k8s.io/$(shell curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+	echo "$$(cat $(BINDIR)/kubectl.sha256)  $(KUBECTL)" | sha256sum --check
+	chmod +x $(KUBECTL)
 
 .PHONY: start-kind
 start-kind:
