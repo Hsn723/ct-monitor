@@ -12,7 +12,7 @@ require (
 	github.com/gruntwork-io/terratest v0.40.24
 	github.com/hashicorp/go-plugin v1.4.6
 	github.com/onsi/ginkgo/v2 v2.5.0
-	github.com/onsi/gomega v1.24.0
+	github.com/onsi/gomega v1.24.1
 	github.com/sendgrid/rest v2.6.4+incompatible // indirect
 	github.com/sendgrid/sendgrid-go v3.12.0+incompatible
 	github.com/spf13/cobra v1.6.1
