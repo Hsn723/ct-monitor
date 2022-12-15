@@ -11,8 +11,8 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/gruntwork-io/terratest v0.41.6
 	github.com/hashicorp/go-plugin v1.4.8
-	github.com/onsi/ginkgo/v2 v2.5.1
-	github.com/onsi/gomega v1.24.1
+	github.com/onsi/ginkgo/v2 v2.6.1
+	github.com/onsi/gomega v1.24.2
 	github.com/sendgrid/rest v2.6.4+incompatible // indirect
 	github.com/sendgrid/sendgrid-go v3.12.0+incompatible
 	github.com/spf13/cobra v1.6.1
