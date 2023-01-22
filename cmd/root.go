@@ -1,11 +1,12 @@
 package cmd
 
 import (
-	"fmt"
+	"bytes"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
+	"text/template"
 
 	"github.com/Hsn723/certspotter-client/api"
 	"github.com/Hsn723/ct-monitor/config"
@@ -31,6 +32,11 @@ var (
 	date    string
 	builtBy string
 )
+
+type mailTemplateVars struct {
+	Domain    string
+	Issuances []api.Issuance
+}
 
 func createFile(path string) error {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
@@ -70,19 +76,35 @@ func getDomainConfigName(domain string) string {
 	return strings.ReplaceAll(domain, ".", "-")
 }
 
-func sendMail(mailSender mailer.Mailer, domain string, issuances []api.Issuance) error {
-	subject := fmt.Sprintf("Certificate Transparency Notification for %s", domain)
-	body := fmt.Sprintf("ct-monitor has observed the issuance of the following certificate(s) for the %s domain:\n", domain)
-	for _, i := range issuances {
-		body += fmt.Sprintf("\nIssuer: %s\nDNS Names: %v\nValidity: %s - %s\nSHA256: %s\nIssuance type: %s\n", i.Issuer.Name, i.Domains, i.NotBefore, i.NotAfter, i.Cert.SHA256, i.Cert.Type)
+func getTemplatedMailContent(templateString string, vars mailTemplateVars) (string, error) {
+	tmpl, err := template.New("template").Parse(templateString)
+	if err != nil {
+		return "", err
+	}
+	var buf bytes.Buffer
+	err = tmpl.Execute(&buf, vars)
+	if err != nil {
+		return "", err
+	}
+	return buf.String(), nil
+}
+
+func sendMail(mailSender mailer.Mailer, tplVars mailTemplateVars, mt config.MailTemplate) error {
+	subject, err := getTemplatedMailContent(mt.Subject, tplVars)
+	if err != nil {
+		return err
+	}
+	body, err := getTemplatedMailContent(mt.Body, tplVars)
+	if err != nil {
+		return err
 	}
 	_ = log.Info("sending report", map[string]interface{}{
-		"domain": domain,
+		"domain": tplVars.Domain,
 	})
 	return mailSender.Send(subject, body)
 }
 
-func checkIssuances(dc config.DomainConfig, c api.CertspotterClient, mailSender mailer.Mailer, fc config.FilterConfig) error {
+func checkIssuances(dc config.DomainConfig, c api.CertspotterClient, mailSender mailer.Mailer, fc config.FilterConfig, mt config.MailTemplate) error {
 	key := getDomainConfigName(dc.Name)
 	lastIssuance := position.GetUint64(key)
 	issuances, err := c.GetIssuances(dc.Name, dc.MatchWildcards, dc.IncludeSubdomains, lastIssuance)
@@ -115,7 +137,11 @@ func checkIssuances(dc config.DomainConfig, c api.CertspotterClient, mailSender 
 		position.Set(key, lastIssuance)
 		return nil
 	}
-	if err := sendMail(mailSender, dc.Name, issuances); err != nil {
+	tplVars := mailTemplateVars{
+		Domain:    dc.Name,
+		Issuances: issuances,
+	}
+	if err := sendMail(mailSender, tplVars, mt); err != nil {
 		return err
 	}
 	position.Set(key, lastIssuance)
@@ -183,7 +209,7 @@ func runRoot(cmd *cobra.Command, args []string) error {
 	}
 	for _, domain := range conf.Domains {
 		domainMailer := getMailSenderForDomain(conf, domain, defaultMailSender)
-		if err := checkIssuances(domain, csp, domainMailer, conf.FilterConfig); err != nil {
+		if err := checkIssuances(domain, csp, domainMailer, conf.FilterConfig, conf.MailTemplate); err != nil {
 			_ = log.Error(err.Error(), map[string]interface{}{
 				"domain": domain.Name,
 			})

@@ -14,6 +14,18 @@ const (
 	defaultMailer              = NoOpMailer
 	defaultCertspotterEndpoint = "https://api.certspotter.com/v1/issuances"
 	certspotterTokenEnv        = "CERTSPOTTER_TOKEN"
+	defaultSubjectTemplate     = "Certificate Transparency Notification for {{.Domain}}"
+	defaultBodyTemplate        = `ct-monitor has observed the issuance of the following certificate{{ if gt (len .Issuances) 1}}s{{end}} for the {{.Domain}} domain:
+{{range .Issuances}}
+Issuer Friendly Name: {{.Issuer.FriendlyName}}
+Issuer Distinguished Name: {{.Issuer.Name}}
+DNS Names: {{.Domains}}
+Validity: {{.NotBefore}} - {{.NotAfter}}
+SHA256: {{.CertSHA256}}
+TBS SHA256: {{.TBSSHA256}}
+
+{{.ProblemReporting}}
+{{end}}`
 )
 
 // Config contains the configuration for ct-monitor.
@@ -38,6 +50,8 @@ type Config struct {
 	SMTP mailer.SMTPMailer `mapstructure:"smtp"`
 	// FilterConfig represent filter plugin configuration.
 	FilterConfig FilterConfig `mapstructure:"filter_config"`
+	// MailTemplate represents template strings for emails being sent out.
+	MailTemplate MailTemplate `mapstructure:"mail_template"`
 }
 
 // DomainConfig contains domain configurations.
@@ -70,6 +84,15 @@ type FilterConfig struct {
 	Filters []string `mapstructure:"filters"`
 }
 
+// MailTemplate represents template strings for emails being sent out.
+// The following variables are made available for templating.
+//     Domain: the configured domain name which was queried.
+//     Issuances: the Issuance object returned by the certspotter API.
+type MailTemplate struct {
+	Subject string `mapstructure:"subject"`
+	Body    string `mapstructure:"body"`
+}
+
 // Mailer represents a mailer name.
 type Mailer string
 
@@ -94,6 +117,10 @@ func Load(confFile string) (conf *Config, err error) {
 		},
 		PositionConfig: PositionConfig{
 			Filename: defaultPositionFile,
+		},
+		MailTemplate: MailTemplate{
+			Subject: defaultSubjectTemplate,
+			Body:    defaultBodyTemplate,
 		},
 	}
 	if err := viper.Unmarshal(&conf); err != nil {
