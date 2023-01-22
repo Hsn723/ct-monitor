@@ -14,8 +14,8 @@ const (
 	defaultMailer              = NoOpMailer
 	defaultCertspotterEndpoint = "https://api.certspotter.com/v1/issuances"
 	certspotterTokenEnv        = "CERTSPOTTER_TOKEN"
-	defaultSubjectTemplate     = "Certificate Transparency Notification for {{.Domain}}"
-	defaultBodyTemplate        = `ct-monitor has observed the issuance of the following certificate{{ if gt (len .Issuances) 1}}s{{end}} for the {{.Domain}} domain:
+	DefaultSubjectTemplate     = "Certificate Transparency Notification for {{.Domain}}"
+	DefaultBodyTemplate        = `ct-monitor has observed the issuance of the following certificate{{ if gt (len .Issuances) 1}}s{{end}} for the {{.Domain}} domain:
 {{range .Issuances}}
 Issuer Friendly Name: {{.Issuer.FriendlyName}}
 Issuer Distinguished Name: {{.Issuer.Name}}
@@ -119,8 +119,8 @@ func Load(confFile string) (conf *Config, err error) {
 			Filename: defaultPositionFile,
 		},
 		MailTemplate: MailTemplate{
-			Subject: defaultSubjectTemplate,
-			Body:    defaultBodyTemplate,
+			Subject: DefaultSubjectTemplate,
+			Body:    DefaultBodyTemplate,
 		},
 	}
 	if err := viper.Unmarshal(&conf); err != nil {

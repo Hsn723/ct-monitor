@@ -100,8 +100,8 @@ SHA256: {{.CertSHA256}}
 					APIKey: "hoge",
 				},
 				MailTemplate: MailTemplate{
-					Subject: defaultSubjectTemplate,
-					Body:    defaultBodyTemplate,
+					Subject: DefaultSubjectTemplate,
+					Body:    DefaultBodyTemplate,
 				},
 			},
 		},
@@ -148,8 +148,8 @@ func TestLoadEnv(t *testing.T) {
 			APIKey: "hoge",
 		},
 		MailTemplate: MailTemplate{
-			Subject: defaultSubjectTemplate,
-			Body:    defaultBodyTemplate,
+			Subject: DefaultSubjectTemplate,
+			Body:    DefaultBodyTemplate,
 		},
 	}
 	testLoad(t, "t/defaults.toml", expected, false)
