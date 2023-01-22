@@ -61,6 +61,13 @@ func TestLoad(t *testing.T) {
 					APIKey: "hoge",
 				},
 				FilterConfig: FilterConfig{Filters: []string{}},
+				MailTemplate: MailTemplate{
+					Subject: "{{.Domain}}の証明書発行を検知しました",
+					Body: `ct-monitorが{{.Domain}}の以下の証明書の発行を検知しました
+{{range .Issuances}}
+SHA256: {{.CertSHA256}}
+{{end}}`,
+				},
 			},
 		},
 		{
@@ -91,6 +98,10 @@ func TestLoad(t *testing.T) {
 					From:   "from@example.com",
 					To:     "to@example.com",
 					APIKey: "hoge",
+				},
+				MailTemplate: MailTemplate{
+					Subject: DefaultSubjectTemplate,
+					Body:    DefaultBodyTemplate,
 				},
 			},
 		},
@@ -135,6 +146,10 @@ func TestLoadEnv(t *testing.T) {
 			From:   "from@example.com",
 			To:     "to@example.com",
 			APIKey: "hoge",
+		},
+		MailTemplate: MailTemplate{
+			Subject: DefaultSubjectTemplate,
+			Body:    DefaultBodyTemplate,
 		},
 	}
 	testLoad(t, "t/defaults.toml", expected, false)

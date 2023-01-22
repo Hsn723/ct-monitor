@@ -29,3 +29,10 @@ certspotter_token = "dummy"
     from = "from@example.com"
     to = "to@example.com"
     token = "hoge"
+
+[mail_template]
+    subject = "{{.Domain}}の証明書発行を検知しました"
+    body = '''ct-monitorが{{.Domain}}の以下の証明書の発行を検知しました
+{{range .Issuances}}
+SHA256: {{.CertSHA256}}
+{{end}}'''
