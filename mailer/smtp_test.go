@@ -5,9 +5,9 @@ package mailer
 
 import (
 	"crypto/tls"
-	"fmt"
 	"io"
-	"math/rand"
+	"net"
+	"strconv"
 	"testing"
 	"time"
 
@@ -99,9 +99,7 @@ func TestSMTPInit(t *testing.T) {
 
 func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDisabled, allowInsecureAuth, withServerTLS, withCAFile, isErrorExpected bool) {
 	t.Helper()
-	rand.Seed(time.Now().UnixNano())
-	port := rand.Intn(50000) + 10000
-	addr := fmt.Sprintf(":%d", port)
+	addr := net.JoinHostPort("0.0.0.0", "0")
 
 	s := smtp.NewServer(backend)
 	defer func() {
@@ -131,11 +129,18 @@ func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDis
 		mailer.CaCert = caCert.Name()
 	}
 
+	l, err := net.Listen("tcp", addr)
+	assert.NoError(t, err)
+
+	_, p, err := net.SplitHostPort(l.Addr().String())
+	assert.NoError(t, err)
+	port, err := strconv.Atoi(p)
+	assert.NoError(t, err)
 	mailer.Server = "localhost"
 	mailer.Port = port
 
 	go func() {
-		assert.NoError(t, s.ListenAndServe())
+		assert.NoError(t, s.Serve(l))
 	}()
 
 	isTestSendSuccess := func() bool {

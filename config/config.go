@@ -86,8 +86,9 @@ type FilterConfig struct {
 
 // MailTemplate represents template strings for emails being sent out.
 // The following variables are made available for templating.
-//     Domain: the configured domain name which was queried.
-//     Issuances: the Issuance object returned by the certspotter API.
+//
+//	Domain: the configured domain name which was queried.
+//	Issuances: the Issuance object returned by the certspotter API.
 type MailTemplate struct {
 	Subject string `mapstructure:"subject"`
 	Body    string `mapstructure:"body"`
