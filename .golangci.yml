@@ -1,6 +1,8 @@
 linters:
   enable:
   - dupl
+  - ginkgolinter
+  - gocheckcompilerdirectives
   - gocognit
   - goconst
   - gocyclo
