@@ -12,8 +12,8 @@ require (
 	github.com/gruntwork-io/terratest v0.41.11
 	github.com/hashicorp/go-plugin v1.4.8
 	github.com/mocktools/go-smtp-mock/v2 v2.0.5
-	github.com/onsi/ginkgo/v2 v2.8.1
-	github.com/onsi/gomega v1.27.1
+	github.com/onsi/ginkgo/v2 v2.8.4
+	github.com/onsi/gomega v1.27.2
 	github.com/sendgrid/sendgrid-go v3.12.0+incompatible
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/viper v1.15.0
@@ -39,11 +39,13 @@ require (
 	github.com/go-openapi/jsonreference v0.19.5 // indirect
 	github.com/go-openapi/swag v0.19.14 // indirect
 	github.com/go-sql-driver/mysql v1.4.1 // indirect
+	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/gnostic v0.5.7-v3refs // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/gofuzz v1.1.0 // indirect
+	github.com/google/pprof v0.0.0-20210407192527-94a9f03dee38 // indirect
 	github.com/gruntwork-io/go-commons v0.8.0 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-hclog v1.2.0 // indirect
@@ -87,6 +89,7 @@ require (
 	golang.org/x/term v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 	golang.org/x/time v0.1.0 // indirect
+	golang.org/x/tools v0.6.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20221227171554-f9683d7f8bef // indirect
 	google.golang.org/grpc v1.52.0 // indirect
