@@ -27,7 +27,7 @@ type mockSession struct {
 	backend *mockBackend
 }
 
-func (b *mockBackend) NewSession(_ smtp.ConnectionState, _ string) (smtp.Session, error) {
+func (b *mockBackend) NewSession(_ *smtp.Conn) (smtp.Session, error) {
 	return &mockSession{backend: b}, nil
 }
 
