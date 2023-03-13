@@ -9,11 +9,11 @@ require (
 	github.com/emersion/go-sasl v0.0.0-20220912192320-0145f2c60ead
 	github.com/emersion/go-smtp v0.16.0
 	github.com/google/uuid v1.3.0
-	github.com/gruntwork-io/terratest v0.41.12
+	github.com/gruntwork-io/terratest v0.41.11
 	github.com/hashicorp/go-plugin v1.4.9
 	github.com/mocktools/go-smtp-mock/v2 v2.0.5
-	github.com/onsi/ginkgo/v2 v2.9.0
-	github.com/onsi/gomega v1.27.2
+	github.com/onsi/ginkgo/v2 v2.9.1
+	github.com/onsi/gomega v1.27.3
 	github.com/sendgrid/sendgrid-go v3.12.0+incompatible
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/viper v1.10.1
@@ -22,8 +22,6 @@ require (
 )
 
 require (
-	cloud.google.com/go/compute v1.12.1 // indirect
-	cloud.google.com/go/compute/metadata v0.2.1 // indirect
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
@@ -41,7 +39,7 @@ require (
 	github.com/go-sql-driver/mysql v1.4.1 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/gnostic v0.5.7-v3refs // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/gofuzz v1.1.0 // indirect
@@ -89,7 +87,7 @@ require (
 	golang.org/x/term v0.6.0 // indirect
 	golang.org/x/text v0.8.0 // indirect
 	golang.org/x/time v0.1.0 // indirect
-	golang.org/x/tools v0.6.0 // indirect
+	golang.org/x/tools v0.7.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20221201164419-0e50fba7f41c // indirect
 	google.golang.org/grpc v1.52.0-dev // indirect
