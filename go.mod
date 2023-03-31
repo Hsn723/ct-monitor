@@ -4,12 +4,12 @@ go 1.18
 
 require (
 	github.com/Hsn723/certspotter-client v1.1.0
-	github.com/aws/aws-sdk-go v1.44.214
+	github.com/aws/aws-sdk-go v1.44.233
 	github.com/cybozu-go/log v1.7.0
 	github.com/emersion/go-sasl v0.0.0-20220912192320-0145f2c60ead
 	github.com/emersion/go-smtp v0.16.0
 	github.com/google/uuid v1.3.0
-	github.com/gruntwork-io/terratest v0.41.12
+	github.com/gruntwork-io/terratest v0.41.11
 	github.com/hashicorp/go-plugin v1.4.9
 	github.com/mocktools/go-smtp-mock/v2 v2.0.5
 	github.com/onsi/ginkgo/v2 v2.9.0
@@ -22,8 +22,6 @@ require (
 )
 
 require (
-	cloud.google.com/go/compute v1.12.1 // indirect
-	cloud.google.com/go/compute/metadata v0.2.1 // indirect
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
