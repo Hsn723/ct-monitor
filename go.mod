@@ -12,7 +12,7 @@ require (
 	github.com/gruntwork-io/terratest v0.43.0
 	github.com/hashicorp/go-plugin v1.4.10
 	github.com/mocktools/go-smtp-mock/v2 v2.1.0
-	github.com/onsi/ginkgo/v2 v2.10.0
+	github.com/onsi/ginkgo/v2 v2.11.0
 	github.com/onsi/gomega v1.27.8
 	github.com/sendgrid/sendgrid-go v3.12.0+incompatible
 	github.com/spf13/cobra v1.7.0
@@ -81,7 +81,7 @@ require (
 	golang.org/x/crypto v0.9.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/oauth2 v0.7.0 // indirect
-	golang.org/x/sys v0.8.0 // indirect
+	golang.org/x/sys v0.9.0 // indirect
 	golang.org/x/term v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 	golang.org/x/time v0.1.0 // indirect
