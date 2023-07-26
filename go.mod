@@ -9,7 +9,7 @@ require (
 	github.com/emersion/go-sasl v0.0.0-20220912192320-0145f2c60ead
 	github.com/emersion/go-smtp v0.17.0
 	github.com/google/uuid v1.3.0
-	github.com/gruntwork-io/terratest v0.43.5
+	github.com/gruntwork-io/terratest v0.43.10
 	github.com/hashicorp/go-plugin v1.4.10
 	github.com/mocktools/go-smtp-mock/v2 v2.1.0
 	github.com/onsi/ginkgo/v2 v2.11.0
