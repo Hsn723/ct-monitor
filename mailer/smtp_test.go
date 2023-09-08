@@ -42,7 +42,7 @@ func (s *mockSession) Mail(from string, _ *smtp.MailOptions) error {
 	return nil
 }
 
-func (s *mockSession) Rcpt(to string) error {
+func (s *mockSession) Rcpt(to string, _ *smtp.RcptOptions) error {
 	assert.Equal(s.backend.t, s.backend.to, to)
 	return nil
 }
