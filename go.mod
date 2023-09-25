@@ -10,7 +10,7 @@ require (
 	github.com/emersion/go-smtp v0.18.1
 	github.com/google/uuid v1.3.1
 	github.com/gruntwork-io/terratest v0.43.13
-	github.com/hashicorp/go-plugin v1.5.1
+	github.com/hashicorp/go-plugin v1.5.2
 	github.com/mocktools/go-smtp-mock/v2 v2.1.0
 	github.com/onsi/ginkgo/v2 v2.12.1
 	github.com/onsi/gomega v1.27.10
