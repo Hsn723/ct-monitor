@@ -1,6 +1,8 @@
 module github.com/Hsn723/ct-monitor
 
-go 1.18
+go 1.21
+
+toolchain go1.21.3
 
 require (
 	github.com/Hsn723/certspotter-client v1.1.0
@@ -9,7 +11,7 @@ require (
 	github.com/emersion/go-sasl v0.0.0-20220912192320-0145f2c60ead
 	github.com/emersion/go-smtp v0.18.1
 	github.com/google/uuid v1.4.0
-	github.com/gruntwork-io/terratest v0.43.13
+	github.com/gruntwork-io/terratest v0.46.6
 	github.com/hashicorp/go-plugin v1.5.2
 	github.com/mocktools/go-smtp-mock/v2 v2.1.0
 	github.com/onsi/ginkgo/v2 v2.13.0

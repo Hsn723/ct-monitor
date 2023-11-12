@@ -54,6 +54,6 @@ func (p *IssuanceFilterPlugin) Server(*plugin.MuxBroker) (interface{}, error) {
 	return &IssuanceFilterRPCServer{Impl: p.Impl}, nil
 }
 
-func (*IssuanceFilterPlugin) Client(b *plugin.MuxBroker, c *rpc.Client) (interface{}, error) {
+func (*IssuanceFilterPlugin) Client(_ *plugin.MuxBroker, c *rpc.Client) (interface{}, error) {
 	return &IssuanceFilterRPCClient{client: c}, nil
 }

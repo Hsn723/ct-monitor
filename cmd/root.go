@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"bytes"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -152,7 +151,7 @@ func checkIssuances(dc config.DomainConfig, c api.CertspotterClient, mailSender 
 }
 
 func atomicWritePosition(pc config.PositionConfig) error {
-	tmpFile, err := ioutil.TempFile(filepath.Dir(pc.Filename), "position.*.toml")
+	tmpFile, err := os.CreateTemp(filepath.Dir(pc.Filename), "position.*.toml")
 	if err != nil {
 		return err
 	}
@@ -184,7 +183,7 @@ func getMailSenderForDomain(conf *config.Config, dc config.DomainConfig, default
 	return domainMailer
 }
 
-func runRoot(cmd *cobra.Command, args []string) error {
+func runRoot(_ *cobra.Command, _ []string) error {
 	_ = log.Info("ct-monitor", map[string]interface{}{
 		"version":  version,
 		"commit":   commit,
