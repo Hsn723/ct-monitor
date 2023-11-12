@@ -16,3 +16,8 @@ run:
   build-tags:
   - test
   - e2e
+linters-settings:
+  revive:
+    rules:
+      - name: dot-imports
+        disabled: true

@@ -29,7 +29,9 @@ func (s *SendgridMailer) init() {
 }
 
 // Init implements the Mailer's Init interface.
-func (s SendgridMailer) Init(from, to string) error {
+func (s *SendgridMailer) Init(from, to string) error {
+	s.From = from
+	s.To = to
 	if s.From == "" {
 		return ErrMissingSender
 	}
