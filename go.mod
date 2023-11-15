@@ -9,7 +9,7 @@ require (
 	github.com/aws/aws-sdk-go v1.47.11
 	github.com/cybozu-go/log v1.7.0
 	github.com/emersion/go-sasl v0.0.0-20220912192320-0145f2c60ead
-	github.com/emersion/go-smtp v0.18.1
+	github.com/emersion/go-smtp v0.19.0
 	github.com/google/uuid v1.4.0
 	github.com/gruntwork-io/terratest v0.46.7
 	github.com/hashicorp/go-plugin v1.6.0
