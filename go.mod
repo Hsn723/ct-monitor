@@ -11,7 +11,7 @@ require (
 	github.com/emersion/go-sasl v0.0.0-20220912192320-0145f2c60ead
 	github.com/emersion/go-smtp v0.19.0
 	github.com/google/uuid v1.4.0
-	github.com/gruntwork-io/terratest v0.46.7
+	github.com/gruntwork-io/terratest v0.46.8
 	github.com/hashicorp/go-plugin v1.6.0
 	github.com/mocktools/go-smtp-mock/v2 v2.1.0
 	github.com/onsi/ginkgo/v2 v2.13.2
@@ -102,8 +102,8 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gotest.tools/v3 v3.0.3 // indirect
-	k8s.io/api v0.28.1 // indirect
-	k8s.io/client-go v0.28.1 // indirect
+	k8s.io/api v0.28.4 // indirect
+	k8s.io/client-go v0.28.4 // indirect
 	k8s.io/klog/v2 v2.100.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20230717233707-2695361300d9 // indirect
 	k8s.io/utils v0.0.0-20230406110748-d93618cff8a2 // indirect
