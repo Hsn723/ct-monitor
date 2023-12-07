@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: ${{ env.python-version }}
       - name: Setup go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.go-version }}
       - name: Lint
@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.go-version }}
       - uses: goreleaser/goreleaser-action@v5
@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.go-version }}
       - name: Verify
@@ -55,7 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.go-version }}
       - name: Test
@@ -66,7 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.go-version }}
       - name: Setup kind
@@ -85,7 +85,7 @@ jobs:
       - uses: docker/setup-buildx-action@v3
       - uses: anchore/sbom-action/download-syft@v0.15.1
       - name: Setup go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ env.go-version }}
       - name: GoReleaser
