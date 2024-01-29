@@ -4,6 +4,13 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      k8s:
+        patterns:
+          - "k8s.io/*"
+      ginkgo:
+        patterns:
+          - "github.com/onsi/*"
     reviewers:
       - "Hsn723"
   - package-ecosystem: "docker"
