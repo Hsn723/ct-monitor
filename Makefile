@@ -3,7 +3,6 @@ VERSION = $(shell cat VERSION)
 LDFLAGS=-ldflags "-w -s -X main.version=${VERSION}"
 
 KIND_VERSION = 0.17.0
-CST_VERSION = 1.10.0
 
 WORKDIR = /tmp/$(PROJECT)/work
 BINDIR = /tmp/$(PROJECT)/bin
@@ -38,7 +37,7 @@ build-testfilter: $(WORKDIR)
 
 .PHONY: $(CONTAINER_STRUCTURE_TEST)
 $(CONTAINER_STRUCTURE_TEST): $(BINDIR)
-	curl -sSLf -o $(CONTAINER_STRUCTURE_TEST) -O https://storage.googleapis.com/container-structure-test/v$(CST_VERSION)/container-structure-test-linux-amd64 && chmod +x $(CONTAINER_STRUCTURE_TEST)
+	curl -sSLf -o $(CONTAINER_STRUCTURE_TEST) https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x $(CONTAINER_STRUCTURE_TEST)
 
 .PHONY: container-structure-test
 container-structure-test: $(CONTAINER_STRUCTURE_TEST)
