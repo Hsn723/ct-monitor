@@ -13,7 +13,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/gruntwork-io/terratest v0.46.11
 	github.com/hashicorp/go-plugin v1.6.0
-	github.com/mocktools/go-smtp-mock/v2 v2.2.1
+	github.com/mocktools/go-smtp-mock/v2 v2.3.0
 	github.com/onsi/ginkgo/v2 v2.15.0
 	github.com/onsi/gomega v1.31.1
 	github.com/sendgrid/sendgrid-go v3.14.0+incompatible
