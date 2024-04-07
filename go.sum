@@ -28,8 +28,8 @@ github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8Yc
 github.com/emersion/go-sasl v0.0.0-20200509203442-7bfe0ed36a21/go.mod h1:iL2twTeMvZnrg54ZoPDNfJaJaqy0xIQFuBdrLsmspwQ=
 github.com/emersion/go-sasl v0.0.0-20231106173351-e73c9f7bad43 h1:hH4PQfOndHDlpzYfLAAfl63E8Le6F2+EL/cdhlkyRJY=
 github.com/emersion/go-sasl v0.0.0-20231106173351-e73c9f7bad43/go.mod h1:iL2twTeMvZnrg54ZoPDNfJaJaqy0xIQFuBdrLsmspwQ=
-github.com/emersion/go-smtp v0.20.2 h1:peX42Qnh5Q0q3vrAnRy43R/JwTnnv75AebxbkTL7Ia4=
-github.com/emersion/go-smtp v0.20.2/go.mod h1:qm27SGYgoIPRot6ubfQ/GpiPy/g3PaZAVRxiO/sDUgQ=
+github.com/emersion/go-smtp v0.21.0 h1:ZDZmX9aFUuPlD1lpoT0nC/nozZuIkSCyQIyxdijjCy0=
+github.com/emersion/go-smtp v0.21.0/go.mod h1:qm27SGYgoIPRot6ubfQ/GpiPy/g3PaZAVRxiO/sDUgQ=
 github.com/emicklei/go-restful/v3 v3.11.0 h1:rAQeMHw1c7zTmncogyy8VvRZwtkmkZ4FxERmMY4rD+g=
 github.com/emicklei/go-restful/v3 v3.11.0/go.mod h1:6n3XBCmQQb25CM2LCACGz8ukIrRry+4bhvbpWn3mrbc=
 github.com/fatih/color v1.9.0/go.mod h1:eQcE1qtQxscV5RaZvpXrrb8Drkc3/DdQ+uUYCNjL+zU=
@@ -143,8 +143,8 @@ github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyua
 github.com/mitchellh/mapstructure v1.5.0/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
 github.com/moby/spdystream v0.2.0 h1:cjW1zVyyoiM0T7b6UoySUFqzXMoqRckQtXwGPiBhOM8=
 github.com/moby/spdystream v0.2.0/go.mod h1:f7i0iNDQJ059oMTcWxx8MA/zKFIuD/lY+0GqbN2Wy8c=
-github.com/mocktools/go-smtp-mock/v2 v2.2.1 h1:G9oG+0PnhyyzfP/swyd2x6taGkTwc9u07VzqJL5RQUo=
-github.com/mocktools/go-smtp-mock/v2 v2.2.1/go.mod h1:n8aNpDYncZHH/cZHtJKzQyeYT/Dut00RghVM+J1Ed94=
+github.com/mocktools/go-smtp-mock/v2 v2.3.0 h1:jgTDBEoQ8Kpw/fPWxy6qR2pGwtNn5j01T3Wut4xJo5Y=
+github.com/mocktools/go-smtp-mock/v2 v2.3.0/go.mod h1:n8aNpDYncZHH/cZHtJKzQyeYT/Dut00RghVM+J1Ed94=
 github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd h1:TRLaZ9cD/w8PVh93nsPXa1VrQ6jlwL5oN8l14QlcNfg=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
