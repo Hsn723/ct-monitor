@@ -46,17 +46,18 @@ func (s SMTPMailer) Send(subject, body string) error {
 		RootCAs:    rootCAs,
 	}
 
-	c, err := smtp.Dial(addr)
+	c, err := smtp.DialStartTLS(addr, tlsConfig)
 	if err != nil {
-		return err
-	}
-	defer c.Close()
-
-	if err := c.StartTLS(tlsConfig); err != nil {
 		if s.RequireEncryption {
 			return err
 		}
+		c, err = smtp.Dial(addr)
+		if err != nil {
+			return err
+		}
 	}
+	defer c.Close()
+
 	if s.Username != "" && s.Password != "" {
 		auth := sasl.NewPlainClient("", s.Username, s.Password)
 		if err := c.Auth(auth); err != nil {

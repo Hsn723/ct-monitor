@@ -5,12 +5,14 @@ package mailer
 
 import (
 	"crypto/tls"
+	"errors"
 	"io"
 	"net"
 	"strconv"
 	"testing"
 	"time"
 
+	"github.com/emersion/go-sasl"
 	"github.com/emersion/go-smtp"
 	"github.com/stretchr/testify/assert"
 )
@@ -31,10 +33,17 @@ func (b *mockBackend) NewSession(_ *smtp.Conn) (smtp.Session, error) {
 	return &mockSession{backend: b}, nil
 }
 
-func (s *mockSession) AuthPlain(username, password string) error {
-	assert.Equal(s.backend.t, s.backend.username, username)
-	assert.Equal(s.backend.t, s.backend.password, password)
-	return nil
+func (s *mockSession) AuthMechanisms() []string {
+	return []string{sasl.Plain}
+}
+
+func (s *mockSession) Auth(mech string) (sasl.Server, error) {
+	return sasl.NewPlainServer(func(identity, username, password string) error {
+		if username != s.backend.username || password != s.backend.password {
+			return errors.New("Invalid username or password")
+		}
+		return nil
+	}), nil
 }
 
 func (s *mockSession) Mail(from string, _ *smtp.MailOptions) error {
@@ -97,7 +106,7 @@ func TestSMTPInit(t *testing.T) {
 	}
 }
 
-func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDisabled, allowInsecureAuth, withServerTLS, withCAFile, isErrorExpected bool) {
+func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, allowInsecureAuth, withServerTLS, withCAFile, isErrorExpected bool) {
 	t.Helper()
 	addr := net.JoinHostPort("0.0.0.0", "0")
 
@@ -107,7 +116,6 @@ func testSMTPSend(t *testing.T, mailer SMTPMailer, backend *mockBackend, authDis
 	}()
 	s.Domain = "localhost"
 	s.Addr = addr
-	s.AuthDisabled = authDisabled
 	s.AllowInsecureAuth = allowInsecureAuth
 	caCert, key, err := createTestCA()
 	assert.NoError(t, err)
@@ -160,7 +168,6 @@ func TestSMTPSend(t *testing.T) {
 		title             string
 		mailer            SMTPMailer
 		backend           *mockBackend
-		authDisabled      bool
 		allowInsecureAuth bool
 		withServerTLS     bool
 		withCAFile        bool
@@ -191,8 +198,8 @@ func TestSMTPSend(t *testing.T) {
 				from: "from@localhost",
 				to:   "to@localhost",
 			},
-			authDisabled:    true,
-			isErrorExpected: true,
+			allowInsecureAuth: true,
+			isErrorExpected:   true,
 		},
 		{
 			title: "NoTLSSupport",
@@ -246,7 +253,7 @@ func TestSMTPSend(t *testing.T) {
 		tc := tc
 		t.Run(tc.title, func(t *testing.T) {
 			t.Parallel()
-			testSMTPSend(t, tc.mailer, tc.backend, tc.authDisabled, tc.allowInsecureAuth, tc.withServerTLS, tc.withCAFile, tc.isErrorExpected)
+			testSMTPSend(t, tc.mailer, tc.backend, tc.allowInsecureAuth, tc.withServerTLS, tc.withCAFile, tc.isErrorExpected)
 		})
 	}
 }

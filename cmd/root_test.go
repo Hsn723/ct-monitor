@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"testing"
+	"time"
 
 	"github.com/Hsn723/certspotter-client/api"
 	"github.com/Hsn723/ct-monitor/config"
@@ -116,9 +117,17 @@ func TestSendMail(t *testing.T) {
 	}
 	err = sendMail(mailer, tmplVars, mt)
 	assert.NoError(t, err)
-	messages := server.Messages()
-	assert.Len(t, messages, 1)
-	messageData := messages[0].MsgRequest()
+	var messageData string
+	assert.Eventually(t, func() bool {
+		for _, message := range server.Messages() {
+			if !message.Msg() {
+				continue
+			}
+			messageData = message.MsgRequest()
+			return true
+		}
+		return false
+	}, 10*time.Second, 1*time.Second)
 	expects := []string{
 		"Certificate Transparency Notification for example.com",
 		"ct-monitor has observed the issuance of the following certificate for the example.com domain:",
