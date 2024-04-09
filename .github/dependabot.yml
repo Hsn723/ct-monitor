@@ -4,13 +4,25 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    allow:
+      - dependency-type: "all"
     groups:
+      go-smtp:
+        patterns:
+          - "^github.com/emersion/.*"
       k8s:
         patterns:
-          - "k8s.io/*"
+          - "^k8s.io/*"
       ginkgo:
         patterns:
-          - "github.com/onsi/*"
+          - "^github.com/onsi/*"
+      other:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "^github.com/emersion/.*"
+          - "^k8s.io/*"
+          - "^github.com/onsi/*"
     reviewers:
       - "Hsn723"
   - package-ecosystem: "docker"
