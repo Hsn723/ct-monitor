@@ -13,6 +13,7 @@ updates:
       k8s:
         patterns:
           - "^k8s.io/*"
+          - "^sigs.k8s.io/*"
       ginkgo:
         patterns:
           - "^github.com/onsi/*"
@@ -22,7 +23,9 @@ updates:
         exclude-patterns:
           - "^github.com/emersion/.*"
           - "^k8s.io/*"
+          - "^sigs.k8s.io/*"
           - "^github.com/onsi/*"
+          - "^github.com/gruntwork-io/*"
     reviewers:
       - "Hsn723"
   - package-ecosystem: "docker"
