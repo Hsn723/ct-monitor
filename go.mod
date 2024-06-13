@@ -6,7 +6,7 @@ toolchain go1.22.2
 
 require (
 	github.com/Hsn723/certspotter-client v1.1.0
-	github.com/aws/aws-sdk-go v1.53.21
+	github.com/aws/aws-sdk-go v1.54.0
 	github.com/cybozu-go/log v1.7.0
 	github.com/emersion/go-sasl v0.0.0-20231106173351-e73c9f7bad43
 	github.com/emersion/go-smtp v0.21.2
@@ -20,7 +20,7 @@ require (
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.9.0
-	k8s.io/apimachinery v0.30.1
+	k8s.io/apimachinery v0.30.2
 )
 
 require (
@@ -103,8 +103,8 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gotest.tools/v3 v3.5.1 // indirect
-	k8s.io/api v0.30.1 // indirect
-	k8s.io/client-go v0.30.1 // indirect
+	k8s.io/api v0.30.2 // indirect
+	k8s.io/client-go v0.30.2 // indirect
 	k8s.io/klog/v2 v2.120.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20240228011516-70dd3763d340 // indirect
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b // indirect
