@@ -6,10 +6,10 @@ toolchain go1.22.2
 
 require (
 	github.com/Hsn723/certspotter-client v1.1.0
-	github.com/aws/aws-sdk-go v1.54.17
+	github.com/aws/aws-sdk-go v1.54.18
 	github.com/cybozu-go/log v1.7.0
 	github.com/emersion/go-sasl v0.0.0-20231106173351-e73c9f7bad43
-	github.com/emersion/go-smtp v0.21.2
+	github.com/emersion/go-smtp v0.21.3
 	github.com/google/uuid v1.6.0
 	github.com/gruntwork-io/terratest v0.46.16
 	github.com/hashicorp/go-plugin v1.6.1
