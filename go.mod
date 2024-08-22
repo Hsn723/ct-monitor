@@ -14,7 +14,7 @@ require (
 	github.com/gruntwork-io/terratest v0.47.0
 	github.com/hashicorp/go-plugin v1.6.1
 	github.com/mocktools/go-smtp-mock/v2 v2.3.1
-	github.com/onsi/ginkgo/v2 v2.20.0
+	github.com/onsi/ginkgo/v2 v2.20.1
 	github.com/onsi/gomega v1.34.1
 	github.com/sendgrid/sendgrid-go v3.15.0+incompatible
 	github.com/spf13/cobra v1.8.1
