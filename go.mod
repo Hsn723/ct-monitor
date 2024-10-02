@@ -11,7 +11,7 @@ require (
 	github.com/emersion/go-sasl v0.0.0-20231106173351-e73c9f7bad43
 	github.com/emersion/go-smtp v0.21.3
 	github.com/google/uuid v1.6.0
-	github.com/gruntwork-io/terratest v0.47.1
+	github.com/gruntwork-io/terratest v0.47.2
 	github.com/hashicorp/go-plugin v1.6.1
 	github.com/mocktools/go-smtp-mock/v2 v2.3.1
 	github.com/onsi/ginkgo/v2 v2.20.2
@@ -98,7 +98,7 @@ require (
 	golang.org/x/time v0.6.0 // indirect
 	golang.org/x/tools v0.25.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240814211410-ddb44dafa142 // indirect
-	google.golang.org/grpc v1.67.0 // indirect
+	google.golang.org/grpc v1.67.1 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
