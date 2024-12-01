@@ -1,7 +1,8 @@
 module github.com/Hsn723/ct-monitor
 
-go 1.22.0
-toolchain go1.22.9
+go 1.22.7
+
+toolchain go1.23.0
 
 require (
 	github.com/Hsn723/certspotter-client v1.1.0
