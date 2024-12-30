@@ -41,7 +41,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.45.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.38.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.198.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.37.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.38.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.53.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.38.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.1 // indirect
@@ -51,7 +51,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.18.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.37.8 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.69.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/rds v1.93.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/rds v1.93.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.46.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.71.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.34.8 // indirect
