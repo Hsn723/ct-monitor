@@ -38,8 +38,8 @@ github.com/aws/aws-sdk-go-v2/service/dynamodb v1.38.1 h1:AnSNs7Ogi0LXHPMDBx4RE7i
 github.com/aws/aws-sdk-go-v2/service/dynamodb v1.38.1/go.mod h1:J8xqRbx7HIc8ids2P8JbrKx9irONPEYq7Z1FpLDpi3I=
 github.com/aws/aws-sdk-go-v2/service/ec2 v1.198.1 h1:YbNopxjd9baM83YEEmkaYHi+NuJt0AszeaSLqo0CVr0=
 github.com/aws/aws-sdk-go-v2/service/ec2 v1.198.1/go.mod h1:mwr3iRm8u1+kkEx4ftDM2Q6Yr0XQFBKrP036ng+k5Lk=
-github.com/aws/aws-sdk-go-v2/service/ecr v1.37.0 h1:rqKJYFTIFCFBaOTxbAk9enxesUTWmLbYXErh9Xa3FSQ=
-github.com/aws/aws-sdk-go-v2/service/ecr v1.37.0/go.mod h1:NqKnlZvLl4Tp2UH/GEc/nhbjmPQhwOXmLp2eldiszLM=
+github.com/aws/aws-sdk-go-v2/service/ecr v1.38.0 h1:+1IqznlfeMCgFWoWAuwRqykVc6gGoUUQFGXai+77KWs=
+github.com/aws/aws-sdk-go-v2/service/ecr v1.38.0/go.mod h1:NqKnlZvLl4Tp2UH/GEc/nhbjmPQhwOXmLp2eldiszLM=
 github.com/aws/aws-sdk-go-v2/service/ecs v1.53.1 h1:sAT2jzHkds1cv7VvNpzFfCw2w3zAkh306x3MTLPjuoA=
 github.com/aws/aws-sdk-go-v2/service/ecs v1.53.1/go.mod h1:YpTRClSDOPvN2e3kiIrYOx1sI+YKTZVmlMiNO2AwYhE=
 github.com/aws/aws-sdk-go-v2/service/iam v1.38.3 h1:2sFIoFzU1IEL9epJWubJm9Dhrn45aTNEJuwsesaCGnk=
@@ -58,8 +58,8 @@ github.com/aws/aws-sdk-go-v2/service/kms v1.37.8 h1:KbLZjYqhQ9hyB4HwXiheiflTlYQa
 github.com/aws/aws-sdk-go-v2/service/kms v1.37.8/go.mod h1:ANs9kBhK4Ghj9z1W+bsr3WsNaPF71qkgd6eE6Ekol/Y=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.69.2 h1:z+Bc5arm0ZJQgiphpwpWF97/wCwBERRQ1CEA+Nckmkw=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.69.2/go.mod h1:jWFEZMgQ48dPvuAWy2zcRIq8Mx/L0eO0iR1xkGR4Ov8=
-github.com/aws/aws-sdk-go-v2/service/rds v1.93.1 h1:v5ip0TLUaZqECeHBeBsCR3sTroCUFM1gcUY6vfqyHYM=
-github.com/aws/aws-sdk-go-v2/service/rds v1.93.1/go.mod h1:QEpwiX4BS6nos2d/ele6gRGalNW0Hzc1TZMmhkywQb0=
+github.com/aws/aws-sdk-go-v2/service/rds v1.93.2 h1:Fv2//DyCH9n6LqEOvpeIFYYRfIhvjhrLk5qhrYMjDGE=
+github.com/aws/aws-sdk-go-v2/service/rds v1.93.2/go.mod h1:QEpwiX4BS6nos2d/ele6gRGalNW0Hzc1TZMmhkywQb0=
 github.com/aws/aws-sdk-go-v2/service/route53 v1.46.4 h1:0jMtawybbfpFEIMy4wvfyW2Z4YLr7mnuzT0fhR67Nrc=
 github.com/aws/aws-sdk-go-v2/service/route53 v1.46.4/go.mod h1:xlMODgumb0Pp8bzfpojqelDrf8SL9rb5ovwmwKJl+oU=
 github.com/aws/aws-sdk-go-v2/service/s3 v1.71.1 h1:aOVVZJgWbaH+EJYPvEgkNhCEbXXvH7+oML36oaPK3zE=
