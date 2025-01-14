@@ -40,7 +40,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.51.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.45.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.39.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.198.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.199.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.38.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.53.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.38.4 // indirect
@@ -138,7 +138,7 @@ require (
 	golang.org/x/time v0.9.0 // indirect
 	golang.org/x/tools v0.29.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241223144023-3abc09e42ca8 // indirect
-	google.golang.org/grpc v1.69.2 // indirect
+	google.golang.org/grpc v1.69.4 // indirect
 	google.golang.org/protobuf v1.36.2 // indirect
 	gopkg.in/evanphx/json-patch.v4 v4.12.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
