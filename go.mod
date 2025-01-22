@@ -38,7 +38,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.3.28 // indirect
 	github.com/aws/aws-sdk-go-v2/service/acm v1.30.13 // indirect
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.51.7 // indirect
-	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.45.6 // indirect
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.45.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.39.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.200.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.38.6 // indirect
@@ -55,13 +55,13 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.48.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.73.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.34.13 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sns v1.33.13 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sns v1.33.14 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.37.9 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.56.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.24.11 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.28.10 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.33.9 // indirect
-	github.com/aws/smithy-go v1.22.1 // indirect
+	github.com/aws/smithy-go v1.22.2 // indirect
 	github.com/boombuler/barcode v1.0.2 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.6 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
