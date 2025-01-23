@@ -31,7 +31,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.29.1 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.54 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.24 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.17.52 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.17.53 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.28 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.28 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.1 // indirect
@@ -53,7 +53,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.69.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.93.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.48.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.73.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.74.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.34.13 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.33.14 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.37.9 // indirect
