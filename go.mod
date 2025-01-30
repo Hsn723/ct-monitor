@@ -31,7 +31,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.29.2 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.55 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.25 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.17.54 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.17.55 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.29 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.29 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.2 // indirect
@@ -41,7 +41,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.45.8 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.39.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.202.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.38.7 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.39.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.53.9 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.38.8 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.2 // indirect
@@ -53,7 +53,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.69.8 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.93.8 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.48.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.74.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.75.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.34.14 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.33.15 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.37.10 // indirect
@@ -121,7 +121,7 @@ require (
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.12.0 // indirect
 	github.com/spf13/cast v1.7.1 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/spf13/pflag v1.0.6 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/urfave/cli/v2 v2.27.5 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
