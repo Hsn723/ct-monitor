@@ -57,7 +57,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.35.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.34.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.38.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ssm v1.57.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssm v1.57.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.25.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.29.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.33.16 // indirect
