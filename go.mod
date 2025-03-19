@@ -52,7 +52,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/kms v1.38.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.70.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.94.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/route53 v1.49.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/route53 v1.50.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.78.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.35.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.34.2 // indirect
