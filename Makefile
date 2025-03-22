@@ -65,7 +65,7 @@ stop-kind:
 
 .PHONY: run-kindtest
 run-kindtest: build
-	$(GINKGO) --tags=e2e -race -v ./... -ginkgo.progress -ginkgo.v -ginkgo.fail-fast
+	$(GINKGO) --tags=e2e --race -v --fail-fast ./...
 
 .PHONY: kindtest
 kindtest: clean stop-kind start-kind run-kindtest
