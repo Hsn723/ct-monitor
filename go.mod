@@ -42,7 +42,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.42.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.210.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.43.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.54.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.54.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.41.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.7.0 // indirect
@@ -68,7 +68,7 @@ require (
 	github.com/emicklei/go-restful/v3 v3.12.2 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
-	github.com/fxamacker/cbor/v2 v2.7.0 // indirect
+	github.com/fxamacker/cbor/v2 v2.8.0 // indirect
 	github.com/go-errors/errors v1.5.1 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-openapi/jsonpointer v0.21.1 // indirect
