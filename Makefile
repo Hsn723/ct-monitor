@@ -2,7 +2,7 @@ PROJECT = ct-monitor
 VERSION = $(shell cat VERSION)
 LDFLAGS=-ldflags "-w -s -X main.version=${VERSION}"
 
-KIND_VERSION = 0.17.0
+KIND_VERSION = 0.27.0
 
 WORKDIR = /tmp/$(PROJECT)/work
 BINDIR = /tmp/$(PROJECT)/bin

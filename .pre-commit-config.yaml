@@ -1,10 +1,10 @@
 repos:
   - repo: https://github.com/golangci/golangci-lint
-    rev: v1.64.4
+    rev: v2.0.2
     hooks:
       - id: golangci-lint
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v5.0.0
     hooks:
       - id: check-merge-conflict
       - id: check-toml
@@ -13,3 +13,12 @@ repos:
       - id: end-of-file-fixer
       - id: mixed-line-ending
         args: ["--fix=lf"]
+ci:
+  autofix_prs: false
+  skip:
+    - golangci-lint
+    - check-merge-conflict
+    - check-toml
+    - check-yaml
+    - end-of-file-fixer
+    - mixed-line-ending

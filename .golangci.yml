@@ -1,23 +1,41 @@
+version: "2"
+run:
+  build-tags:
+    - test
+    - e2e
 linters:
   enable:
-  - dupl
-  - ginkgolinter
-  - gocheckcompilerdirectives
-  - gocognit
-  - goconst
-  - gocyclo
-  - godot
-  - gofmt
-  - revive
-  - typecheck
-  - unparam
-run:
-  timeout: 5m
-  build-tags:
-  - test
-  - e2e
-linters-settings:
-  revive:
-    rules:
-      - name: dot-imports
-        disabled: true
+    - dupl
+    - ginkgolinter
+    - gocheckcompilerdirectives
+    - gocognit
+    - goconst
+    - gocyclo
+    - godot
+    - revive
+    - unparam
+  settings:
+    revive:
+      rules:
+        - name: dot-imports
+          disabled: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
