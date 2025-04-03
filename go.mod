@@ -15,7 +15,7 @@ require (
 	github.com/hashicorp/go-plugin v1.6.3
 	github.com/mocktools/go-smtp-mock/v2 v2.4.0
 	github.com/onsi/ginkgo/v2 v2.23.3
-	github.com/onsi/gomega v1.36.3
+	github.com/onsi/gomega v1.37.0
 	github.com/sendgrid/sendgrid-go v3.16.0+incompatible
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/viper v1.20.1
@@ -41,8 +41,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.47.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.42.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.211.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.43.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.54.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.43.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.54.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.41.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.7.0 // indirect
