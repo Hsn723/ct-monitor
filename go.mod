@@ -39,7 +39,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/acm v1.31.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.52.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.47.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.42.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.42.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.211.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.43.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.54.6 // indirect
@@ -147,6 +147,6 @@ require (
 	k8s.io/kube-openapi v0.0.0-20241105132330-32ad38e42d3f // indirect
 	k8s.io/utils v0.0.0-20241104100929-3ea5e8cea738 // indirect
 	sigs.k8s.io/json v0.0.0-20241010143419-9aa6b5e7a4b3 // indirect
-	sigs.k8s.io/structured-merge-diff/v4 v4.6.0 // indirect
+	sigs.k8s.io/structured-merge-diff/v4 v4.7.0 // indirect
 	sigs.k8s.io/yaml v1.4.0 // indirect
 )
