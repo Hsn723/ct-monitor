@@ -54,7 +54,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/rds v1.94.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.51.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.79.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.35.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.35.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.34.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.38.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.58.2 // indirect
