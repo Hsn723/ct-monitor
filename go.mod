@@ -6,7 +6,7 @@ toolchain go1.24.1
 
 require (
 	github.com/Hsn723/certspotter-client v1.2.0
-	github.com/aws/aws-sdk-go v1.55.6
+	github.com/aws/aws-sdk-go v1.55.7
 	github.com/cybozu-go/log v1.7.0
 	github.com/emersion/go-sasl v0.0.0-20231106173351-e73c9f7bad43
 	github.com/emersion/go-smtp v0.21.3
@@ -40,7 +40,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.52.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.47.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.42.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.211.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.212.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.43.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.55.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.41.1 // indirect
