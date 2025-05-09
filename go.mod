@@ -11,7 +11,7 @@ require (
 	github.com/emersion/go-sasl v0.0.0-20241020182733-b788ff22d5a6
 	github.com/emersion/go-smtp v0.22.0
 	github.com/google/uuid v1.6.0
-	github.com/gruntwork-io/terratest v0.48.2
+	github.com/gruntwork-io/terratest v0.49.0
 	github.com/hashicorp/go-plugin v1.6.3
 	github.com/mocktools/go-smtp-mock/v2 v2.4.0
 	github.com/onsi/ginkgo/v2 v2.23.4
@@ -40,7 +40,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.52.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.48.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.43.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.216.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.217.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.44.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.56.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.41.1 // indirect
