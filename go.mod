@@ -42,7 +42,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.43.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.224.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.44.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.57.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.57.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.42.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.7.2 // indirect
@@ -116,7 +116,7 @@ require (
 	github.com/sendgrid/rest v2.6.9+incompatible // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.14.0 // indirect
-	github.com/spf13/cast v1.9.1 // indirect
+	github.com/spf13/cast v1.9.2 // indirect
 	github.com/spf13/pflag v1.0.6 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/urfave/cli/v2 v2.27.6 // indirect
