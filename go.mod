@@ -40,7 +40,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.53.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.50.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.43.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.224.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.225.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.44.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.57.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.42.0 // indirect
