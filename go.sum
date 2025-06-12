@@ -58,8 +58,8 @@ github.com/aws/aws-sdk-go-v2/service/kms v1.40.1 h1:IGc0wn5dw/pliuvZbmuS0r9jLun8
 github.com/aws/aws-sdk-go-v2/service/kms v1.40.1/go.mod h1:RyhzxkWGcfixlkieewzpO3D4P4fTMxhIDqDZWsh0u/4=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.71.4 h1:BBo3xmxFGiO5LgxJLTGUxaGCEukzPDUFQv0xxgrcCQA=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.71.4/go.mod h1:wZvV7k5yxtDgEpSy4z5EjBiL9vyzrDCJFlYcVJaGtCQ=
-github.com/aws/aws-sdk-go-v2/service/rds v1.97.1 h1:yNOTK8Vm6sZp2agUydti/l0bvhNwD5RiSw9EhvCzC34=
-github.com/aws/aws-sdk-go-v2/service/rds v1.97.1/go.mod h1:CeWU2pblMkdjpXeHDA8wmZNsi3Vx47ZYqeZnHWDChbM=
+github.com/aws/aws-sdk-go-v2/service/rds v1.97.2 h1:N+D6+OOV0IXLFKLbQlCbLZv6zzE/WXzpusyBAc9x1A8=
+github.com/aws/aws-sdk-go-v2/service/rds v1.97.2/go.mod h1:CeWU2pblMkdjpXeHDA8wmZNsi3Vx47ZYqeZnHWDChbM=
 github.com/aws/aws-sdk-go-v2/service/route53 v1.52.1 h1:PAbznrQ8b8IwTUJgBdcbVqc+r57SO3jy0YJi9bJKPmQ=
 github.com/aws/aws-sdk-go-v2/service/route53 v1.52.1/go.mod h1:cpFFGJ0A6WKZjf26TVzYI3qFhbFXXb7xeF5bOOMax6c=
 github.com/aws/aws-sdk-go-v2/service/s3 v1.80.2 h1:T6Wu+8E2LeTUqzqQ/Bh1EoFNj1u4jUyveMgmTlu9fDU=
