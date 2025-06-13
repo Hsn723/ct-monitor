@@ -42,14 +42,14 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.43.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.225.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.44.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.57.4 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.57.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.42.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.7.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.10.16 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.12.16 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.18.16 // indirect
-	github.com/aws/aws-sdk-go-v2/service/kms v1.40.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/kms v1.41.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.71.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.97.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.52.1 // indirect
