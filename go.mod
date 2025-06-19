@@ -31,14 +31,14 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.29.17 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.70 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.32 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.17.80 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.17.81 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.36 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.36 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.3 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.3.36 // indirect
 	github.com/aws/aws-sdk-go-v2/service/acm v1.33.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.53.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.50.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.54.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.51.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.43.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.225.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.45.1 // indirect
@@ -53,7 +53,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.71.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.97.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.52.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.80.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.81.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.35.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.34.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.38.8 // indirect
