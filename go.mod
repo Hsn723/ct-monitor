@@ -13,7 +13,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/gruntwork-io/terratest v0.50.0
 	github.com/hashicorp/go-plugin v1.6.3
-	github.com/mocktools/go-smtp-mock/v2 v2.5.0
+	github.com/mocktools/go-smtp-mock/v2 v2.5.1
 	github.com/onsi/ginkgo/v2 v2.23.4
 	github.com/onsi/gomega v1.37.0
 	github.com/sendgrid/sendgrid-go v3.16.1+incompatible
@@ -40,7 +40,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.54.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.51.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.43.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.225.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.226.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.45.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.58.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.42.2 // indirect
@@ -51,7 +51,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.18.17 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.41.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.72.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/rds v1.97.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/rds v1.98.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.52.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.81.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.35.7 // indirect
