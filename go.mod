@@ -31,7 +31,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.29.17 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.70 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.32 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.17.81 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.17.82 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.36 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.36 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.3 // indirect
@@ -42,7 +42,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.43.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.226.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.45.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.58.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.58.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.42.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.7.4 // indirect
@@ -53,7 +53,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.72.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.98.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.52.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.81.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.82.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.35.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.34.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.38.8 // indirect
@@ -124,6 +124,7 @@ require (
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
 	go.uber.org/automaxprocs v1.6.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
+	go.yaml.in/yaml/v2 v2.4.2 // indirect
 	golang.org/x/crypto v0.39.0 // indirect
 	golang.org/x/net v0.41.0 // indirect
 	golang.org/x/oauth2 v0.30.0 // indirect
@@ -148,5 +149,5 @@ require (
 	sigs.k8s.io/json v0.0.0-20241010143419-9aa6b5e7a4b3 // indirect
 	sigs.k8s.io/randfill v1.0.0 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.7.0 // indirect
-	sigs.k8s.io/yaml v1.4.0 // indirect
+	sigs.k8s.io/yaml v1.5.0 // indirect
 )
