@@ -40,7 +40,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.54.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.51.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.43.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.226.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.227.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.45.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.58.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.42.2 // indirect
@@ -49,7 +49,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.10.17 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.12.17 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.18.17 // indirect
-	github.com/aws/aws-sdk-go-v2/service/kms v1.41.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/kms v1.41.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.72.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.98.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.52.2 // indirect
