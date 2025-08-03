@@ -55,7 +55,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.54.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.85.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.36.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sns v1.35.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sns v1.35.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.39.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.61.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.26.1 // indirect
@@ -124,7 +124,7 @@ require (
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
 	go.uber.org/automaxprocs v1.6.0 // indirect
 	go.yaml.in/yaml/v2 v2.4.2 // indirect
-	go.yaml.in/yaml/v3 v3.0.3 // indirect
+	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/crypto v0.40.0 // indirect
 	golang.org/x/net v0.42.0 // indirect
 	golang.org/x/oauth2 v0.30.0 // indirect
