@@ -26,17 +26,11 @@ updates:
           - "^sigs.k8s.io/*"
           - "^github.com/onsi/*"
           - "^github.com/gruntwork-io/*"
-    reviewers:
-      - "Hsn723"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "daily"
-    reviewers:
-      - "Hsn723"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    reviewers:
-      - "Hsn723"
