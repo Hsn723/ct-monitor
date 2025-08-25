@@ -14,12 +14,12 @@ require (
 	github.com/gruntwork-io/terratest v0.50.0
 	github.com/hashicorp/go-plugin v1.7.0
 	github.com/mocktools/go-smtp-mock/v2 v2.5.1
-	github.com/onsi/ginkgo/v2 v2.25.0
-	github.com/onsi/gomega v1.38.0
+	github.com/onsi/ginkgo/v2 v2.25.1
+	github.com/onsi/gomega v1.38.1
 	github.com/sendgrid/sendgrid-go v3.16.1+incompatible
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/viper v1.20.1
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.0
 	k8s.io/apimachinery v0.33.4
 )
 
@@ -52,12 +52,12 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.44.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.76.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/rds v1.103.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/rds v1.103.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.56.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.87.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.38.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.37.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sqs v1.41.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.63.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.28.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.33.2 // indirect
@@ -82,7 +82,7 @@ require (
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/gnostic-models v0.7.0 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
-	github.com/google/pprof v0.0.0-20250403155104-27863c87afa6 // indirect
+	github.com/google/pprof v0.0.0-20250820193118-f64d9cf942d6 // indirect
 	github.com/gorilla/websocket v1.5.4-0.20250319132907-e064f32e3674 // indirect
 	github.com/gruntwork-io/go-commons v0.17.2 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
