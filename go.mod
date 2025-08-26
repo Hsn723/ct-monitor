@@ -37,11 +37,11 @@ require (
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.4 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.3 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.4.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/acm v1.36.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.57.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.56.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/acm v1.37.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.58.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.57.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.49.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.245.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.246.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.49.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.63.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.47.1 // indirect
@@ -51,13 +51,13 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.44.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.76.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.77.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.103.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.56.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.87.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.38.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.37.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.63.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.28.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.33.2 // indirect
