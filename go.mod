@@ -14,7 +14,7 @@ require (
 	github.com/gruntwork-io/terratest v0.50.0
 	github.com/hashicorp/go-plugin v1.7.0
 	github.com/mocktools/go-smtp-mock/v2 v2.5.1
-	github.com/onsi/ginkgo/v2 v2.25.1
+	github.com/onsi/ginkgo/v2 v2.25.2
 	github.com/onsi/gomega v1.38.2
 	github.com/sendgrid/sendgrid-go v3.16.1+incompatible
 	github.com/spf13/cobra v1.9.1
@@ -29,10 +29,10 @@ require (
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 	github.com/aws/aws-sdk-go-v2 v1.38.2 // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.7.1 // indirect
-	github.com/aws/aws-sdk-go-v2/config v1.31.4 // indirect
-	github.com/aws/aws-sdk-go-v2/credentials v1.18.8 // indirect
+	github.com/aws/aws-sdk-go-v2/config v1.31.5 // indirect
+	github.com/aws/aws-sdk-go-v2/credentials v1.18.9 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.18.5 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.19.2 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.19.3 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.5 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.5 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.3 // indirect
@@ -40,9 +40,9 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/acm v1.37.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.58.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.57.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.49.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.247.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.49.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.50.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.248.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.50.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.63.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.47.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.1 // indirect
@@ -52,14 +52,14 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.45.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.77.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/rds v1.103.4 // indirect
+	github.com/aws/aws-sdk-go-v2/service/rds v1.104.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.57.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.87.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.39.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.38.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.64.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sso v1.28.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sso v1.29.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.34.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.38.1 // indirect
 	github.com/aws/smithy-go v1.23.0 // indirect
