@@ -41,7 +41,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.58.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.57.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.50.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.249.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.250.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.50.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.63.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.47.3 // indirect
@@ -128,7 +128,7 @@ require (
 	github.com/sourcegraph/conc v0.3.1-0.20240121214520-5f936abd7ae8 // indirect
 	github.com/spf13/afero v1.14.0 // indirect
 	github.com/spf13/cast v1.9.2 // indirect
-	github.com/spf13/pflag v1.0.9 // indirect
+	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/urfave/cli/v2 v2.27.7 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
