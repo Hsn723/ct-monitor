@@ -52,8 +52,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.45.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.77.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/rds v1.104.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/route53 v1.57.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/rds v1.105.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/route53 v1.58.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.87.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.39.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.38.1 // indirect
