@@ -42,8 +42,8 @@ github.com/aws/aws-sdk-go-v2/service/ec2 v1.251.2 h1:6TssXFfLHcwUS5E3MdYKkCFeOrY
 github.com/aws/aws-sdk-go-v2/service/ec2 v1.251.2/go.mod h1:MXJiLJZtMqb2dVXgEIn35d5+7MqLd4r8noLen881kpk=
 github.com/aws/aws-sdk-go-v2/service/ecr v1.50.3 h1:phfqjO8ebHGoC/GrjHcuTrVkDCeM9A6atOYTCY1XsXo=
 github.com/aws/aws-sdk-go-v2/service/ecr v1.50.3/go.mod h1:TbUfC2wbI144ak0zMJoQ2zjPwGaw1/Kt3SXI138wcoY=
-github.com/aws/aws-sdk-go-v2/service/ecs v1.63.7 h1:VwvvHn/XroaU+md5moLOuFtvGjrExOVr2s3JP+3I2FI=
-github.com/aws/aws-sdk-go-v2/service/ecs v1.63.7/go.mod h1:aJR4g+fZtJ2Bh8VVMS/UP6A3fuwBn9cWajUVos4zhP0=
+github.com/aws/aws-sdk-go-v2/service/ecs v1.64.0 h1:WydV4UxL/L1h+ZYQPkpto6jqMVRslWrufYstFZPrQEc=
+github.com/aws/aws-sdk-go-v2/service/ecs v1.64.0/go.mod h1:aJR4g+fZtJ2Bh8VVMS/UP6A3fuwBn9cWajUVos4zhP0=
 github.com/aws/aws-sdk-go-v2/service/iam v1.47.5 h1:o2gRl9x3A/Sp6q4oHinnrS+2AC9Ud8DaG4JL9ygMACk=
 github.com/aws/aws-sdk-go-v2/service/iam v1.47.5/go.mod h1:0y7wFmnEg9xTZxjmr2gHQ4xOHpCfrt70lFWTOAkrij4=
 github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.1 h1:oegbebPEMA/1Jny7kvwejowCaHz1FWZAQ94WXFNCyTM=
@@ -60,8 +60,8 @@ github.com/aws/aws-sdk-go-v2/service/kms v1.45.3 h1:hp7qDEQkW3IwV5eaTy2inECTgRHo
 github.com/aws/aws-sdk-go-v2/service/kms v1.45.3/go.mod h1:EADaLXofJkof++MP9zhzSZ0byBMOZTIRjtJO/ZMuPVE=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.77.4 h1:jUPCc+cetLIJK/YJnuLou24IjY5vIpt+8pwOgX2n6eI=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.77.4/go.mod h1:uCclLX4a0dWB1ZToNE4ZhC9R1gQTWP+0uN6uxWftB1o=
-github.com/aws/aws-sdk-go-v2/service/rds v1.106.2 h1:SCHx0JQl2E24HbpZltlQdaQOD9BsjSa0fjDMz3OZYtY=
-github.com/aws/aws-sdk-go-v2/service/rds v1.106.2/go.mod h1:EVYMTmrAQr0LbGPy3FxHJHvPcP8x6byBwFJ9fUZKU3Q=
+github.com/aws/aws-sdk-go-v2/service/rds v1.107.0 h1:PcG+YEp/ADK4JBq21G2I/PYlsq6wuDvUQqw2YEtECU8=
+github.com/aws/aws-sdk-go-v2/service/rds v1.107.0/go.mod h1:EVYMTmrAQr0LbGPy3FxHJHvPcP8x6byBwFJ9fUZKU3Q=
 github.com/aws/aws-sdk-go-v2/service/route53 v1.58.2 h1:uqxTxY0i8b1ZFHxIf6pZYpUCOuYV/xxcgTv0vDz8Iig=
 github.com/aws/aws-sdk-go-v2/service/route53 v1.58.2/go.mod h1:py/7C8W37SHqyHk6tkvZKiFDvMA/WkfPv5Qd8dUXYQw=
 github.com/aws/aws-sdk-go-v2/service/s3 v1.88.1 h1:+RpGuaQ72qnU83qBKVwxkznewEdAGhIWo/PQCmkhhog=
@@ -311,8 +311,8 @@ go.opentelemetry.io/otel/trace v1.37.0 h1:HLdcFNbRQBE2imdSEgm/kwqmQj1Or1l/7bW6mx
 go.opentelemetry.io/otel/trace v1.37.0/go.mod h1:TlgrlQ+PtQO5XFerSPUYG0JSgGyryXewPGyayAWSBS0=
 go.uber.org/automaxprocs v1.6.0 h1:O3y2/QNTOdbF+e/dpXNNW7Rx2hZ4sTIPyybbxyNqTUs=
 go.uber.org/automaxprocs v1.6.0/go.mod h1:ifeIMSnPZuznNm6jmdzmU3/bfk01Fe2fotchwEFJ8r8=
-go.yaml.in/yaml/v2 v2.4.2 h1:DzmwEr2rDGHl7lsFgAHxmNz/1NlQ7xLIrlN2h5d1eGI=
-go.yaml.in/yaml/v2 v2.4.2/go.mod h1:081UH+NErpNdqlCXm3TtEran0rJZGxAYx9hb/ELlsPU=
+go.yaml.in/yaml/v2 v2.4.3 h1:6gvOSjQoTB3vt1l+CU+tSyi/HOjfOjRLJ4YwYZGwRO0=
+go.yaml.in/yaml/v2 v2.4.3/go.mod h1:zSxWcmIDjOzPXpjlTTbAsKokqkDNAVtZO0WOMiT90s8=
 go.yaml.in/yaml/v3 v3.0.4 h1:tfq32ie2Jv2UxXFdLJdh3jXuOzWiL1fo0bu/FbuKpbc=
 go.yaml.in/yaml/v3 v3.0.4/go.mod h1:DhzuOOF2ATzADvBadXxruRBLzYTpT36CKvDb3+aBEFg=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
