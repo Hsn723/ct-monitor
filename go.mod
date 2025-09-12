@@ -43,7 +43,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.50.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.251.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.50.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.63.7 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.64.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.47.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.8.7 // indirect
@@ -52,7 +52,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.45.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.77.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/rds v1.106.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/rds v1.107.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.58.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.88.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.39.4 // indirect
@@ -134,7 +134,7 @@ require (
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
 	go.uber.org/automaxprocs v1.6.0 // indirect
-	go.yaml.in/yaml/v2 v2.4.2 // indirect
+	go.yaml.in/yaml/v2 v2.4.3 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/crypto v0.42.0 // indirect
 	golang.org/x/net v0.44.0 // indirect
