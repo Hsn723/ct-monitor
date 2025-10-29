@@ -32,7 +32,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.31.15 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.18.19 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.18.11 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.20.0 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.20.1 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.11 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.11 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.4 // indirect
@@ -41,9 +41,9 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.60.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.58.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.52.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.258.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.259.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.51.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.65.4 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.66.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.49.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.9.2 // indirect
@@ -51,10 +51,10 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.11 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.11 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.46.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.79.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.80.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.108.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.59.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.88.7 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.89.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.39.9 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.39.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.11 // indirect
