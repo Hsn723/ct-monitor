@@ -41,9 +41,9 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.60.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.58.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.52.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.260.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.261.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.51.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.67.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.67.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.49.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.9.3 // indirect
@@ -62,7 +62,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sso v1.30.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.35.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.39.0 // indirect
-	github.com/aws/smithy-go v1.23.1 // indirect
+	github.com/aws/smithy-go v1.23.2 // indirect
 	github.com/boombuler/barcode v1.1.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.7 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
