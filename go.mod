@@ -41,7 +41,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.60.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.58.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.52.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.262.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.263.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.51.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.67.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.49.2 // indirect
@@ -58,7 +58,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.39.11 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.39.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.13 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ssm v1.66.4 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssm v1.67.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.30.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.35.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.39.1 // indirect
