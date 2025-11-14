@@ -38,10 +38,10 @@ github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.58.9 h1:+NSIzl59vBK3g3nLU
 github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.58.9/go.mod h1:9/Q0/HtqBTLMksFse42wZjUq0jJrUuo4XlnXy/uSoeg=
 github.com/aws/aws-sdk-go-v2/service/dynamodb v1.52.6 h1:jlPkBSbMSpqVk47u9kqblihtXlmzYv3ZFXtuNKUNwDc=
 github.com/aws/aws-sdk-go-v2/service/dynamodb v1.52.6/go.mod h1:6eUUnWOJ8sucL5Uk8rPkFo8FYioM0CTNGHga8hwzXVc=
-github.com/aws/aws-sdk-go-v2/service/ec2 v1.267.0 h1:WDY9IcD4z/ZCQP6YkZoTX/ck7mDGly88EmQV4VKidK4=
-github.com/aws/aws-sdk-go-v2/service/ec2 v1.267.0/go.mod h1:NDdDLLW5PtLLXN661gKcvJvqAH5OBXsfhMlmKVu1/pY=
-github.com/aws/aws-sdk-go-v2/service/ecr v1.51.4 h1:Tlrn39J499be8wCeAzNTV3P8jdNSgZArLqJpRHRLd/k=
-github.com/aws/aws-sdk-go-v2/service/ecr v1.51.4/go.mod h1:1NVD1KuMjH2GqnPwMotPndQaT/MreKkWpjkF12d6oKU=
+github.com/aws/aws-sdk-go-v2/service/ec2 v1.268.0 h1:pIAMPPMvY2G//vwb2i3NZ82hM0yp7zh1k9FDBoZ++2M=
+github.com/aws/aws-sdk-go-v2/service/ec2 v1.268.0/go.mod h1:NDdDLLW5PtLLXN661gKcvJvqAH5OBXsfhMlmKVu1/pY=
+github.com/aws/aws-sdk-go-v2/service/ecr v1.52.0 h1:gEBb0lnIUkc/dey1rhT6iMDLRkLODMWomFLOYGHBwGQ=
+github.com/aws/aws-sdk-go-v2/service/ecr v1.52.0/go.mod h1:1NVD1KuMjH2GqnPwMotPndQaT/MreKkWpjkF12d6oKU=
 github.com/aws/aws-sdk-go-v2/service/ecs v1.67.4 h1:5tbrRKMqXCiMg0+7E21TiAvVJEt8uB+7d5FQ8+Fusqo=
 github.com/aws/aws-sdk-go-v2/service/ecs v1.67.4/go.mod h1:rrhqfkXfa2DSNq0RyFhnnFEAyI+yJB4+2QlZKeJvMjs=
 github.com/aws/aws-sdk-go-v2/service/iam v1.50.2 h1:A03KM3Mo3IitRdM6dg1x5P+/POvDwAYD02YfoYkDgok=
@@ -60,8 +60,8 @@ github.com/aws/aws-sdk-go-v2/service/kms v1.48.2 h1:aL8Y/AbB6I+uw0MjLbdo68NQ8t5l
 github.com/aws/aws-sdk-go-v2/service/kms v1.48.2/go.mod h1:VJcNH6BLr+3VJwinRKdotLOMglHO8mIKlD3ea5c7hbw=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.81.3 h1:s07xiAG7SmiCWPG7OyPMsZ2OR9J4NvHsoI+1l2fjCZE=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.81.3/go.mod h1:X9xD+03BeNMi9vA0zcJ0rL4jaGRaBpB/54ukKjhz6ik=
-github.com/aws/aws-sdk-go-v2/service/rds v1.108.9 h1:KUw21X9a29jsgnYQSl9P85ya5AbOlIM151e7/FgdPO8=
-github.com/aws/aws-sdk-go-v2/service/rds v1.108.9/go.mod h1:mGQNxzRLKlj1cQU5uaMIjAhle0HkSeZDwoPfP+/nRYk=
+github.com/aws/aws-sdk-go-v2/service/rds v1.109.0 h1:kAHatNQ1iaWVqVoFcZr5k0+o3dNSrnd+QZRFq4uTvZY=
+github.com/aws/aws-sdk-go-v2/service/rds v1.109.0/go.mod h1:mGQNxzRLKlj1cQU5uaMIjAhle0HkSeZDwoPfP+/nRYk=
 github.com/aws/aws-sdk-go-v2/service/route53 v1.59.5 h1:4Uy8lhrh4E9jS/MtmzjuEuvX7zOZTbNuPe+zkvtvRRU=
 github.com/aws/aws-sdk-go-v2/service/route53 v1.59.5/go.mod h1:TUbfYOisWZWyT2qjmlMh93ERw1Ry8G4q/yT2Q8TsDag=
 github.com/aws/aws-sdk-go-v2/service/s3 v1.90.2 h1:DhdbtDl4FdNlj31+xiRXANxEE+eC7n8JQz+/ilwQ8Uc=
@@ -376,8 +376,8 @@ golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e/go.mod h1:n7NCudcB/nEzxVGm
 golang.org/x/tools v0.0.0-20191119224855-298f0cb1881e/go.mod h1:b+2E5dAYhXwXZwtnZ6UAqBI28+e2cm9otk0dWdXHAEo=
 golang.org/x/tools v0.0.0-20200619180055-7c47624df98f/go.mod h1:EkVYQZoAsY45+roYkvgYkIh4xh/qjgUK9TdY2XT94GE=
 golang.org/x/tools v0.0.0-20210106214847-113979e3529a/go.mod h1:emZCQorbCU4vsT4fOWvOPXz4eW1wZW4PmDk9uLelYpA=
-golang.org/x/tools v0.38.0 h1:Hx2Xv8hISq8Lm16jvBZ2VQf+RLmbd7wVUsALibYI/IQ=
-golang.org/x/tools v0.38.0/go.mod h1:yEsQ/d/YK8cjh0L6rZlY8tgtlKiBNTL14pGDJPJpYQs=
+golang.org/x/tools v0.39.0 h1:ik4ho21kwuQln40uelmciQPp9SipgNDdrafrYA4TmQQ=
+golang.org/x/tools v0.39.0/go.mod h1:JnefbkDPyD8UU2kI5fuf8ZX4/yUeh9W877ZeBONxUqQ=
 golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=

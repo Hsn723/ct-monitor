@@ -41,8 +41,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.60.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.58.9 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.52.6 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.267.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.51.4 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.268.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.52.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.67.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.50.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.3 // indirect
@@ -52,7 +52,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.13 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.48.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.81.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/rds v1.108.9 // indirect
+	github.com/aws/aws-sdk-go-v2/service/rds v1.109.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.59.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.90.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.39.13 // indirect
@@ -141,7 +141,7 @@ require (
 	golang.org/x/term v0.37.0 // indirect
 	golang.org/x/text v0.31.0 // indirect
 	golang.org/x/time v0.14.0 // indirect
-	golang.org/x/tools v0.38.0 // indirect
+	golang.org/x/tools v0.39.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250804133106-a7a43d27e69b // indirect
 	google.golang.org/grpc v1.76.0 // indirect
 	google.golang.org/protobuf v1.36.10 // indirect
