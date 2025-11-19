@@ -38,13 +38,13 @@ require (
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.4 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.4.13 // indirect
 	github.com/aws/aws-sdk-go-v2/service/acm v1.37.13 // indirect
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.60.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.58.9 // indirect
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.61.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.59.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.52.6 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.270.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.271.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.52.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.67.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/iam v1.50.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/iam v1.51.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.9.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.11.13 // indirect
