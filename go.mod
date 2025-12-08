@@ -43,8 +43,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.53.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.275.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.54.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.69.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/iam v1.52.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.69.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/iam v1.53.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.9.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.11.15 // indirect
