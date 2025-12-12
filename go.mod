@@ -51,11 +51,11 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.16 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.16 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.49.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.86.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.87.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.113.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.62.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.93.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.40.5 // indirect
+	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.41.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/signin v1.0.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.39.10 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.42.20 // indirect
