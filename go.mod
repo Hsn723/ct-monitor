@@ -12,8 +12,8 @@ require (
 	github.com/gruntwork-io/terratest v0.55.0
 	github.com/hashicorp/go-plugin v1.7.0
 	github.com/mocktools/go-smtp-mock/v2 v2.5.1
-	github.com/onsi/ginkgo/v2 v2.27.5
-	github.com/onsi/gomega v1.39.0
+	github.com/onsi/ginkgo/v2 v2.28.1
+	github.com/onsi/gomega v1.39.1
 	github.com/sendgrid/sendgrid-go v3.16.1+incompatible
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
@@ -30,7 +30,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.32.7 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.19.7 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.18.17 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.21.0 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.21.1 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.17 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.17 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.8.4 // indirect
@@ -39,7 +39,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.64.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.63.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.54.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.282.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.285.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.55.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.71.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.53.2 // indirect
@@ -49,10 +49,10 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.17 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.17 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.49.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.87.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.88.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.114.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.62.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.95.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.96.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.41.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/signin v1.0.5 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.39.11 // indirect
@@ -91,7 +91,7 @@ require (
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/gnostic-models v0.7.1 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
-	github.com/google/pprof v0.0.0-20250820193118-f64d9cf942d6 // indirect
+	github.com/google/pprof v0.0.0-20260115054156-294ebfa9ad83 // indirect
 	github.com/gorilla/websocket v1.5.4-0.20250319132907-e064f32e3674 // indirect
 	github.com/gruntwork-io/go-commons v0.17.2 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
