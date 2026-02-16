@@ -1,6 +1,6 @@
 module github.com/Hsn723/ct-monitor
 
-go 1.25.0
+go 1.26
 
 require (
 	github.com/Hsn723/certspotter-client v1.2.0
@@ -9,7 +9,7 @@ require (
 	github.com/emersion/go-sasl v0.0.0-20241020182733-b788ff22d5a6
 	github.com/emersion/go-smtp v0.24.0
 	github.com/google/uuid v1.6.0
-	github.com/gruntwork-io/terratest v0.55.0
+	github.com/gruntwork-io/terratest v0.56.0
 	github.com/hashicorp/go-plugin v1.7.0
 	github.com/mocktools/go-smtp-mock/v2 v2.5.1
 	github.com/onsi/ginkgo/v2 v2.28.1
@@ -39,7 +39,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.64.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.63.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.55.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.288.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.289.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.55.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.71.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.53.2 // indirect
@@ -141,7 +141,7 @@ require (
 	golang.org/x/time v0.14.0 // indirect
 	golang.org/x/tools v0.42.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20251202230838-ff82c1b0f217 // indirect
-	google.golang.org/grpc v1.79.0 // indirect
+	google.golang.org/grpc v1.79.1 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/evanphx/json-patch.v4 v4.13.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
