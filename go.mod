@@ -39,7 +39,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.64.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.63.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.56.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.291.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.292.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.55.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.72.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.53.3 // indirect
@@ -132,7 +132,7 @@ require (
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/crypto v0.48.0 // indirect
 	golang.org/x/mod v0.33.0 // indirect
-	golang.org/x/net v0.50.0 // indirect
+	golang.org/x/net v0.51.0 // indirect
 	golang.org/x/oauth2 v0.35.0 // indirect
 	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/sys v0.41.0 // indirect
