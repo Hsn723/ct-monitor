@@ -38,7 +38,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/acm v1.37.22 // indirect
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.64.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.64.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.56.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.57.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.296.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.56.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.74.0 // indirect
@@ -66,7 +66,7 @@ require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.7 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.13.0 // indirect
-	github.com/fatih/color v1.18.0 // indirect
+	github.com/fatih/color v1.19.0 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.9.0 // indirect
 	github.com/go-errors/errors v1.5.1 // indirect
