@@ -36,7 +36,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.4.23 // indirect
 	github.com/aws/aws-sdk-go-v2/service/acm v1.38.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.66.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.70.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.71.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.57.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.299.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.57.1 // indirect
@@ -47,7 +47,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.11.22 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.22 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.22 // indirect
-	github.com/aws/aws-sdk-go-v2/service/kms v1.50.5 // indirect
+	github.com/aws/aws-sdk-go-v2/service/kms v1.51.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.90.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.118.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.62.6 // indirect
@@ -105,7 +105,7 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
-	github.com/mattn/go-isatty v0.0.21 // indirect
+	github.com/mattn/go-isatty v0.0.22 // indirect
 	github.com/mattn/go-zglob v0.0.6 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/moby/spdystream v0.5.1 // indirect
