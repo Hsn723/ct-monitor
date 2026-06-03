@@ -1,4 +1,4 @@
-FROM golang:1.26.3 as build
+FROM golang:1.26.4 as build
 ARG ARCH=amd64
 ENV CGO_ENABLED=0
 WORKDIR /work
