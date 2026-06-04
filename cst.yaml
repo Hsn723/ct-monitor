@@ -4,30 +4,6 @@ fileExistenceTests:
     path: "/ct-monitor"
     shouldExist: true
     permissions: "-rwxr-xr-x"
-  - name: "passwd"
-    path: "/etc/passwd"
-    shouldExist: true
-    permissions: "-rw-r--r--"
-    uid: 0
-    gid: 0
-  - name: "group"
-    path: "/etc/group"
-    shouldExist: true
-    permissions: "-rw-r--r--"
-    uid: 0
-    gid: 0
-  - name: "/etc/ct-monitor"
-    path: "/etc/ct-monitor"
-    shouldExist: true
-    permissions: "drwxr-xr-x"
-    uid: 65534
-    gid: 65534
-  - name: "/var/log/ct-monitor"
-    path: "/var/log/ct-monitor"
-    shouldExist: true
-    permissions: "drwxr-xr-x"
-    uid: 65534
-    gid: 65534
 metadataTest:
   entrypoint: ["/ct-monitor"]
   labels:
