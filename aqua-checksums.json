@@ -1,0 +1,114 @@
+{
+  "checksums": [
+    {
+      "id": "github_release/github.com/GoogleContainerTools/container-structure-test/v1.22.1/container-structure-test-darwin-amd64",
+      "checksum": "1CA7265ED9061785A39CDA83D5A8104C769BBF432DAB40A269596EA6F1A13C45",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/GoogleContainerTools/container-structure-test/v1.22.1/container-structure-test-darwin-arm64",
+      "checksum": "BA00172029ECEC3AFDA7FD93A5EEE7CDAEF710196DF7103689DA3386EBA56B0A",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/GoogleContainerTools/container-structure-test/v1.22.1/container-structure-test-linux-amd64",
+      "checksum": "FA35E89512A8978585F76CF41397956D2E3A30C62C2AD3FB857B1597074D14CA",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/GoogleContainerTools/container-structure-test/v1.22.1/container-structure-test-linux-arm64",
+      "checksum": "801826ED107222120EB6DF8C143B7DE752CFEBBE3AEBFEEA576E7098486917C2",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/GoogleContainerTools/container-structure-test/v1.22.1/container-structure-test-windows-amd64.exe",
+      "checksum": "91D30F3CEA928024663B04DE9E66EF4D0FC17B2E5D00FDEE268B1FE5DAAC1260",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/kubernetes-sigs/kind/v0.32.0/kind-darwin-amd64",
+      "checksum": "295AC6D0D634C9819C9907DF45E3017D1F13166BD13C3404C45E79F7FAA47498",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/kubernetes-sigs/kind/v0.32.0/kind-darwin-arm64",
+      "checksum": "DCA67911095A110C2B5C36E26DF6CAC860C602033E456C0DB47BE498CDEF1EBB",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/kubernetes-sigs/kind/v0.32.0/kind-linux-amd64",
+      "checksum": "50030DE23CF40A18505F20426F6A8506BEDF13C6E509244BD1FA9463721B0F54",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/kubernetes-sigs/kind/v0.32.0/kind-linux-arm64",
+      "checksum": "B92CD615E97585DE8DDADE28ED5CD7FEB4248D717C233EEA5B03C37298900F5D",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/kubernetes-sigs/kind/v0.32.0/kind-windows-amd64",
+      "checksum": "0BCB2D1CFEDC1912D664014DB716937E8A0E843E91C6807B4DB2025DBC8989FA",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/mikefarah/yq/v4.53.2/yq_darwin_amd64",
+      "checksum": "616B0A0F6A5B79D746F05A169C2B9BB40DEE00C605EF165B9A1C1681BBA738AC",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/mikefarah/yq/v4.53.2/yq_darwin_arm64",
+      "checksum": "541BA2287560DF70F561955E2D7F7E1CD00CF2A15A884F6B5C87A4BFA887BC07",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/mikefarah/yq/v4.53.2/yq_linux_amd64",
+      "checksum": "D56BF5C6819E8E696340C312BD70F849DC1678A7CDA9C2AD63EEBD906371D56B",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/mikefarah/yq/v4.53.2/yq_linux_arm64",
+      "checksum": "03061B2A50C7A498DE2BBB92D7CB078CE433011F085A4994117C2726BE4106EA",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/mikefarah/yq/v4.53.2/yq_windows_amd64.exe",
+      "checksum": "2AEE32F1DE46A20672F48C25DF3018839798BD509143F2CE05FDAB1550FF5592",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/dl.k8s.io/v1.36.1/bin/darwin/amd64/kubectl",
+      "checksum": "B4973E90EBB00537D735B63D6F8293C1959156E6FF435F6A43C08AEAA1A2E7D7",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/dl.k8s.io/v1.36.1/bin/darwin/arm64/kubectl",
+      "checksum": "9092778ABAEF3079449DA4CD70DED0E4BE112480C93EFCDEACE3155968D1D133",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/dl.k8s.io/v1.36.1/bin/linux/amd64/kubectl",
+      "checksum": "629D3F410E09BF49B64AE7079F7F0BDA1191EFED311F7D37FDBAB0AD5B0EC2B7",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/dl.k8s.io/v1.36.1/bin/linux/arm64/kubectl",
+      "checksum": "59F7EE8E477FAE658447607DC3C8790AC17A1B016C01C622C12070E969E2D4E7",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/dl.k8s.io/v1.36.1/bin/windows/amd64/kubectl.exe",
+      "checksum": "538F4229EEE91A17B34724DA7DAADE7687393D6988E33B723C6C306572C13900",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/dl.k8s.io/v1.36.1/bin/windows/arm64/kubectl.exe",
+      "checksum": "606AB5D869B85C15ACD2739DEC16E74A589D535874875A62F23D0319C7C80FED",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.520.1/registry.yaml",
+      "checksum": "22E49997625639802B4DF79A731754F5D5528739B4ED0B63C22C18F07E947396",
+      "algorithm": "sha256"
+    }
+  ]
+}
