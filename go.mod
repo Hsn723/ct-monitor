@@ -30,7 +30,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.32.20 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.19.19 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.18.25 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.2.2 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.2.3 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.25 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.25 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.4.26 // indirect
@@ -39,16 +39,16 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.74.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.57.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.304.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.57.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.81.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/iam v1.53.12 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.58.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.82.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/iam v1.54.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.10 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.9.18 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.12.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.25 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.25 // indirect
-	github.com/aws/aws-sdk-go-v2/service/kms v1.52.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.90.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/kms v1.53.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.91.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.118.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.62.9 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.102.2 // indirect
