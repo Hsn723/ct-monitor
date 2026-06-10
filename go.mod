@@ -18,6 +18,7 @@ require (
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
 	github.com/stretchr/testify v1.11.1
+	golang.org/x/crypto/x509roots/fallback v0.0.0-20260609182332-5f2de1a9f1e2
 	k8s.io/apimachinery v0.36.1
 )
 
