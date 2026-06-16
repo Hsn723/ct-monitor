@@ -2,7 +2,7 @@ PROJECT = ct-monitor
 VERSION = $(shell cat VERSION)
 LDFLAGS=-ldflags "-w -s -X main.version=${VERSION}"
 
-AQUA_VERSION = 2.59.1
+AQUA_VERSION = 2.60.1
 GINKGO_VERSION = $(shell cat go.mod | grep "github.com/onsi/ginkgo/v2" | awk '{print $$2}' | tr -d 'v')
 
 WORKDIR = /tmp/$(PROJECT)/work
