@@ -27,7 +27,7 @@ jobs:
         with:
           go-version: ${{ env.go-version }}
       - name: Lint
-        uses: hsn723/actions/pre-commit@db80a3d03a73c874694fbeb8387b4fda6b9b68e4 # v1.0.27
+        uses: hsn723/actions/.github/actions/pre-commit@db80a3d03a73c874694fbeb8387b4fda6b9b68e4 # v1.0.27
         with:
           extra-args: --all-files
   check-goreleaser-config:
