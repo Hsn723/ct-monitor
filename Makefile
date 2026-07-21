@@ -72,7 +72,9 @@ $(WORKDIR):
 
 .PHONY: init-aqua
 init-aqua:
-	@go install github.com/aquaproj/aqua/v2/cmd/aqua@v$(AQUA_VERSION)
+	@if [ ! -x "$(shell command -v aqua)" ]; then \
+		go install github.com/aquaproj/aqua/v2/cmd/aqua@v$(AQUA_VERSION) ;\
+	fi
 	@aqua i -l
 
 .PHONY: update-aqua
