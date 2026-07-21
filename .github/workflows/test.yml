@@ -1,0 +1,47 @@
+name: test
+on:
+  push:
+    branches:
+    - master
+    tags-ignore:
+    - '*'
+  pull_request:
+    branches:
+    - master
+env:
+  go-version: stable
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+      with:
+        go-version: ${{ env.go-version }}
+    - name: Verify
+      run: make verify
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+      with:
+        go-version: ${{ env.go-version }}
+    - name: Test
+      run: make test
+  kindtest:
+    name: Kind test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: ${{ env.go-version }}
+      - name: Setup kind
+        run: make setup-kind
+      - name: Run kindtest
+        run: make kindtest
