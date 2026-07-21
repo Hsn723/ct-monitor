@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 3
+      default-days: 5
     allow:
       - dependency-type: "all"
     groups:
@@ -33,16 +33,16 @@ updates:
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 3
+      default-days: 5
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 3
+      default-days: 5
   - package-ecosystem: "pre-commit"
     directory: "/"
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 3
+      default-days: 5
