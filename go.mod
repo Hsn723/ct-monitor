@@ -19,7 +19,7 @@ require (
 	github.com/spf13/viper v1.21.0
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/crypto/x509roots/fallback v0.0.0-20260609182332-5f2de1a9f1e2
-	k8s.io/apimachinery v0.36.2
+	k8s.io/apimachinery v0.36.3
 )
 
 require (
@@ -52,7 +52,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/kms v1.55.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.100.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.123.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/route53 v1.65.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/route53 v1.65.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.106.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.44.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/signin v1.5.0 // indirect
@@ -146,8 +146,8 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gotest.tools/v3 v3.5.2 // indirect
-	k8s.io/api v0.36.2 // indirect
-	k8s.io/client-go v0.36.2 // indirect
+	k8s.io/api v0.36.3 // indirect
+	k8s.io/client-go v0.36.3 // indirect
 	k8s.io/klog/v2 v2.140.0 // indirect
 	k8s.io/kube-openapi v0.0.0-20260317180543-43fb72c5454a // indirect
 	k8s.io/streaming v0.36.3 // indirect
