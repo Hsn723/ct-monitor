@@ -43,14 +43,14 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.60.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecrpublic v1.41.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.89.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/iam v1.56.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/iam v1.57.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.14 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.9.26 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.12.10 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.33 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.34 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.55.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.100.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.101.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.123.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.65.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.106.2 // indirect
@@ -139,8 +139,8 @@ require (
 	golang.org/x/text v0.40.0 // indirect
 	golang.org/x/time v0.15.0 // indirect
 	golang.org/x/tools v0.48.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20260414002931-afd174a4e478 // indirect
-	google.golang.org/grpc v1.82.1 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260526163538-3dc84a4a5aaa // indirect
+	google.golang.org/grpc v1.83.0 // indirect
 	google.golang.org/protobuf v1.36.12-0.20260120151049-f2248ac996af // indirect
 	gopkg.in/evanphx/json-patch.v4 v4.13.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
