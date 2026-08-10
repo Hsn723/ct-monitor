@@ -31,19 +31,19 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.32.34 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.19.33 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.18.34 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.3.8 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.3.9 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.34 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.34 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.4.35 // indirect
 	github.com/aws/aws-sdk-go-v2/service/acm v1.43.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.70.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.81.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.62.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.318.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.63.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.319.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.60.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecrpublic v1.41.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.89.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/iam v1.57.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/iam v1.58.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.15 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.9.27 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.12.11 // indirect
@@ -53,7 +53,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.101.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.124.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.65.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.106.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.106.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.44.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/signin v1.5.3 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.42.3 // indirect
