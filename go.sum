@@ -36,8 +36,8 @@ github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.82.0 h1:mA1eNuVy5LAapf4aM
 github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.82.0/go.mod h1:o61Nvqd2pIpM6QHfChgSyQRvdIJzF0AHTss5ehFFfO0=
 github.com/aws/aws-sdk-go-v2/service/dynamodb v1.63.1 h1:QKBYxujKuCD0QwBfqmrgnuzORIg4r8ODr53bIYI/7lQ=
 github.com/aws/aws-sdk-go-v2/service/dynamodb v1.63.1/go.mod h1:ygCTS0/CdRkdwVDKMq1yo0NNsKR1cQCGPDP1iY78FRY=
-github.com/aws/aws-sdk-go-v2/service/ec2 v1.320.0 h1:/tI2/yVgVh/IxJJVvb4Csfec8FsHmi49By8iLHmTEhc=
-github.com/aws/aws-sdk-go-v2/service/ec2 v1.320.0/go.mod h1:Gi5mEHpABbT34fHwafgyxqrIte9oHUEHscusPBYEdHA=
+github.com/aws/aws-sdk-go-v2/service/ec2 v1.321.0 h1:XxzwotCCRk2Un1OWcJujk4vAC2OZkGh5l816W1w+Fd8=
+github.com/aws/aws-sdk-go-v2/service/ec2 v1.321.0/go.mod h1:Gi5mEHpABbT34fHwafgyxqrIte9oHUEHscusPBYEdHA=
 github.com/aws/aws-sdk-go-v2/service/ecr v1.60.4 h1:qIgueZwgw+rANqXuL1Cjk2Lm/Pihbw2nx3C1D7eQD+k=
 github.com/aws/aws-sdk-go-v2/service/ecr v1.60.4/go.mod h1:Jr9Mh7l72YtNr8nmEwcJiU4xwCerZB8/krBWW4RckmY=
 github.com/aws/aws-sdk-go-v2/service/ecrpublic v1.41.4 h1:xYFG0VFuNy/Sm6YYRzv2N5yot8RELhJWNipAM4X/CRA=
@@ -82,8 +82,8 @@ github.com/aws/aws-sdk-go-v2/service/ssooidc v1.38.4 h1:AsbZcJAQPRmHDJG8K1N0pof/
 github.com/aws/aws-sdk-go-v2/service/ssooidc v1.38.4/go.mod h1:6imqztH0//t0mKbl6yWl7swSEl7F/w32oAmqB3vP1ag=
 github.com/aws/aws-sdk-go-v2/service/sts v1.45.4 h1:w/AryDYMjSUANSQ2uoZxJovUsMTwWJNTv3IMex30Y+4=
 github.com/aws/aws-sdk-go-v2/service/sts v1.45.4/go.mod h1:WeBiAa67azG7Su9Vf+ChGDBLiAozJCXzdjXiPBUwtbc=
-github.com/aws/smithy-go v1.27.6 h1:0zjT8jgK3jbrTT7JJ3EE6JsMhX8JTrZ+f1sEndYDXrA=
-github.com/aws/smithy-go v1.27.6/go.mod h1:YE2RhdIuDbA5E5bTdciG9KrW3+TiEONeUWCqxX9i1Fc=
+github.com/aws/smithy-go v1.27.7 h1:Zgj5z4LfcDYoQIVk+n/yGdTkP/2y6ZT5vYxe0fp7bqE=
+github.com/aws/smithy-go v1.27.7/go.mod h1:YE2RhdIuDbA5E5bTdciG9KrW3+TiEONeUWCqxX9i1Fc=
 github.com/boombuler/barcode v1.0.1-0.20190219062509-6c824513bacc/go.mod h1:paBWMcWSl3LHKBqUq+rly7CNSldXjb2rDl3JlRe0mD8=
 github.com/boombuler/barcode v1.1.0 h1:ChaYjBR63fr4LFyGn8E8nt7dBSt3MiU3zMOZqFvVkHo=
 github.com/boombuler/barcode v1.1.0/go.mod h1:paBWMcWSl3LHKBqUq+rly7CNSldXjb2rDl3JlRe0mD8=
