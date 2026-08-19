@@ -7,7 +7,7 @@ require (
 	github.com/aws/aws-sdk-go v1.55.8
 	github.com/cybozu-go/log v1.7.0
 	github.com/emersion/go-sasl v0.0.0-20241020182733-b788ff22d5a6
-	github.com/emersion/go-smtp v0.24.0
+	github.com/emersion/go-smtp v0.25.0
 	github.com/google/uuid v1.6.0
 	github.com/gruntwork-io/terratest v1.0.1
 	github.com/hashicorp/go-plugin v1.8.0
@@ -35,8 +35,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.36 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.36 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.4.37 // indirect
-	github.com/aws/aws-sdk-go-v2/service/acm v1.43.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.71.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/acm v1.44.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.72.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.82.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.63.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.321.1 // indirect
@@ -129,7 +129,7 @@ require (
 	go.yaml.in/yaml/v2 v2.4.4 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/crypto v0.55.0 // indirect
-	golang.org/x/mod v0.39.0 // indirect
+	golang.org/x/mod v0.40.0 // indirect
 	golang.org/x/net v0.58.0 // indirect
 	golang.org/x/oauth2 v0.36.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
@@ -137,7 +137,7 @@ require (
 	golang.org/x/term v0.45.0 // indirect
 	golang.org/x/text v0.41.0 // indirect
 	golang.org/x/time v0.15.0 // indirect
-	golang.org/x/tools v0.48.0 // indirect
+	golang.org/x/tools v0.49.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260526163538-3dc84a4a5aaa // indirect
 	google.golang.org/grpc v1.83.0 // indirect
 	google.golang.org/protobuf v1.36.12 // indirect
