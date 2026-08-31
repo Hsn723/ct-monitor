@@ -1,10 +1,12 @@
 package mailer
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/sesv2"
+	"context"
+
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/sesv2"
+	"github.com/aws/aws-sdk-go-v2/service/sesv2/types"
 	"github.com/cybozu-go/log"
 )
 
@@ -13,21 +15,18 @@ type AmazonSESMailer struct {
 	From    string `mapstructure:"from"`
 	To      string `mapstructure:"to"`
 	Region  string `mapstructure:"region"`
-	Session *sesv2.SESV2
+	Session *sesv2.Client
 	Logger  *log.Logger
 }
 
 func (s *AmazonSESMailer) init() error {
-	creds := credentials.NewEnvCredentials()
-
-	sess, err := session.NewSession(&aws.Config{
-		Region:      aws.String(s.Region),
-		Credentials: creds,
-	})
+	cfg, err := config.LoadDefaultConfig(context.Background(),
+		config.WithRegion(s.Region),
+	)
 	if err != nil {
 		return err
 	}
-	s.Session = sesv2.New(sess)
+	s.Session = sesv2.NewFromConfig(cfg)
 	return nil
 }
 
@@ -49,20 +48,20 @@ func (s AmazonSESMailer) Init() error {
 func (s AmazonSESMailer) Send(subject, body string) error {
 	charset := "UTF-8"
 	email := &sesv2.SendEmailInput{
-		Destination: &sesv2.Destination{
-			ToAddresses: []*string{
-				aws.String(s.To),
+		Destination: &types.Destination{
+			ToAddresses: []string{
+				s.To,
 			},
 		},
-		Content: &sesv2.EmailContent{
-			Simple: &sesv2.Message{
-				Body: &sesv2.Body{
-					Text: &sesv2.Content{
+		Content: &types.EmailContent{
+			Simple: &types.Message{
+				Body: &types.Body{
+					Text: &types.Content{
 						Charset: aws.String(charset),
 						Data:    aws.String(body),
 					},
 				},
-				Subject: &sesv2.Content{
+				Subject: &types.Content{
 					Charset: aws.String(charset),
 					Data:    aws.String(subject),
 				},
@@ -70,9 +69,12 @@ func (s AmazonSESMailer) Send(subject, body string) error {
 		},
 		FromEmailAddress: aws.String(s.From),
 	}
-	res, err := s.Session.SendEmail(email)
+	res, err := s.Session.SendEmail(context.Background(), email)
+	if err != nil {
+		return err
+	}
 	_ = log.Info("SES email sent", map[string]interface{}{
 		"message_id": *res.MessageId,
 	})
-	return err
+	return nil
 }
