@@ -31,7 +31,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.7.20 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.20.4 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.20.0 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.4.5 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.4.6 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.5.3 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.8.3 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.5.3 // indirect
@@ -42,7 +42,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.332.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.65.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecrpublic v1.47.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.97.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.98.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/iam v1.64.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.19 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.11.3 // indirect
@@ -53,7 +53,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.108.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.129.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.70.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.113.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.113.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.49.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/signin v1.10.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.47.0 // indirect
