@@ -6,7 +6,7 @@ require (
 	github.com/Hsn723/certspotter-client v1.2.0
 	github.com/aws/aws-sdk-go-v2 v1.47.1
 	github.com/aws/aws-sdk-go-v2/config v1.33.6
-	github.com/aws/aws-sdk-go-v2/service/sesv2 v1.76.0
+	github.com/aws/aws-sdk-go-v2/service/sesv2 v1.77.0
 	github.com/cybozu-go/log v1.7.0
 	github.com/emersion/go-sasl v0.0.0-20241020182733-b788ff22d5a6
 	github.com/emersion/go-smtp v0.25.0
@@ -31,7 +31,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.7.20 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.20.6 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.20.1 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.4.10 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.4.11 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.5.4 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.8.4 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.5.4 // indirect
@@ -39,7 +39,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.78.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.88.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.69.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.336.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.338.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.66.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecrpublic v1.47.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.99.1 // indirect
@@ -51,14 +51,14 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.20.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/kms v1.61.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.110.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/rds v1.129.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/rds v1.130.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.70.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.113.4 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.50.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/signin v1.10.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.47.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.52.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ssm v1.78.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssm v1.79.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.38.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.43.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.51.1 // indirect
