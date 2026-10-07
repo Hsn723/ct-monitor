@@ -31,7 +31,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.7.20 // indirect
 	github.com/aws/aws-sdk-go-v2/credentials v1.20.6 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.20.1 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.4.12 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.4.13 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.5.4 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.8.4 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.5.4 // indirect
@@ -39,7 +39,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.78.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.89.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.70.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.338.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.338.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.66.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecrpublic v1.47.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.100.0 // indirect
