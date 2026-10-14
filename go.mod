@@ -4,9 +4,9 @@ go 1.26.0
 
 require (
 	github.com/Hsn723/certspotter-client v1.2.0
-	github.com/aws/aws-sdk-go-v2 v1.47.1
-	github.com/aws/aws-sdk-go-v2/config v1.33.7
-	github.com/aws/aws-sdk-go-v2/service/sesv2 v1.78.0
+	github.com/aws/aws-sdk-go-v2 v1.47.2
+	github.com/aws/aws-sdk-go-v2/config v1.33.8
+	github.com/aws/aws-sdk-go-v2/service/sesv2 v1.79.0
 	github.com/cybozu-go/log v1.7.0
 	github.com/emersion/go-sasl v0.0.0-20241020182733-b788ff22d5a6
 	github.com/emersion/go-smtp v0.25.0
@@ -28,45 +28,45 @@ require (
 	filippo.io/edwards25519 v1.2.0 // indirect
 	github.com/Masterminds/semver/v3 v3.5.0 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
-	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.7.20 // indirect
-	github.com/aws/aws-sdk-go-v2/credentials v1.20.7 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.20.1 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.4.14 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/configsources v1.5.4 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.8.4 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/v4a v1.5.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/acm v1.50.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.78.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.89.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.70.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.338.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecr v1.66.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecrpublic v1.47.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ecs v1.100.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/iam v1.64.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.19 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.11.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.13.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.14.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.20.4 // indirect
-	github.com/aws/aws-sdk-go-v2/service/kms v1.61.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.111.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/rds v1.130.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/route53 v1.70.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.114.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.50.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/signin v1.10.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sns v1.47.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sqs v1.52.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ssm v1.79.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sso v1.38.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.43.2 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sts v1.51.2 // indirect
+	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.7.21 // indirect
+	github.com/aws/aws-sdk-go-v2/credentials v1.20.8 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.20.2 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.4.15 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/configsources v1.5.5 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.8.5 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/v4a v1.5.5 // indirect
+	github.com/aws/aws-sdk-go-v2/service/acm v1.50.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/autoscaling v1.78.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.89.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.70.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.338.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecr v1.66.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecrpublic v1.47.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ecs v1.100.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/iam v1.64.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.20 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.11.6 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.13.5 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.14.5 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.20.5 // indirect
+	github.com/aws/aws-sdk-go-v2/service/kms v1.61.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.112.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/rds v1.130.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/route53 v1.70.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.114.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.50.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/signin v1.10.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sns v1.47.4 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sqs v1.52.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssm v1.79.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sso v1.38.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.43.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sts v1.51.3 // indirect
 	github.com/aws/smithy-go v1.28.4 // indirect
 	github.com/boombuler/barcode v1.1.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.7 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
-	github.com/emicklei/go-restful/v3 v3.13.0 // indirect
+	github.com/emicklei/go-restful/v3 v3.14.0 // indirect
 	github.com/fatih/color v1.19.0 // indirect
 	github.com/fsnotify/fsnotify v1.10.1 // indirect
 	github.com/fxamacker/cbor/v2 v2.9.6 // indirect
@@ -129,7 +129,7 @@ require (
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/crypto v0.57.0 // indirect
 	golang.org/x/mod v0.41.0 // indirect
-	golang.org/x/net v0.59.0 // indirect
+	golang.org/x/net v0.60.0 // indirect
 	golang.org/x/oauth2 v0.37.0 // indirect
 	golang.org/x/sync v0.24.0 // indirect
 	golang.org/x/sys v0.49.0 // indirect
