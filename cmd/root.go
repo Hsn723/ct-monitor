@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"bytes"
+	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -21,6 +23,9 @@ var (
 		Use:   "ct-monitor",
 		Short: "ct-monitor queries the certspotter API for new certificate issuances",
 		RunE:  runRoot,
+		// Errors are logged in Execute(), so suppress cobra's own error and usage output.
+		SilenceUsage:  true,
+		SilenceErrors: true,
 	}
 	position = viper.New()
 
@@ -51,20 +56,21 @@ func createFile(path string) error {
 	return nil
 }
 
-func initPosition(pc config.PositionConfig) {
+func initPosition(pc config.PositionConfig) error {
 	position.SetConfigFile(pc.Filename)
 	if err := createFile(pc.Filename); err != nil {
-		_ = log.Critical(err.Error(), nil)
+		return fmt.Errorf("failed to create position file: %w", err)
 	}
 	if err := position.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			_ = log.Critical(err.Error(), nil)
+			return fmt.Errorf("failed to read position file: %w", err)
 		}
 	}
 	_ = log.Info("using position file", map[string]interface{}{
 		"path": position.ConfigFileUsed(),
 	})
 	position.WatchConfig()
+	return nil
 }
 
 func init() {
@@ -197,7 +203,9 @@ func runRoot(_ *cobra.Command, _ []string) error {
 	_ = log.Info("loaded configuration", map[string]interface{}{
 		"config": configFile,
 	})
-	initPosition(conf.PositionConfig)
+	if err := initPosition(conf.PositionConfig); err != nil {
+		return err
+	}
 	defaultMailSender := conf.GetMailer(conf.AlertConfig.Mailer)
 	if err := defaultMailSender.Init(); err != nil {
 		return err
@@ -206,21 +214,28 @@ func runRoot(_ *cobra.Command, _ []string) error {
 		Endpoint: conf.Endpoint,
 		Token:    conf.Token,
 	}
+	var errs []error
 	for _, domain := range conf.Domains {
 		domainMailer := getMailSenderForDomain(conf, domain, defaultMailSender)
 		if err := checkIssuances(domain, csp, domainMailer, conf.FilterConfig, conf.MailTemplate); err != nil {
 			_ = log.Error(err.Error(), map[string]interface{}{
 				"domain": domain.Name,
 			})
+			errs = append(errs, fmt.Errorf("%s: %w", domain.Name, err))
 		}
 	}
 
-	return atomicWritePosition(conf.PositionConfig)
+	// Always persist positions so that successfully checked domains are not reported again.
+	if err := atomicWritePosition(conf.PositionConfig); err != nil {
+		errs = append(errs, fmt.Errorf("failed to write position file: %w", err))
+	}
+	return errors.Join(errs...)
 }
 
 // Execute runs the root command.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		_ = log.Critical(err.Error(), nil)
+		os.Exit(1)
 	}
 }

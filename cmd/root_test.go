@@ -4,6 +4,11 @@
 package cmd
 
 import (
+	"fmt"
+	"net/http"
+	"net/http/httptest"
+	"os"
+	"path/filepath"
 	"testing"
 	"time"
 
@@ -11,6 +16,7 @@ import (
 	"github.com/Hsn723/ct-monitor/config"
 	"github.com/Hsn723/ct-monitor/mailer"
 	smtpmock "github.com/mocktools/go-smtp-mock/v2"
+	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -136,5 +142,88 @@ func TestSendMail(t *testing.T) {
 	}
 	for _, expect := range expects {
 		assert.Contains(t, messageData, expect)
+	}
+}
+
+// TestRunRoot must not run in parallel since runRoot relies on global state
+// (configFile, the global viper instance and the position viper instance).
+func TestRunRoot(t *testing.T) {
+	const (
+		okDomain   = "ok.example.com"
+		failDomain = "fail.example.com"
+		okID       = 200
+		failID     = 100
+	)
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Query().Get("domain") {
+		case okDomain:
+			w.WriteHeader(http.StatusOK)
+			_, _ = fmt.Fprintf(w, `[{"id":"%d","dns_names":["%s"]}]`, okID, okDomain)
+		default:
+			w.WriteHeader(http.StatusInternalServerError)
+		}
+	}))
+	defer server.Close()
+
+	cases := []struct {
+		title   string
+		domains []string
+		isErr   bool
+		expect  map[string]uint64
+	}{
+		{
+			title:   "Success",
+			domains: []string{okDomain},
+			expect: map[string]uint64{
+				okDomain: okID,
+			},
+		},
+		{
+			title:   "PartialFailure",
+			domains: []string{failDomain, okDomain},
+			isErr:   true,
+			expect: map[string]uint64{
+				okDomain:   okID,
+				failDomain: failID,
+			},
+		},
+	}
+	for _, tc := range cases {
+		t.Run(tc.title, func(t *testing.T) {
+			// initPosition starts a config watcher goroutine on the position instance,
+			// so use a fresh instance for each case to avoid racing with the previous watcher.
+			position = viper.New()
+			dir := t.TempDir()
+			positionFile := filepath.Join(dir, "positions.toml")
+			initial := fmt.Sprintf("%s = %d\n", getDomainConfigName(failDomain), failID)
+			assert.NoError(t, os.WriteFile(positionFile, []byte(initial), 0644))
+
+			conf := fmt.Sprintf(`certspotter_endpoint = "%s"
+
+[position_config]
+filename = "%s"
+`, server.URL, positionFile)
+			for _, d := range tc.domains {
+				conf += fmt.Sprintf("\n[[domain]]\nname = \"%s\"\n", d)
+			}
+			configFile = filepath.Join(dir, "config.toml")
+			assert.NoError(t, os.WriteFile(configFile, []byte(conf), 0644))
+
+			err := runRoot(nil, nil)
+			if tc.isErr {
+				assert.Error(t, err)
+				assert.ErrorContains(t, err, failDomain)
+			} else {
+				assert.NoError(t, err)
+			}
+
+			// Read the written position file with a fresh viper instance.
+			written := viper.New()
+			written.SetConfigFile(positionFile)
+			assert.NoError(t, written.ReadInConfig())
+			for domain, id := range tc.expect {
+				assert.Equal(t, id, written.GetUint64(getDomainConfigName(domain)), domain)
+			}
+		})
 	}
 }
