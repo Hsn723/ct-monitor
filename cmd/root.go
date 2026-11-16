@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"bytes"
+	"log/slog"
 	"os"
 	"path/filepath"
 	"strings"
@@ -11,7 +12,6 @@ import (
 	"github.com/Hsn723/ct-monitor/config"
 	"github.com/Hsn723/ct-monitor/filter"
 	"github.com/Hsn723/ct-monitor/mailer"
-	"github.com/cybozu-go/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -54,16 +54,14 @@ func createFile(path string) error {
 func initPosition(pc config.PositionConfig) {
 	position.SetConfigFile(pc.Filename)
 	if err := createFile(pc.Filename); err != nil {
-		_ = log.Critical(err.Error(), nil)
+		slog.Error("failed to create position file", "error", err)
 	}
 	if err := position.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			_ = log.Critical(err.Error(), nil)
+			slog.Error("failed to read position file", "error", err)
 		}
 	}
-	_ = log.Info("using position file", map[string]interface{}{
-		"path": position.ConfigFileUsed(),
-	})
+	slog.Info("using position file", "path", position.ConfigFileUsed())
 	position.WatchConfig()
 }
 
@@ -97,9 +95,7 @@ func sendMail(mailSender mailer.Mailer, tplVars mailTemplateVars, mt config.Mail
 	if err != nil {
 		return err
 	}
-	_ = log.Info("sending report", map[string]interface{}{
-		"domain": tplVars.Domain,
-	})
+	slog.Info("sending report", "domain", tplVars.Domain)
 	return mailSender.Send(subject, body)
 }
 
@@ -111,26 +107,16 @@ func checkIssuances(dc config.DomainConfig, c api.CertspotterClient, mailSender 
 		return err
 	}
 	if len(issuances) == 0 {
-		_ = log.Info("no new issuances observed", map[string]interface{}{
-			"domain": dc.Name,
-		})
+		slog.Info("no new issuances observed", "domain", dc.Name)
 		return nil
 	}
 	lastIssuance = issuances[len(issuances)-1].ID
 	for _, issuance := range issuances {
-		_ = log.Info("observed issuance", map[string]interface{}{
-			"id":     issuance.ID,
-			"names":  issuance.Domains,
-			"sha256": issuance.Cert.SHA256,
-		})
+		slog.Info("observed issuance", "id", issuance.ID, "names", issuance.Domains, "sha256", issuance.Cert.SHA256)
 	}
 	issuances, err = filter.ApplyFilters(fc.Filters, issuances)
 	if err != nil {
-		_ = log.Info("errors encountered running filters", map[string]interface{}{
-			"error":   err.Error(),
-			"domain":  dc.Name,
-			"filters": fc.Filters,
-		})
+		slog.Info("errors encountered running filters", "error", err.Error(), "domain", dc.Name, "filters", fc.Filters)
 	}
 	if len(issuances) == 0 {
 		position.Set(key, lastIssuance)
@@ -144,9 +130,7 @@ func checkIssuances(dc config.DomainConfig, c api.CertspotterClient, mailSender 
 		return err
 	}
 	position.Set(key, lastIssuance)
-	_ = log.Info("done checking", map[string]interface{}{
-		"domain": dc.Name,
-	})
+	slog.Info("done checking", "domain", dc.Name)
 	return nil
 }
 
@@ -174,29 +158,19 @@ func getMailSenderForDomain(conf *config.Config, dc config.DomainConfig, default
 	}
 	domainMailer := conf.GetMailer(dc.Mailer)
 	if err := domainMailer.Init(); err != nil {
-		_ = log.Error("could not initialize domain mailer, using default", map[string]interface{}{
-			"error":  err.Error(),
-			"domain": dc.Name,
-		})
+		slog.Error("could not initialize domain mailer, using default", "error", err.Error(), "domain", dc.Name)
 		return defaultMailSender
 	}
 	return domainMailer
 }
 
 func runRoot(_ *cobra.Command, _ []string) error {
-	_ = log.Info("ct-monitor", map[string]interface{}{
-		"version":  version,
-		"commit":   commit,
-		"date":     date,
-		"built_by": builtBy,
-	})
+	slog.Info("ct-monitor", "version", version, "commit", commit, "date", date, "built_by", builtBy)
 	conf, err := config.Load(configFile)
 	if err != nil {
 		return err
 	}
-	_ = log.Info("loaded configuration", map[string]interface{}{
-		"config": configFile,
-	})
+	slog.Info("loaded configuration", "config", configFile)
 	initPosition(conf.PositionConfig)
 	defaultMailSender := conf.GetMailer(conf.AlertConfig.Mailer)
 	if err := defaultMailSender.Init(); err != nil {
@@ -209,18 +183,22 @@ func runRoot(_ *cobra.Command, _ []string) error {
 	for _, domain := range conf.Domains {
 		domainMailer := getMailSenderForDomain(conf, domain, defaultMailSender)
 		if err := checkIssuances(domain, csp, domainMailer, conf.FilterConfig, conf.MailTemplate); err != nil {
-			_ = log.Error(err.Error(), map[string]interface{}{
-				"domain": domain.Name,
-			})
+			slog.Error("could not check issuances", "error", err.Error(), "domain", domain.Name)
 		}
 	}
 
 	return atomicWritePosition(conf.PositionConfig)
 }
 
+func init() {
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{}))
+	slog.SetDefault(logger)
+}
+
 // Execute runs the root command.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		_ = log.Critical(err.Error(), nil)
+		slog.Error("ct-monitor encountered an error", "error", err.Error())
+		os.Exit(1)
 	}
 }

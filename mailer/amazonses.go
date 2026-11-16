@@ -2,12 +2,12 @@ package mailer
 
 import (
 	"context"
+	"log/slog"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/sesv2"
 	"github.com/aws/aws-sdk-go-v2/service/sesv2/types"
-	"github.com/cybozu-go/log"
 )
 
 // AmazonSESMailer represents a mail sender for Amazon SES.
@@ -16,7 +16,6 @@ type AmazonSESMailer struct {
 	To      string `mapstructure:"to"`
 	Region  string `mapstructure:"region"`
 	Session *sesv2.Client
-	Logger  *log.Logger
 }
 
 func (s *AmazonSESMailer) init() error {
@@ -73,8 +72,6 @@ func (s AmazonSESMailer) Send(subject, body string) error {
 	if err != nil {
 		return err
 	}
-	_ = log.Info("SES email sent", map[string]interface{}{
-		"message_id": *res.MessageId,
-	})
+	slog.Info("SES email sent", "message_id", *res.MessageId)
 	return nil
 }
