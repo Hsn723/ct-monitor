@@ -1,11 +1,13 @@
 package filter
 
 import (
-	"os/exec"
 	"time"
 
 	"github.com/Hsn723/certspotter-client/api"
-	"github.com/hashicorp/go-plugin"
+)
+
+const (
+	pluginTimeout = 10 * time.Second
 )
 
 // ApplyFilters runs the filter plugins and returns the resulting issuances.
@@ -23,26 +25,8 @@ func ApplyFilters(filterPaths []string, issuances []api.Issuance) ([]api.Issuanc
 }
 
 func applyFilter(filter string, issuances []api.Issuance) ([]api.Issuance, error) {
-	client := plugin.NewClient(&plugin.ClientConfig{
-		HandshakeConfig:  HandshakeConfig,
-		Plugins:          PluginMap,
-		Cmd:              exec.Command(filter),
-		AllowedProtocols: []plugin.Protocol{plugin.ProtocolNetRPC},
-		StartTimeout:     10 * time.Second,
-		Managed:          true,
-	})
-	defer client.Kill()
-
-	rpcClient, err := client.Client()
-	if err != nil {
-		return issuances, err
+	if isLuaFilter(filter) {
+		return applyLuaFilter(filter, issuances)
 	}
-
-	raw, err := rpcClient.Dispense(PluginKey)
-	if err != nil {
-		return issuances, err
-	}
-
-	issuanceFilter := raw.(IssuanceFilter)
-	return issuanceFilter.Filter(issuances)
+	return applyRPCFilter(filter, issuances)
 }

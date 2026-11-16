@@ -1,10 +1,12 @@
 # ct-monitor
+
 [![GoDoc](https://godoc.org/github.com/Hsn723/ct-monitor?status.svg)](https://godoc.org/github.com/Hsn723/ct-monitor) [![Go Report Card](https://goreportcard.com/badge/github.com/Hsn723/ct-monitor)](https://goreportcard.com/report/github.com/Hsn723/ct-monitor) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/Hsn723/ct-monitor?label=latest%20version)
 
 
 Queries [Cert Spotter](https://sslmate.com/certspotter/) for new certificate issuances. When new certificate issuances are found, an email report is sent. Currently supported email providers: [SendGrid](https://sendgrid.com/), [Amazon SES](https://aws.amazon.com/ses/), SMTP.
 
 ## Usage
+
 ```sh
 Usage:
   ct-monitor [flags]
@@ -15,6 +17,7 @@ Flags:
 ```
 
 ## Plugins
+
 Custom plugins can be specified to filter issuances or perform any extra work with the issuances detected. For instance, you may want to get certificate issuances for `example.com` including wildcard and subdomains, but ignore issuances for the `dev.example.com` subdomain only. Better yet, you can use plugins to implement your own mailer or send notifications to Slack instead of using the built-in mailer.
 
 A plugin simply needs to implement the `IssuanceFilter` interface via `net/rpc`.
@@ -48,7 +51,28 @@ func main() {
 
 For more detailed examples, refer to the documentation of [HashiCorp's go-plugin](https://github.com/hashicorp/go-plugin).
 
+### Lua Plugins
+
+Entries in `filters` whose path ends in `.lua` are run as Lua scripts instead of go-plugin executables, so plugins can be added or changed without requiring compilation. The script must define a global `filter` function. It receives the list of issuances as a table and must return a table with the issuances to be kept.
+
+For instance, this plugin ignores issuances for the `dev.example.com` subdomain:
+
+```lua
+function filter(issuances)
+	local res = {}
+	for _, i in ipairs(issuances) do
+		if name == "dev.example.com" then keep = false end
+	end
+	if keep then table.insert(res, i) end
+	end
+	return res
+end
+```
+
+Like go-plugin errors, errors in a Lua script are logged and the issuances are left unchanged, so a broken script never silently drops alerts. Returning `nil` or anything other than a table is an error; return an empty table to drop everything.
+
 ## Example config
+
 ```toml
 [alert_config]
     mailer_config = "sendgrid"
