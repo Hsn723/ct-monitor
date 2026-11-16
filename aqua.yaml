@@ -9,9 +9,8 @@ checksum:
   - all
 registries:
 - type: standard
-  ref: v4.520.1 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.587.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-- name: kubernetes-sigs/kind@v0.32.0
-- name: GoogleContainerTools/container-structure-test@v1.22.1
-- name: kubernetes/kubernetes/kubectl@v1.36.1
-- name: mikefarah/yq@v4.53.2
+- name: kubernetes-sigs/kind@v0.33.0
+- name: kubernetes/kubernetes/kubectl@v1.37.2
+- name: mikefarah/yq@v4.54.3
