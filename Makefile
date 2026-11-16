@@ -13,6 +13,10 @@ PATH := ${HOME}/.local/share/aquaproj-aqua/bin:${BINDIR}:$(PATH)
 
 export PATH
 
+TARGETOS ?= linux
+TARGETARCH ?= $(shell go env GOARCH)
+TARGETPLATFORM ?= $(TARGETOS)/$(TARGETARCH)
+
 all: build
 
 .PHONY: clean
@@ -58,7 +62,8 @@ verify:
 
 .PHONY: build
 build: clean
-	env CGO_ENABLED=0 go build $(LDFLAGS) .
+	mkdir -p $(TARGETPLATFORM)
+	env CGO_ENABLED=0 go build -o $(TARGETPLATFORM)/$(PROJECT_NAME) $(LDFLAGS) .
 
 $(BINDIR):
 	mkdir -p $(BINDIR)
