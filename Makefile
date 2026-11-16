@@ -32,10 +32,6 @@ test: build-testfilter
 build-testfilter: $(WORKDIR)
 	env CGO_ENABLED=0 go build --tags=testfilter $(LDFLAGS) -o $(WORKDIR)/testfilter ./filter/t/main.go
 
-.PHONY: container-structure-test
-container-structure-test: init-aqua
-	yq '.builds[0].goarch[]' .goreleaser.yml | xargs -n1 -I {} container-structure-test test --image ghcr.io/hsn723/$(PROJECT):$(shell git describe --tags --abbrev=0)-next-{} --platform linux/{} --config cst.yaml
-
 .PHONY: setup-kind
 setup-kind: $(BINDIR) init-aqua
 	GOBIN=$(BINDIR) go install github.com/onsi/ginkgo/v2/ginkgo@v$(GINKGO_VERSION)
