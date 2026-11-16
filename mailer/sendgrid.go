@@ -1,9 +1,9 @@
 package mailer
 
 import (
+	"log/slog"
 	"os"
 
-	"github.com/cybozu-go/log"
 	sendgrid "github.com/sendgrid/sendgrid-go"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
@@ -18,7 +18,6 @@ type SendgridMailer struct {
 	To     string `mapstructure:"to"`
 	APIKey string `mapstructure:"token"`
 	Client *sendgrid.Client
-	Logger *log.Logger
 }
 
 func (s *SendgridMailer) init() {
@@ -51,10 +50,6 @@ func (s SendgridMailer) Send(subject, body string) error {
 	toEmail := mail.NewEmail(s.To, s.To)
 	message := mail.NewSingleEmail(fromEmail, subject, toEmail, body, "")
 	res, err := s.Client.Send(message)
-	_ = log.Info("sendgrid response", map[string]interface{}{
-		"status_code": res.StatusCode,
-		"body":        res.Body,
-		"headers":     res.Headers,
-	})
+	slog.Info("sendgrid response", "status_code", res.StatusCode, "body", res.Body, "headers", res.Headers)
 	return err
 }
