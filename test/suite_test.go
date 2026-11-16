@@ -27,10 +27,11 @@ func buildDockerImage(tag, path string) {
 
 func testDockerImage(tag string) {
 	opts := &docker.RunOptions{
-		Remove: true,
+		Remove:  true,
+		Command: []string{"-h"},
 	}
 	out := docker.RunContext(GinkgoT(), GinkgoT().Context(), tag, opts)
-	Expect(out).To(ContainSubstring("no such file or directory"))
+	Expect(out).To(ContainSubstring("Usage:"))
 }
 
 func buildAndTestDockerImage(tag, path string) {
