@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"bytes"
+	"errors"
+	"fmt"
 	"log/slog"
 	"os"
 	"path/filepath"
@@ -18,11 +20,15 @@ import (
 
 var (
 	rootCmd = &cobra.Command{
-		Use:   "ct-monitor",
-		Short: "ct-monitor queries the certspotter API for new certificate issuances",
-		RunE:  runRoot,
+		Use:           "ct-monitor",
+		Short:         "ct-monitor queries the certspotter API for new certificate issuances",
+		RunE:          runRoot,
+		SilenceUsage:  true,
+		SilenceErrors: true,
 	}
 	position = viper.New()
+
+	errCheckIssuances = errors.New("some issuances could not be retrieved")
 
 	configFile string
 
@@ -51,18 +57,19 @@ func createFile(path string) error {
 	return nil
 }
 
-func initPosition(pc config.PositionConfig) {
+func initPosition(pc config.PositionConfig) error {
 	position.SetConfigFile(pc.Filename)
 	if err := createFile(pc.Filename); err != nil {
-		slog.Error("failed to create position file", "error", err)
+		return fmt.Errorf("failed to create position file: %w", err)
 	}
 	if err := position.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			slog.Error("failed to read position file", "error", err)
+			return fmt.Errorf("failed to read position file: %w", err)
 		}
 	}
 	slog.Info("using position file", "path", position.ConfigFileUsed())
 	position.WatchConfig()
+	return nil
 }
 
 func init() {
@@ -171,7 +178,9 @@ func runRoot(_ *cobra.Command, _ []string) error {
 		return err
 	}
 	slog.Info("loaded configuration", "config", configFile)
-	initPosition(conf.PositionConfig)
+	if err := initPosition(conf.PositionConfig); err != nil {
+		return err
+	}
 	defaultMailSender := conf.GetMailer(conf.AlertConfig.Mailer)
 	if err := defaultMailSender.Init(); err != nil {
 		return err
@@ -180,14 +189,16 @@ func runRoot(_ *cobra.Command, _ []string) error {
 		Endpoint: conf.Endpoint,
 		Token:    conf.Token,
 	}
+	var checkErr error
 	for _, domain := range conf.Domains {
 		domainMailer := getMailSenderForDomain(conf, domain, defaultMailSender)
 		if err := checkIssuances(domain, csp, domainMailer, conf.FilterConfig, conf.MailTemplate); err != nil {
 			slog.Error("could not check issuances", "error", err.Error(), "domain", domain.Name)
+			checkErr = errCheckIssuances
 		}
 	}
 
-	return atomicWritePosition(conf.PositionConfig)
+	return errors.Join(checkErr, atomicWritePosition(conf.PositionConfig))
 }
 
 func init() {

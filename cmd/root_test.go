@@ -4,14 +4,36 @@
 package cmd
 
 import (
+	"encoding/json"
+	"net/http"
+	"net/http/httptest"
+	"os"
+	"path/filepath"
 	"testing"
+	"text/template"
 	"time"
 
 	"github.com/Hsn723/certspotter-client/api"
 	"github.com/Hsn723/ct-monitor/config"
 	"github.com/Hsn723/ct-monitor/mailer"
 	smtpmock "github.com/mocktools/go-smtp-mock/v2"
+	"github.com/pelletier/go-toml/v2"
+	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
+)
+
+const testConfigTemplate = `certspotter_endpoint = "{{ .Endpoint }}"
+
+[position_config]
+filename = "{{ .PositionFile }}"
+{{ range .Domains }}
+[[domain]]
+name = "{{ . }}"
+{{ end }}`
+
+const (
+	testDomain      = "example.com"
+	testOtherDomain = "example.net"
 )
 
 func TestGetDomainConfigName(t *testing.T) {
@@ -136,5 +158,147 @@ func TestSendMail(t *testing.T) {
 	}
 	for _, expect := range expects {
 		assert.Contains(t, messageData, expect)
+	}
+}
+
+type testConfig struct {
+	Endpoint     string
+	PositionFile string
+	Domains      []string
+}
+
+func newTestServer(t *testing.T, issuances map[string][]uint64) *httptest.Server {
+	t.Helper()
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ids, ok := issuances[r.URL.Query().Get("domain")]
+		if !ok {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		res := []api.Issuance{}
+		for _, id := range ids {
+			res = append(res, api.Issuance{ID: id})
+		}
+		assert.NoError(t, json.NewEncoder(w).Encode(res))
+	}))
+	t.Cleanup(server.Close)
+	return server
+}
+
+func writeTestConfig(t *testing.T, path string, c testConfig) {
+	t.Helper()
+	tmpl := template.Must(template.New("config").Parse(testConfigTemplate))
+	f, err := os.Create(path)
+	assert.NoError(t, err)
+	defer f.Close()
+	assert.NoError(t, tmpl.Execute(f, c))
+}
+
+func readTestPositions(t *testing.T, path string) map[string]uint64 {
+	t.Helper()
+	data, err := os.ReadFile(path)
+	assert.NoError(t, err)
+	positions := map[string]uint64{}
+	assert.NoError(t, toml.Unmarshal(data, &positions))
+	return positions
+}
+
+func TestRunRoot(t *testing.T) {
+	isCheckIssuancesErr := func(t assert.TestingT, err error, msgAndArgs ...interface{}) bool {
+		return assert.ErrorIs(t, err, errCheckIssuances, msgAndArgs...)
+	}
+	isWriteErr := func(t assert.TestingT, err error, msgAndArgs ...interface{}) bool {
+		return assert.ErrorIs(t, err, os.ErrPermission, msgAndArgs...) &&
+			assert.NotErrorIs(t, err, errCheckIssuances, msgAndArgs...)
+	}
+	isCheckIssuancesAndWriteErr := func(t assert.TestingT, err error, msgAndArgs ...interface{}) bool {
+		return assert.ErrorIs(t, err, errCheckIssuances, msgAndArgs...) &&
+			assert.ErrorIs(t, err, os.ErrPermission, msgAndArgs...)
+	}
+	cases := []struct {
+		title            string
+		domains          []string
+		issuances        map[string][]uint64
+		existingPosition []byte
+		readOnlyDir      bool
+		expect           map[string]uint64
+		assertErr        assert.ErrorAssertionFunc
+	}{
+		{
+			title:   "Success",
+			domains: []string{testOtherDomain, testDomain},
+			issuances: map[string][]uint64{
+				testDomain:      {100, 200},
+				testOtherDomain: {300},
+			},
+			expect:    map[string]uint64{"example-com": 200, "example-net": 300},
+			assertErr: assert.NoError,
+		},
+		{
+			title:     "PartialFailure",
+			domains:   []string{testOtherDomain, testDomain},
+			issuances: map[string][]uint64{testDomain: {100, 200}},
+			expect:    map[string]uint64{"example-com": 200},
+			assertErr: isCheckIssuancesErr,
+		},
+		{
+			title:     "Failure",
+			domains:   []string{testOtherDomain, testDomain},
+			assertErr: isCheckIssuancesErr,
+		},
+		{
+			title:            "PositionWriteFailure",
+			domains:          []string{testOtherDomain, testDomain},
+			issuances:        map[string][]uint64{testDomain: {100, 200}, testOtherDomain: {300}},
+			existingPosition: []byte{},
+			readOnlyDir:      true,
+			assertErr:        isWriteErr,
+		},
+		{
+			title:            "CheckAndPositionWriteFailure",
+			domains:          []string{testOtherDomain, testDomain},
+			issuances:        map[string][]uint64{testDomain: {100, 200}},
+			existingPosition: []byte{},
+			readOnlyDir:      true,
+			assertErr:        isCheckIssuancesAndWriteErr,
+		},
+		{
+			title:            "PositionInitFailure",
+			domains:          []string{testDomain},
+			issuances:        map[string][]uint64{testDomain: {100, 200}},
+			existingPosition: []byte("invalid"),
+			assertErr:        assert.Error,
+		},
+	}
+	for _, tc := range cases {
+		t.Run(tc.title, func(t *testing.T) {
+			if tc.readOnlyDir && os.Geteuid() == 0 {
+				t.Skip("permissions are not enforced for root")
+			}
+			position = viper.New()
+			server := newTestServer(t, tc.issuances)
+			dir := t.TempDir()
+			positionDir := filepath.Join(dir, "positions")
+			assert.NoError(t, os.Mkdir(positionDir, 0755))
+			positionFile := filepath.Join(positionDir, "positions.toml")
+			if tc.existingPosition != nil {
+				assert.NoError(t, os.WriteFile(positionFile, tc.existingPosition, 0644))
+			}
+			if tc.readOnlyDir {
+				assert.NoError(t, os.Chmod(positionDir, 0555))
+				t.Cleanup(func() { _ = os.Chmod(positionDir, 0755) })
+			}
+			configFile = filepath.Join(dir, "config.toml")
+			writeTestConfig(t, configFile, testConfig{
+				Endpoint:     server.URL,
+				PositionFile: positionFile,
+				Domains:      tc.domains,
+			})
+
+			tc.assertErr(t, runRoot(nil, nil))
+			if tc.expect != nil {
+				assert.Equal(t, tc.expect, readTestPositions(t, positionFile))
+			}
+		})
 	}
 }
