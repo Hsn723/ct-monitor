@@ -14,6 +14,7 @@ import (
 	"github.com/Hsn723/ct-monitor/config"
 	"github.com/Hsn723/ct-monitor/filter"
 	"github.com/Hsn723/ct-monitor/mailer"
+	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -36,6 +37,8 @@ var (
 	commit  string
 	date    string
 	builtBy string
+
+	fs = afero.NewOsFs()
 )
 
 type mailTemplateVars struct {
@@ -44,11 +47,11 @@ type mailTemplateVars struct {
 }
 
 func createFile(path string) error {
-	if _, err := os.Stat(path); os.IsNotExist(err) {
-		if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+	if _, err := fs.Stat(path); os.IsNotExist(err) {
+		if err := fs.MkdirAll(filepath.Dir(path), 0755); err != nil {
 			return err
 		}
-		file, err := os.Create(path)
+		file, err := fs.Create(path)
 		if err != nil {
 			return err
 		}
@@ -74,6 +77,7 @@ func initPosition(pc config.PositionConfig) error {
 
 func init() {
 	rootCmd.Flags().StringVarP(&configFile, "config", "c", config.DefaultConfigFile, "path to configuration file")
+	position.SetFs(fs)
 }
 
 func getDomainConfigName(domain string) string {
@@ -142,7 +146,7 @@ func checkIssuances(dc config.DomainConfig, c api.CertspotterClient, mailSender 
 }
 
 func atomicWritePosition(pc config.PositionConfig) error {
-	tmpFile, err := os.CreateTemp(filepath.Dir(pc.Filename), "position.*.toml")
+	tmpFile, err := afero.TempFile(fs, filepath.Dir(pc.Filename), "position.*.toml")
 	if err != nil {
 		return err
 	}
@@ -156,7 +160,7 @@ func atomicWritePosition(pc config.PositionConfig) error {
 	if fi.Size() == 0 {
 		return nil
 	}
-	return os.Rename(tmpFile.Name(), pc.Filename)
+	return fs.Rename(tmpFile.Name(), pc.Filename)
 }
 
 func getMailSenderForDomain(conf *config.Config, dc config.DomainConfig, defaultMailSender mailer.Mailer) mailer.Mailer {
@@ -173,7 +177,7 @@ func getMailSenderForDomain(conf *config.Config, dc config.DomainConfig, default
 
 func runRoot(_ *cobra.Command, _ []string) error {
 	slog.Info("ct-monitor", "version", version, "commit", commit, "date", date, "built_by", builtBy)
-	conf, err := config.Load(configFile)
+	conf, err := config.Load(fs, configFile)
 	if err != nil {
 		return err
 	}

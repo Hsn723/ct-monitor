@@ -18,6 +18,7 @@ import (
 	"github.com/Hsn723/ct-monitor/mailer"
 	smtpmock "github.com/mocktools/go-smtp-mock/v2"
 	"github.com/pelletier/go-toml/v2"
+	"github.com/spf13/afero"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )
@@ -39,34 +40,35 @@ const (
 func TestGetDomainConfigName(t *testing.T) {
 	t.Parallel()
 	expect := "example-com"
-	actual := getDomainConfigName("example.com")
+	actual := getDomainConfigName(testDomain)
 	assert.Equal(t, expect, actual)
 }
 
 func TestGetTemplatedMailContent(t *testing.T) {
 	t.Parallel()
 	cases := []struct {
-		title  string
-		tmpl   string
-		vars   mailTemplateVars
-		expect string
-		isErr  bool
+		title   string
+		tmpl    string
+		vars    mailTemplateVars
+		expect  string
+		errFunc assert.ErrorAssertionFunc
 	}{
 		{
 			title: "Success",
 			tmpl:  "{{.Domain}}の証明書発行",
 			vars: mailTemplateVars{
-				Domain: "example.com",
+				Domain: testDomain,
 			},
-			expect: "example.comの証明書発行",
+			expect:  "example.comの証明書発行",
+			errFunc: assert.NoError,
 		},
 		{
 			title: "InvalidField",
 			tmpl:  "{{.Hoge}}の証明書発行",
 			vars: mailTemplateVars{
-				Domain: "example.com",
+				Domain: testDomain,
 			},
-			isErr: true,
+			errFunc: assert.Error,
 		},
 	}
 	for _, tc := range cases {
@@ -74,11 +76,7 @@ func TestGetTemplatedMailContent(t *testing.T) {
 		t.Run(tc.title, func(t *testing.T) {
 			t.Helper()
 			actual, err := getTemplatedMailContent(tc.tmpl, tc.vars)
-			if tc.isErr {
-				assert.Error(t, err)
-			} else {
-				assert.NoError(t, err)
-			}
+			tc.errFunc(t, err)
 			assert.Equal(t, tc.expect, actual)
 		})
 	}
@@ -188,7 +186,7 @@ func newTestServer(t *testing.T, issuances map[string][]uint64) *httptest.Server
 func writeTestConfig(t *testing.T, path string, c testConfig) {
 	t.Helper()
 	tmpl := template.Must(template.New("config").Parse(testConfigTemplate))
-	f, err := os.Create(path)
+	f, err := fs.Create(path)
 	assert.NoError(t, err)
 	defer f.Close()
 	assert.NoError(t, tmpl.Execute(f, c))
@@ -196,7 +194,7 @@ func writeTestConfig(t *testing.T, path string, c testConfig) {
 
 func readTestPositions(t *testing.T, path string) map[string]uint64 {
 	t.Helper()
-	data, err := os.ReadFile(path)
+	data, err := afero.ReadFile(fs, path)
 	assert.NoError(t, err)
 	positions := map[string]uint64{}
 	assert.NoError(t, toml.Unmarshal(data, &positions))
@@ -204,16 +202,20 @@ func readTestPositions(t *testing.T, path string) map[string]uint64 {
 }
 
 func TestRunRoot(t *testing.T) {
-	isCheckIssuancesErr := func(t assert.TestingT, err error, msgAndArgs ...interface{}) bool {
-		return assert.ErrorIs(t, err, errCheckIssuances, msgAndArgs...)
-	}
-	isWriteErr := func(t assert.TestingT, err error, msgAndArgs ...interface{}) bool {
-		return assert.ErrorIs(t, err, os.ErrPermission, msgAndArgs...) &&
-			assert.NotErrorIs(t, err, errCheckIssuances, msgAndArgs...)
-	}
-	isCheckIssuancesAndWriteErr := func(t assert.TestingT, err error, msgAndArgs ...interface{}) bool {
-		return assert.ErrorIs(t, err, errCheckIssuances, msgAndArgs...) &&
-			assert.ErrorIs(t, err, os.ErrPermission, msgAndArgs...)
+	assertSpecificErrs := func(errs []error, notErrs []error) func(t assert.TestingT, err error, msgAndArgs ...interface{}) bool {
+		return func(t assert.TestingT, err error, msgAndArgs ...interface{}) bool {
+			for _, e := range errs {
+				if !assert.ErrorIs(t, err, e, msgAndArgs...) {
+					return false
+				}
+			}
+			for _, e := range notErrs {
+				if !assert.NotErrorIs(t, err, e, msgAndArgs...) {
+					return false
+				}
+			}
+			return true
+		}
 	}
 	cases := []struct {
 		title            string
@@ -239,12 +241,12 @@ func TestRunRoot(t *testing.T) {
 			domains:   []string{testOtherDomain, testDomain},
 			issuances: map[string][]uint64{testDomain: {100, 200}},
 			expect:    map[string]uint64{"example-com": 200},
-			assertErr: isCheckIssuancesErr,
+			assertErr: assertSpecificErrs([]error{errCheckIssuances}, []error{os.ErrPermission}),
 		},
 		{
 			title:     "Failure",
 			domains:   []string{testOtherDomain, testDomain},
-			assertErr: isCheckIssuancesErr,
+			assertErr: assertSpecificErrs([]error{errCheckIssuances}, []error{os.ErrPermission}),
 		},
 		{
 			title:            "PositionWriteFailure",
@@ -252,7 +254,7 @@ func TestRunRoot(t *testing.T) {
 			issuances:        map[string][]uint64{testDomain: {100, 200}, testOtherDomain: {300}},
 			existingPosition: []byte{},
 			readOnlyDir:      true,
-			assertErr:        isWriteErr,
+			assertErr:        assertSpecificErrs([]error{os.ErrPermission}, []error{errCheckIssuances}),
 		},
 		{
 			title:            "CheckAndPositionWriteFailure",
@@ -260,7 +262,7 @@ func TestRunRoot(t *testing.T) {
 			issuances:        map[string][]uint64{testDomain: {100, 200}},
 			existingPosition: []byte{},
 			readOnlyDir:      true,
-			assertErr:        isCheckIssuancesAndWriteErr,
+			assertErr:        assertSpecificErrs([]error{errCheckIssuances, os.ErrPermission}, nil),
 		},
 		{
 			title:            "PositionInitFailure",
@@ -272,21 +274,16 @@ func TestRunRoot(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.title, func(t *testing.T) {
-			if tc.readOnlyDir && os.Geteuid() == 0 {
-				t.Skip("permissions are not enforced for root")
-			}
 			position = viper.New()
+			fs = afero.NewMemMapFs()
 			server := newTestServer(t, tc.issuances)
 			dir := t.TempDir()
 			positionDir := filepath.Join(dir, "positions")
 			assert.NoError(t, os.Mkdir(positionDir, 0755))
 			positionFile := filepath.Join(positionDir, "positions.toml")
 			if tc.existingPosition != nil {
-				assert.NoError(t, os.WriteFile(positionFile, tc.existingPosition, 0644))
-			}
-			if tc.readOnlyDir {
-				assert.NoError(t, os.Chmod(positionDir, 0555))
-				t.Cleanup(func() { _ = os.Chmod(positionDir, 0755) })
+				err := afero.WriteFile(fs, positionFile, tc.existingPosition, 0644)
+				assert.NoError(t, err)
 			}
 			configFile = filepath.Join(dir, "config.toml")
 			writeTestConfig(t, configFile, testConfig{
@@ -294,7 +291,10 @@ func TestRunRoot(t *testing.T) {
 				PositionFile: positionFile,
 				Domains:      tc.domains,
 			})
-
+			if tc.readOnlyDir {
+				fs = afero.NewReadOnlyFs(fs)
+			}
+			position.SetFs(fs)
 			tc.assertErr(t, runRoot(nil, nil))
 			if tc.expect != nil {
 				assert.Equal(t, tc.expect, readTestPositions(t, positionFile))
