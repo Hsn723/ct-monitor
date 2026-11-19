@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/Hsn723/ct-monitor/mailer"
+	"github.com/spf13/afero"
 	"github.com/spf13/viper"
 )
 
@@ -105,8 +106,9 @@ const (
 )
 
 // Load loads the configuration from file.
-func Load(confFile string) (conf *Config, err error) {
+func Load(fs afero.Fs, confFile string) (conf *Config, err error) {
 	viper.SetConfigFile(confFile)
+	viper.SetFs(fs)
 	viper.AutomaticEnv()
 	if err := viper.ReadInConfig(); err != nil {
 		return nil, err

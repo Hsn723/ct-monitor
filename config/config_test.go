@@ -8,12 +8,14 @@ import (
 	"testing"
 
 	"github.com/Hsn723/ct-monitor/mailer"
+	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 )
 
 func testLoad(t *testing.T, confFile string, expectedConfig *Config, isErrorExpected bool) {
 	t.Helper()
-	actualConfig, err := Load(confFile)
+	fs := afero.NewOsFs()
+	actualConfig, err := Load(fs, confFile)
 	if isErrorExpected {
 		assert.Error(t, err)
 	} else {
