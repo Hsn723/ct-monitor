@@ -24,13 +24,17 @@ clean:
 	@if [ -f $(PROJECT) ]; then rm $(PROJECT); fi
 
 .PHONY: lint
-lint: init-aqua
+lint: init-aqua mock
 	pre-commit install
 	pre-commit run --all-files
 
 .PHONY: test
-test: build-testfilter
+test: build-testfilter mock
 	go test --tags=test -coverprofile cover.out -count=1 -race -p 4 -v ./...
+
+.PHONY: mock
+mock: init-aqua
+	go generate -mod=readonly ./...
 
 .PHONY: build-testfilter
 build-testfilter: $(WORKDIR)
