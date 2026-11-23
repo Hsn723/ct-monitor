@@ -10,49 +10,56 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var (
-	rootCmd = &cobra.Command{
-		Use:           "ct-monitor",
-		Short:         "ct-monitor queries the certspotter API for new certificate issuances",
-		RunE:          runRoot,
-		SilenceUsage:  true,
-		SilenceErrors: true,
-	}
-
+type app struct {
+	fs         afero.Fs
 	configFile string
+	monitor    monitor.IMonitor
+}
 
+var (
 	version string
 	commit  string
 	date    string
 	builtBy string
-
-	fs = afero.NewOsFs()
-
-	ctMonitor monitor.IMonitor
 )
 
+// RootCmd returns the root command.
+func (a *app) RootCmd() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:           "ct-monitor",
+		Short:         "ct-monitor queries the certspotter API for new certificate issuances",
+		RunE:          a.runRoot,
+		SilenceUsage:  true,
+		SilenceErrors: true,
+	}
+	cmd.Flags().StringVarP(&a.configFile, "config", "c", config.DefaultConfigFile, "path to configuration file")
+	return cmd
+}
+
 func init() {
-	rootCmd.Flags().StringVarP(&configFile, "config", "c", config.DefaultConfigFile, "path to configuration file")
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{}))
 	slog.SetDefault(logger)
 }
 
-func runRoot(_ *cobra.Command, _ []string) error {
+func (a *app) runRoot(_ *cobra.Command, _ []string) error {
 	slog.Info("ct-monitor", "version", version, "commit", commit, "date", date, "built_by", builtBy)
-	conf, err := config.Load(fs, configFile)
+	conf, err := config.Load(a.fs, a.configFile)
 	if err != nil {
 		return err
 	}
-	slog.Info("loaded configuration", "config", configFile)
-	if ctMonitor == nil {
-		ctMonitor = monitor.NewMonitor(conf, fs)
+	slog.Info("loaded configuration", "config", a.configFile)
+	if a.monitor == nil {
+		a.monitor = monitor.NewMonitor(conf, a.fs)
 	}
-	return ctMonitor.Run()
+	return a.monitor.Run()
 }
 
 // Execute runs the root command.
 func Execute() {
-	if err := rootCmd.Execute(); err != nil {
+	app := &app{
+		fs: afero.NewOsFs(),
+	}
+	if err := app.RootCmd().Execute(); err != nil {
 		slog.Error("ct-monitor encountered an error", "error", err.Error())
 		os.Exit(1)
 	}

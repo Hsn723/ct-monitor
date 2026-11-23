@@ -8,6 +8,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/Hsn723/ct-monitor/config"
 	mock_monitor "github.com/Hsn723/ct-monitor/mock/monitor"
 	"github.com/Hsn723/ct-monitor/monitor"
 	"github.com/spf13/afero"
@@ -49,6 +50,7 @@ func setupMockMonitor(t *testing.T, monitorErrs []error, isCalled bool) *mock_mo
 }
 
 func TestRunRoot(t *testing.T) {
+	t.Parallel()
 	cases := []struct {
 		title           string
 		isConfigPresent bool
@@ -98,8 +100,10 @@ func TestRunRoot(t *testing.T) {
 		},
 	}
 	for _, tc := range cases {
+		tc := tc
 		t.Run(tc.title, func(t *testing.T) {
-			fs = afero.NewMemMapFs()
+			t.Parallel()
+			fs := afero.NewMemMapFs()
 			if tc.isConfigPresent {
 				var content string
 				if tc.isConfigValid {
@@ -110,21 +114,42 @@ func TestRunRoot(t *testing.T) {
 				err := afero.WriteFile(fs, testConfigFile, []byte(content), 0644)
 				assert.NoError(t, err)
 			}
-			configFile = testConfigFile
 			mockMonitor := setupMockMonitor(t, tc.monitorErrs, tc.isConfigValid)
-			ctMonitor = mockMonitor
-			tc.assertErr(t, runRoot(nil, nil))
+			app := &app{
+				fs:         fs,
+				configFile: testConfigFile,
+				monitor:    mockMonitor,
+			}
+			tc.assertErr(t, app.runRoot(nil, nil))
 		})
 	}
 }
 
 func TestRunRootMonitorInstantiation(t *testing.T) {
-	fs = afero.NewMemMapFs()
+	t.Parallel()
+	fs := afero.NewMemMapFs()
 	err := afero.WriteFile(fs, testConfigFile, []byte(testBarebonesConfig), 0644)
 	assert.NoError(t, err)
 
-	configFile = testConfigFile
-	ctMonitor = nil
-	assert.NoError(t, runRoot(nil, nil))
-	assert.IsType(t, &monitor.Monitor{}, ctMonitor)
+	app := &app{
+		fs:         fs,
+		configFile: testConfigFile,
+	}
+	assert.NoError(t, app.runRoot(nil, nil))
+	assert.IsType(t, &monitor.Monitor{}, app.monitor)
+}
+
+func TestRootCmd(t *testing.T) {
+	t.Parallel()
+	app := &app{
+		fs: afero.NewMemMapFs(),
+	}
+	cmd := app.RootCmd()
+	assert.Equal(t, "ct-monitor", cmd.Use)
+	assert.Equal(t, "ct-monitor queries the certspotter API for new certificate issuances", cmd.Short)
+	assert.NotNil(t, cmd.RunE)
+	assert.True(t, cmd.Flags().Lookup("config") != nil)
+	assert.Equal(t, config.DefaultConfigFile, cmd.Flags().Lookup("config").Value.String())
+	assert.True(t, cmd.SilenceErrors)
+	assert.True(t, cmd.SilenceUsage)
 }
