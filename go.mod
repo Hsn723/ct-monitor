@@ -21,6 +21,7 @@ require (
 	github.com/spf13/viper v1.21.0
 	github.com/stretchr/testify v1.12.1
 	github.com/yuin/gopher-lua v1.1.2
+	go.uber.org/mock v0.6.0
 	golang.org/x/crypto/x509roots/fallback v0.0.0-20261020153306-9f2b28d4331a
 	k8s.io/apimachinery v0.37.2
 )

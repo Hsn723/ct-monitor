@@ -14,3 +14,4 @@ packages:
 - name: kubernetes-sigs/kind@v0.33.0
 - name: kubernetes/kubernetes/kubectl@v1.37.2
 - name: mikefarah/yq@v4.54.3
+- name: uber-go/mock@v0.6.0

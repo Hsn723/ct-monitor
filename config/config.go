@@ -107,10 +107,11 @@ const (
 
 // Load loads the configuration from file.
 func Load(fs afero.Fs, confFile string) (conf *Config, err error) {
-	viper.SetConfigFile(confFile)
-	viper.SetFs(fs)
-	viper.AutomaticEnv()
-	if err := viper.ReadInConfig(); err != nil {
+	v := viper.New()
+	v.SetConfigFile(confFile)
+	v.SetFs(fs)
+	v.AutomaticEnv()
+	if err := v.ReadInConfig(); err != nil {
 		return nil, err
 	}
 	conf = &Config{
@@ -126,11 +127,11 @@ func Load(fs afero.Fs, confFile string) (conf *Config, err error) {
 			Body:    DefaultBodyTemplate,
 		},
 	}
-	if err := viper.Unmarshal(&conf); err != nil {
+	if err := v.Unmarshal(&conf); err != nil {
 		return nil, err
 	}
 	if conf.Token == "" {
-		conf.Token = viper.GetString(certspotterTokenEnv)
+		conf.Token = v.GetString(certspotterTokenEnv)
 	}
 	return conf, nil
 }
