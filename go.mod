@@ -5,8 +5,8 @@ go 1.27.0
 require (
 	github.com/Hsn723/certspotter-client v1.2.0
 	github.com/aws/aws-sdk-go-v2 v1.48.0
-	github.com/aws/aws-sdk-go-v2/config v1.33.19
-	github.com/aws/aws-sdk-go-v2/service/sesv2 v1.79.9
+	github.com/aws/aws-sdk-go-v2/config v1.33.20
+	github.com/aws/aws-sdk-go-v2/service/sesv2 v1.80.0
 	github.com/emersion/go-sasl v0.0.0-20241020182733-b788ff22d5a6
 	github.com/emersion/go-smtp v0.26.0
 	github.com/gruntwork-io/terratest v1.0.1
@@ -31,9 +31,9 @@ require (
 	github.com/Masterminds/semver/v3 v3.5.0 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.7.27 // indirect
-	github.com/aws/aws-sdk-go-v2/credentials v1.21.1 // indirect
+	github.com/aws/aws-sdk-go-v2/credentials v1.21.2 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.20.9 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.5.9 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager v0.5.10 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.5.12 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.8.12 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.5.12 // indirect
@@ -45,7 +45,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.69.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecrpublic v1.47.12 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.106.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/iam v1.66.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/iam v1.67.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.25 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.11.13 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/endpoint-discovery v1.13.12 // indirect
@@ -55,9 +55,9 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.117.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/rds v1.133.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.71.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.115.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.116.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.51.0 // indirect
-	github.com/aws/aws-sdk-go-v2/service/signin v1.13.1 // indirect
+	github.com/aws/aws-sdk-go-v2/service/signin v1.14.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sns v1.48.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.53.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.83.0 // indirect
