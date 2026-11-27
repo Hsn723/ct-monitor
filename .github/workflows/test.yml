@@ -31,7 +31,7 @@ jobs:
     - uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
       with:
         go-version: ${{ env.go-version }}
-    - uses: hsn723/actions/.github/actions/setup-aqua@acb91ada80e04ac6cf812df86a9f3090a77d86b7 # v1.0.52
+    - uses: hsn723/actions/.github/actions/setup-aqua@c50290a364a03bbea5489416c230ffd60e1dbbe8 # v1.0.53
     - name: Test
       run: make test
   kindtest:
